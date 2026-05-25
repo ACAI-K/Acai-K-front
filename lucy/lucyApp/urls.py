@@ -15,4 +15,5 @@ urlpatterns = [
     path('registro_ldd/', views.registro_ldd, name='registro_ldd'),
     path('tickets/', views.tickets, name='tickets'),
     path('ticket/', views.ticket, name='ticket'),
+    path('busqueda/', views.busqueda, name='busqueda'),
 ]

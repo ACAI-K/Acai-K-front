@@ -30,3 +30,6 @@ def tickets(request):
 
 def ticket(request):
     return render(request, 'ticket.html')
+
+def busqueda(request):
+    return render(request, 'busqueda.html')

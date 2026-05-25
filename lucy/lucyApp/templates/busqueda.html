@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="busqueda-body">
+
+    <!-- NAVBAR -->
+    <nav class="navbar"></nav>
+
+    <div class="busqueda-container">
+
+        <!-- Buscador -->
+        <div class="search-bar-container">
+            <input 
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Refugio"
+            >
+
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Resultados -->
+        <div id="resultsContainer" class="results-container">
+
+            <!-- CARD 1 -->
+            <div class="resultado-card" data-name="Refugio de los Menhires">
+
+                <div class="resultado-img"></div>
+
+                <div class="resultado-info">
+                    <h3>Refugio de los Menhires</h3>
+
+                    <p class="categoria">Habitaciones</p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="direccion">
+                        Acámbaro
+                    </p>
+
+                    <p class="direccion-sec">
+                        C. Insurgente M346 LT1
+                    </p>
+                </div>
+
+                <button class="btn-reserva">
+                    Reserva aquí
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <card 2>
+            <div class="resultado-card" data-name="Refugio del enfermo">
+
+                <div class="resultado-img brown"></div>
+
+                <div class="resultado-info">
+                    <h3>Refugio del enfermo</h3>
+
+                    <p class="categoria">Clínica</p>
+
+                    <p class="direccion">
+                        Texcoco
+                    </p>
+
+                    <p class="direccion-sec">
+                        Dr. Zambrano 45, El Partizal 53064
+                    </p>
+                </div>
+
+                <button class="btn-reserva">
+                    Reserva aquí
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- No resultados -->
+        <div id="noResults" class="no-results hidden">
+            <p>No hay más resultados</p>
+            <p>¿No es lo que buscabas?</p>
+
+            <button class="btn-otra-busqueda">
+                Hacer otra búsqueda
+            </button>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+
+            <div class="footer-logo">
+                <h2>Lucy</h2>
+            </div>
+
+            <div>
+                <h4>Explorar</h4>
+                <p>Parques autorizados</p>
+                <p>Mapa interactivo</p>
+                <p>Calendario ambiental</p>
+            </div>
+
+            <div>
+                <h4>Cuenta</h4>
+                <p>Registro</p>
+                <p>Inicio de sesión</p>
+                <p>Perfil de usuario</p>
+            </div>
+
+            <div>
+                <h4>Hospedaje</h4>
+                <p>Parques autorizados</p>
+                <p>Alojamiento</p>
+                <p>Habitaciones</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{% static 'js/busqueda.js' %}"></script>
+
+</body>
+</html>
