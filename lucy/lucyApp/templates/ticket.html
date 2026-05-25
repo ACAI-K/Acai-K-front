@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Ticket</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container ticket-detail-container">
+        <!-- Encabezado del ticket -->
+        <div class="ticket-header">
+            <h1 class="ticket-titulo">Ticket #105 - <span class="ticket-estado-titulo">Abierto</span></h1>
+        </div>
+
+        <!-- Información del ticket -->
+        <div class="ticket-info">
+            <p class="ticket-asunto">No me llego mi correo de confirmación help T-T ¿C ayuda</p>
+            <p class="ticket-email">randommall@davai.ma</p>
+        </div>
+
+        <!-- Contenido del ticket -->
+        <div class="ticket-contenido">
+            <p class="seccion-titulo">Chistes</p>
+            <p class="seccion-desc">
+                No está aún con lorem e isufrización, nique mi sorpeo al hay a ir no la seco a destandbirde mi correo es la pila de op´r i
+            </p>
+        </div>
+
+        <!-- Respuesta de soporte -->
+        <div class="respuesta-soporte">
+            <p class="respuesta-titulo">¿Planes lunas? Aquí Soporte</p>
+            <p class="respuesta-texto">
+                Entendemos tu preocupación sobre el correo con el código de confirmación ya se enviso. La respuesta puede deberse a los siguientes motivos: la asuntos a en esta punto de todo tipo bien como bien como tercero la información no se especifico en de tiempo por los motivos por los que enviamos el correo en si se cuenta con al por favor intenta de nueva oportunidad en la compra y cuide libre lo heraldo.
+            </p>
+        </div>
+
+        <!-- Formulario para responder -->
+        <form class="ticket-respuesta-form">
+            <textarea placeholder="Escribe tu respuesta aquí..." class="respuesta-textarea" rows="4"></textarea>
+            
+            <!-- Botón enviar -->
+            <button type="submit" class="btn-enviar-respuesta">
+                Enviar
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+</body>
+</html>

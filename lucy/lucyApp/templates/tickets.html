@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container tickets-container">
+        <!-- Título -->
+        <h1 class="titulo">Tickets</h1>
+
+        <!-- Lista de tickets -->
+        <div class="tickets-list">
+            <div class="ticket-item">
+                <div class="ticket-content">
+                    <p class="ticket-descripcion">No me llego mi correo de confirmación help T-T ¿C ayuda</p>
+                    <div class="ticket-footer">
+                        <span class="ticket-numero">#105</span>
+                        <span class="ticket-estado abierto">Abierto</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-item">
+                <div class="ticket-content">
+                    <p class="ticket-descripcion">El correo registrado para mi hotel no es correcto</p>
+                    <div class="ticket-footer">
+                        <span class="ticket-numero">#106</span>
+                        <span class="ticket-estado esperando">Esperando respuesta</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-item">
+                <div class="ticket-content">
+                    <p class="ticket-descripcion">¿Cómo me registro? Soy dueño de las prestigiosas cabañas ...</p>
+                    <div class="ticket-footer">
+                        <span class="ticket-numero">#105</span>
+                        <span class="ticket-estado abierto">Abierto</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-item">
+                <div class="ticket-content">
+                    <p class="ticket-descripcion">@!%$?€?5</p>
+                    <div class="ticket-footer">
+                        <span class="ticket-numero">#107</span>
+                        <span class="ticket-estado cerrado">Cerrado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+</body>
+</html>

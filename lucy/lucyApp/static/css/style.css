@@ -1,0 +1,1335 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de navegación */
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+}
+
+/* Contenedor principal */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Saludo simple (sin botón atrás) */
+.greeting-simple {
+    margin-bottom: 50px;
+}
+
+.greeting-simple p {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Botón especial "Mapa" */
+.mapa-btn {
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border-radius: 25px;
+    padding: 15px 25px;
+}
+
+.mapa-btn:hover {
+    background-color: #6fc3b0;
+}
+
+.mapa-btn svg {
+    color: #1a1a1a;
+}
+
+/* Header con saludo */
+.header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.greeting {
+    flex: 1;
+}
+
+.greeting p {
+    font-size: 14px;
+    color: #cccccc;
+    margin-bottom: 5px;
+}
+
+.greeting h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Menú */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.menu-item:hover {
+    background-color: #6fc3b0;
+}
+
+.menu-item svg {
+    color: #ffffff;
+}
+
+/* Botón especial para Habitaciones */
+.habitaciones-btn {
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 15px 25px;
+}
+
+.habitaciones-btn svg {
+    color: #ffffff;
+}
+
+/* Texto de ayuda */
+.help-text {
+    font-size: 12px;
+    color: #999999;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    border-top: 1px solid transparent;
+}
+
+/* ============ Estilos para Habitaciones ============ */
+
+.habitaciones-container {
+    padding: 20px;
+    max-width: 800px;
+    position: relative;
+}
+
+.habitaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.habitacion-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.habitacion-card:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: #7dd3c0;
+}
+
+.habitacion-imagen {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-color: #d0d0d0;
+    overflow: hidden;
+}
+
+.habitacion-imagen svg {
+    width: 100%;
+    height: 100%;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+}
+
+.habitacion-info {
+    padding: 18px 16px;
+}
+
+.habitacion-nombre {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.habitacion-detalles {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #cccccc;
+}
+
+.detalle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detalle i {
+    color: #7dd3c0;
+}
+
+.habitacion-descripcion {
+    font-size: 12px;
+    color: #aaaaaa;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.habitacion-precio {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.precio {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff9800;
+}
+
+.moneda {
+    font-size: 11px;
+    color: #aaaaaa;
+}
+
+.periodo {
+    font-size: 11px;
+    color: #aaaaaa;
+    margin-left: auto;
+}
+
+/* Botón agregar habitación */
+.btn-agregar-habitacion {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: #ff9800;
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+    z-index: 10;
+}
+
+.btn-agregar-habitacion:hover {
+    background-color: #f57c00;
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.6);
+}
+
+/* Botón confirmar */
+.btn-confirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 40px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px auto 0;
+    align-self: center;
+}
+
+.btn-confirmar:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-confirmar i {
+    font-size: 14px;
+}
+
+/* ============ Estilos para Detalle de Ticket ============ */
+
+.ticket-detail-container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+.ticket-header {
+    margin-bottom: 25px;
+}
+
+.ticket-titulo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.ticket-estado-titulo {
+    font-size: 18px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+.ticket-info {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #7dd3c0;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.ticket-asunto {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.ticket-email {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+/* Contenido del ticket */
+.ticket-contenido {
+    margin-bottom: 25px;
+}
+
+.seccion-titulo {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+}
+
+.seccion-desc {
+    font-size: 13px;
+    color: #cccccc;
+    line-height: 1.6;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 6px;
+}
+
+/* Respuesta de soporte */
+.respuesta-soporte {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.respuesta-titulo {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.respuesta-texto {
+    font-size: 12px;
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+/* Formulario de respuesta */
+.ticket-respuesta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.respuesta-textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.respuesta-textarea::placeholder {
+    color: #777777;
+}
+
+.respuesta-textarea:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #7dd3c0;
+}
+
+/* Botón enviar respuesta */
+.btn-enviar-respuesta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 30px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.btn-enviar-respuesta:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-enviar-respuesta i {
+    font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .ticket-detail-container {
+        padding: 15px;
+    }
+
+    .ticket-titulo {
+        font-size: 18px;
+    }
+
+    .respuesta-textarea {
+        font-size: 12px;
+    }
+}
+
+/* ============ Estilos para Tickets ============ */
+
+.tickets-container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+.tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.ticket-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ticket-item:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.ticket-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ticket-descripcion {
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-numero {
+    font-size: 12px;
+    color: #999999;
+    font-weight: 500;
+}
+
+.ticket-estado {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.ticket-estado.abierto {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+.ticket-estado.esperando {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.ticket-estado.cerrado {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #ef5350;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .tickets-container {
+        padding: 15px;
+    }
+
+    .ticket-item {
+        padding: 15px;
+    }
+
+    .ticket-descripcion {
+        font-size: 13px;
+    }
+}
+
+/* ============ Estilos para Registro LDD ============ */
+
+.registro-ldd-container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.upload-zone {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: #7dd3c0;
+}
+
+.upload-zone.dragover {
+    background-color: rgba(125, 211, 192, 0.1);
+    border-color: #7dd3c0;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.upload-content i {
+    font-size: 48px;
+    color: #7dd3c0;
+}
+
+.upload-content p {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.5;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Botón enviar */
+.btn-enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 40px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.btn-enviar:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-enviar i {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .registro-ldd-container {
+        padding: 15px;
+    }
+
+    .upload-zone {
+        min-height: 150px;
+    }
+
+    .upload-content i {
+        font-size: 36px;
+    }
+
+    .upload-content p {
+        font-size: 12px;
+    }
+}
+
+/* ============ Estilos para Editar Habitación ============ */
+
+.editar-habitacion-container {
+    padding: 20px;
+    max-width: 700px;
+}
+
+.editar-h-titulo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.editar-habitacion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nombre-habitacion {
+    font-size: 14px;
+}
+
+.descripcion-habitacion {
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    padding: 12px 16px;
+}
+
+/* Grupo de camas horizontal (2 columnas) */
+.camas-group-dos-columnas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.cama-item-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cama-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cama-label {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.cama-desc {
+    font-size: 11px;
+    color: #aaaaaa;
+}
+
+.cama-item-horizontal .numero-input {
+    flex-shrink: 0;
+}
+
+/* Botón confirmar editar */
+.btn-confirmar-editar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 40px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.btn-confirmar-editar:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-confirmar-editar i {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .editar-habitacion-container {
+        padding: 15px;
+    }
+
+    .editar-h-titulo {
+        font-size: 20px;
+    }
+
+    .camas-group-dos-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .cama-item-horizontal {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cama-item-horizontal .numero-input {
+        width: 100%;
+    }
+}
+
+/* ============ Estilos para Editar Lugar ============ */
+
+.editar-ldd-container {
+    padding: 20px;
+    max-width: 700px;
+}
+
+.editar-titulo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.editar-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nombre-lugar {
+    font-size: 14px;
+}
+
+/* Mapa placeholder */
+.mapa-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaaaaa;
+    font-size: 14px;
+}
+
+/* Botón guardar */
+.btn-guardar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 40px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.btn-guardar:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-guardar i {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .editar-ldd-container {
+        padding: 15px;
+    }
+
+    .editar-titulo {
+        font-size: 20px;
+    }
+
+    .mapa-placeholder {
+        height: 200px;
+    }
+}
+
+/* ============ Estilos para Crear Habitación ============ */
+
+.crear-habitacion-container {
+    padding: 20px;
+    max-width: 700px;
+}
+
+.habitacion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    color: #333333;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.textarea-field {
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    padding: 12px 16px;
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+    color: #999999;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px #7dd3c0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.caracteres-count {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 11px;
+    color: #999999;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.section-label {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.section-desc {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+/* Inputs numéricos */
+.numero-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-menos,
+.btn-mas {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-menos:hover,
+.btn-mas:hover {
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border-color: #7dd3c0;
+}
+
+.numero-field {
+    flex: 1;
+    max-width: 60px;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.numero-field:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #7dd3c0;
+}
+
+/* Grupo de camas */
+.camas-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.cama-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cama-label {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.cama-desc {
+    font-size: 11px;
+    color: #aaaaaa;
+}
+
+/* Precio */
+.precio-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.precio-field {
+    flex: 1;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.precio-field::placeholder {
+    color: #777777;
+}
+
+.precio-field:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #7dd3c0;
+}
+
+.moneda-label {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .crear-habitacion-container {
+        padding: 15px;
+    }
+
+    .camas-group {
+        grid-template-columns: 1fr;
+    }
+
+    .numero-input {
+        gap: 8px;
+    }
+
+    .btn-menos,
+    .btn-mas {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+}
+
+/* ============ Estilos para Crear Lugar ============ */
+
+.crear-container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+.titulo {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Input del nombre */
+.form-group {
+    width: 100%;
+}
+
+.input-lugar {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    color: #333333;
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.input-lugar::placeholder {
+    color: #999999;
+}
+
+.input-lugar:focus {
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px #7dd3c0;
+}
+
+/* Secciones */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-label {
+    font-size: 13px;
+    color: #cccccc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+/* Botones tipo de lugar */
+.tipo-lugar-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tipo-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.tipo-btn i {
+    font-size: 16px;
+}
+
+.tipo-btn:hover {
+    border-color: #7dd3c0;
+    color: #7dd3c0;
+}
+
+.tipo-btn.active {
+    background-color: #ffc857;
+    color: #1a1a1a;
+    border-color: #ffc857;
+}
+
+.tipo-btn.active i {
+    color: #1a1a1a;
+}
+
+/* Grid de amenidades */
+.amenidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.amenidad-item {
+    position: relative;
+}
+
+.amenidad-item input {
+    display: none;
+}
+
+.amenidad-item label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.amenidad-item label i {
+    font-size: 24px;
+    color: #7dd3c0;
+}
+
+.amenidad-item label span {
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.amenidad-item input:checked + label {
+    background-color: #7dd3c0;
+    border-color: #7dd3c0;
+    color: #1a1a1a;
+}
+
+.amenidad-item input:checked + label i {
+    color: #1a1a1a;
+}
+
+.amenidad-item label:hover {
+    border-color: #7dd3c0;
+}
+
+/* Botón crear */
+.btn-crear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 40px;
+    background-color: #7dd3c0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.btn-crear:hover {
+    background-color: #6fc3b0;
+    transform: translateX(4px);
+}
+
+.btn-crear i {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .greeting h1 {
+        font-size: 16px;
+    }
+
+    .menu-item {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .crear-container {
+        padding: 15px;
+    }
+
+    .titulo {
+        font-size: 20px;
+    }
+
+    .amenidades-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    .tipo-lugar-buttons {
+        gap: 8px;
+    }
+
+    .tipo-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}

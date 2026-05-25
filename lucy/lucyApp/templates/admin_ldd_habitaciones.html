@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container habitaciones-container">
+        <!-- Título -->
+        <h1 class="titulo">Habitaciones</h1>
+
+        <!-- Grid de habitaciones -->
+        <div class="habitaciones-grid">
+            <div class="habitacion-card">
+                <div class="habitacion-imagen">
+                    <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                        <line x1="0" y1="0" x2="200" y2="150" stroke="#999" stroke-width="2"/>
+                        <line x1="200" y1="0" x2="0" y2="150" stroke="#999" stroke-width="2"/>
+                    </svg>
+                    <button class="edit-btn" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <div class="habitacion-info">
+                    <h3 class="habitacion-nombre">Cabaña Junior</h3>
+                    <div class="habitacion-detalles">
+                        <div class="detalle">
+                            <i class="fas fa-users"></i>
+                            <span>Max 2</span>
+                        </div>
+                        <div class="detalle">
+                            <i class="fas fa-bed"></i>
+                            <span>1cama</span>
+                        </div>
+                    </div>
+                    <p class="habitacion-descripcion">Una acogedora cabaña en el bosque lista para recibir a ti y a media naranja. La Cabaña Junior cuenta con una cama matrimonial, está equipada con una cocineta y baño completo, todo para que disfrutes un rato del casa citadino.</p>
+                    <div class="habitacion-precio">
+                        <span class="precio">$999.99</span>
+                        <span class="moneda">MXN</span>
+                        <span class="periodo">por noche</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="habitacion-card">
+                <div class="habitacion-imagen">
+                    <svg viewBox="0 0 200 150" preserveAspectRatio="none">
+                        <line x1="0" y1="0" x2="200" y2="150" stroke="#999" stroke-width="2"/>
+                        <line x1="200" y1="0" x2="0" y2="150" stroke="#999" stroke-width="2"/>
+                    </svg>
+                    <button class="edit-btn" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <div class="habitacion-info">
+                    <h3 class="habitacion-nombre">Cabaña Deluxe</h3>
+                    <div class="habitacion-detalles">
+                        <div class="detalle">
+                            <i class="fas fa-users"></i>
+                            <span>Max 4</span>
+                        </div>
+                        <div class="detalle">
+                            <i class="fas fa-bed"></i>
+                            <span>1Mat. 2Ind</span>
+                        </div>
+                    </div>
+                    <p class="habitacion-descripcion">Una acogedora cabaña con una increíble vista al bosque y con todo lo que tu familia necesita. La Cabaña Deluxe cuenta con dos cuartos, una sala matrimonial y dos individuales, cocina, comedor y una zona para fogatas. Preparada para unas vacaciones en familia.</p>
+                    <div class="habitacion-precio">
+                        <span class="precio">$1999.99</span>
+                        <span class="moneda">MXN</span>
+                        <span class="periodo">por noche</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón agregar habitación -->
+        <button class="btn-agregar-habitacion" title="Agregar habitación">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Botón confirmar -->
+        <button class="btn-confirmar">
+            Confirmar
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/habitaciones_ldd.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Lugar</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container editar-ldd-container">
+        <!-- Título -->
+        <h1 class="titulo editar-titulo">Editar "<span class="titulo-lugar">Hotel De lux</span>"</h1>
+
+        <form class="editar-form">
+            <!-- Nombre del lugar -->
+            <div class="form-group">
+                <input type="text" placeholder="Hotel De Lux" class="input-field nombre-lugar" value="Hotel De Lux" required>
+            </div>
+
+            <!-- Seleccionar tipo de lugar -->
+            <div class="section">
+                <p class="section-label">Selecciona el tipo de lugar</p>
+                <div class="tipo-lugar-buttons editar-tipo">
+                    <button type="button" class="tipo-btn active" data-tipo="hotel">
+                        <i class="fas fa-hotel"></i>
+                        Hotel
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="cabaña">
+                        <i class="fas fa-house"></i>
+                        Cabaña
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="campamento">
+                        <i class="fas fa-campground"></i>
+                        Campamento
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="casa">
+                        <i class="fas fa-home"></i>
+                        Casa
+                    </button>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-group">
+                <input type="tel" placeholder="Teléfono (opcional)" class="input-field">
+            </div>
+
+            <!-- Página web -->
+            <div class="form-group">
+                <input type="url" placeholder="Página web (opcional)" class="input-field">
+            </div>
+
+            <!-- Seleccionar amenidades -->
+            <div class="section">
+                <p class="section-label">Selecciona las amenidades con las que cuenta tu lugar</p>
+                <div class="amenidades-grid editar-amenidades">
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="wifi" name="amenidad" value="wifi">
+                        <label for="wifi">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="estacionamiento" name="amenidad" value="estacionamiento">
+                        <label for="estacionamiento">
+                            <i class="fas fa-parking"></i>
+                            <span>Estacionamiento</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="gym" name="amenidad" value="gym">
+                        <label for="gym">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Gym</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="descanso" name="amenidad" value="descanso" checked>
+                        <label for="descanso">
+                            <i class="fas fa-couch"></i>
+                            <span>Descanso incluido</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="accesible" name="amenidad" value="accesible">
+                        <label for="accesible">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accesible</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="sanitarios" name="amenidad" value="sanitarios">
+                        <label for="sanitarios">
+                            <i class="fas fa-restroom"></i>
+                            <span>Sanitarios</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="guarderia" name="amenidad" value="guarderia">
+                        <label for="guarderia">
+                            <i class="fas fa-child"></i>
+                            <span>Guardería</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="alberca" name="amenidad" value="alberca">
+                        <label for="alberca">
+                            <i class="fas fa-water"></i>
+                            <span>Alberca</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="restaurante" name="amenidad" value="restaurante">
+                        <label for="restaurante">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurante</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="petfriendly" name="amenidad" value="petfriendly">
+                        <label for="petfriendly">
+                            <i class="fas fa-paw"></i>
+                            <span>Pet-friendly</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="spa" name="amenidad" value="spa">
+                        <label for="spa">
+                            <i class="fas fa-spa"></i>
+                            <span>SPA</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="aire" name="amenidad" value="aire">
+                        <label for="aire">
+                            <i class="fas fa-fan"></i>
+                            <span>Aire Acondicionado</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa (espacio reservado por ahora) -->
+            <!-- <div class="section">
+                <p class="section-label">Ubicación</p>
+                <div class="mapa-placeholder">
+                    <p>Mapa será agregado próximamente</p>
+                </div>
+            </div> -->
+
+            <!-- Botón guardar -->
+            <button type="submit" class="btn-guardar">
+                Guardar
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/editar_ldd.js' %}"></script>
+</body>
+</html>

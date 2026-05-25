@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de LDD's</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container registro-ldd-container">
+        <!-- Título -->
+        <h1 class="titulo">Registro de LDD's</h1>
+
+        <form class="registro-form" enctype="multipart/form-data">
+            <!-- Zona de carga de archivos -->
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Suelta archivo aquí con la información de correos junto con su key</p>
+                </div>
+                <input type="file" id="fileInput" class="file-input" hidden accept=".csv,.xlsx,.xls,.txt">
+            </div>
+
+            <!-- Botón enviar -->
+            <button type="submit" class="btn-enviar">
+                Enviar
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/registro_ldd.js' %}"></script>
+</body>
+</html>

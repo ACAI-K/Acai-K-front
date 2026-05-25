@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Habitación</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container crear-habitacion-container">
+        <!-- Título -->
+        <h1 class="titulo">Crear Habitación / Plan de estadía</h1>
+
+        <form class="habitacion-form">
+            <!-- Nombre del lugar -->
+            <div class="form-group">
+                <input type="text" placeholder="Nombre del lugar" class="input-field" required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <textarea placeholder="Descripción" class="textarea-field" rows="5"></textarea>
+                <div class="caracteres-count">
+                    <span class="count">0</span>/250
+                </div>
+            </div>
+
+            <!-- Máximo de Personas -->
+            <div class="section">
+                <div class="section-header">
+                    <p class="section-label">Máximo de Personas</p>
+                    <p class="section-desc">Ingresa el número máximo de personas por habitación</p>
+                </div>
+                <div class="numero-input">
+                    <button type="button" class="btn-menos">−</button>
+                    <input type="number" value="0" class="numero-field" min="0">
+                    <button type="button" class="btn-mas">+</button>
+                </div>
+            </div>
+
+            <!-- Número de Camas -->
+            <div class="section">
+                <p class="section-label">Número de camas</p>
+                
+                <div class="camas-group">
+                    <div class="cama-item">
+                        <p class="cama-label">Individuales</p>
+                        <p class="cama-desc">Ingresa el número de camas individuales</p>
+                        <div class="numero-input">
+                            <button type="button" class="btn-menos">−</button>
+                            <input type="number" value="0" class="numero-field" min="0">
+                            <button type="button" class="btn-mas">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cama-item">
+                        <p class="cama-label">Matrimoniales</p>
+                        <p class="cama-desc">Ingresa el número de camas matrimoniales</p>
+                        <div class="numero-input">
+                            <button type="button" class="btn-menos">−</button>
+                            <input type="number" value="0" class="numero-field" min="0">
+                            <button type="button" class="btn-mas">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cama-item">
+                        <p class="cama-label">Queen</p>
+                        <p class="cama-desc">Ingresa el número de camas queen</p>
+                        <div class="numero-input">
+                            <button type="button" class="btn-menos">−</button>
+                            <input type="number" value="0" class="numero-field" min="0">
+                            <button type="button" class="btn-mas">+</button>
+                        </div>
+                    </div>
+
+                    <div class="cama-item">
+                        <p class="cama-label">King</p>
+                        <p class="cama-desc">Ingresa el número de camas king</p>
+                        <div class="numero-input">
+                            <button type="button" class="btn-menos">−</button>
+                            <input type="number" value="0" class="numero-field" min="0">
+                            <button type="button" class="btn-mas">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Precio por noche -->
+            <div class="section">
+                <p class="section-label">Precio por noche</p>
+                <p class="section-desc">Ingresa el precio por noche (MXN)</p>
+                <div class="precio-input-group">
+                    <input type="number" placeholder="0.00" class="precio-field" step="0.01" min="0">
+                    <span class="moneda-label">MXN</span>
+                </div>
+            </div>
+
+            <!-- Botón crear -->
+            <button type="submit" class="btn-crear">
+                Crear
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/crear_habitacion_ldd.js' %}"></script>
+</body>
+</html>

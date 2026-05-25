@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Lugar</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container crear-container">
+        <!-- Título -->
+        <h1 class="titulo">Registrar lugar</h1>
+
+        <form class="registro-form">
+            <!-- Input nombre del lugar -->
+            <div class="form-group">
+                <input type="text" placeholder="Nombre del lugar" class="input-lugar" required>
+            </div>
+
+            <!-- Seleccionar tipo de lugar -->
+            <div class="section">
+                <p class="section-label">Selecciona el tipo de lugar</p>
+                <div class="tipo-lugar-buttons">
+                    <button type="button" class="tipo-btn active" data-tipo="hotel">
+                        <i class="fas fa-hotel"></i>
+                        Hotel
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="cabaña">
+                        <i class="fas fa-house"></i>
+                        Cabaña
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="campamento">
+                        <i class="fas fa-campground"></i>
+                        Campamento
+                    </button>
+                    <button type="button" class="tipo-btn" data-tipo="casa">
+                        <i class="fas fa-home"></i>
+                        Casa
+                    </button>
+                </div>
+            </div>
+
+            <!-- Seleccionar amenidades -->
+            <div class="section">
+                <p class="section-label">Selecciona las amenidades con las que cuenta tu lugar</p>
+                <div class="amenidades-grid">
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="wifi" name="amenidad" value="wifi">
+                        <label for="wifi">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="estacionamiento" name="amenidad" value="estacionamiento">
+                        <label for="estacionamiento">
+                            <i class="fas fa-parking"></i>
+                            <span>Estacionamiento</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="gym" name="amenidad" value="gym">
+                        <label for="gym">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Gym</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="calefaccion" name="amenidad" value="calefaccion">
+                        <label for="calefaccion">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span>Calefacción</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="accesible" name="amenidad" value="accesible">
+                        <label for="accesible">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accesible</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="descanso" name="amenidad" value="descanso">
+                        <label for="descanso">
+                            <i class="fas fa-couch"></i>
+                            <span>Área de descansos</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="guarderia" name="amenidad" value="guarderia">
+                        <label for="guarderia">
+                            <i class="fas fa-child"></i>
+                            <span>Guardería</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="alberca" name="amenidad" value="alberca">
+                        <label for="alberca">
+                            <i class="fas fa-water"></i>
+                            <span>Alberca</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="restaurante" name="amenidad" value="restaurante">
+                        <label for="restaurante">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurante</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="petfriendly" name="amenidad" value="petfriendly">
+                        <label for="petfriendly">
+                            <i class="fas fa-paw"></i>
+                            <span>Pet-friendly</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="spa" name="amenidad" value="spa">
+                        <label for="spa">
+                            <i class="fas fa-spa"></i>
+                            <span>SPA</span>
+                        </label>
+                    </div>
+                    <div class="amenidad-item">
+                        <input type="checkbox" id="aire" name="amenidad" value="aire">
+                        <label for="aire">
+                            <i class="fas fa-fan"></i>
+                            <span>Aire acondicionado</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón crear -->
+            <button type="submit" class="btn-crear">
+                Crear
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/crear_ldd.js' %}"></script>
+</body>
+</html>
