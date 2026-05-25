@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Work+Sans:wght@300;400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Tipografías del Manual */
+  --font-fira: "Fira Code", monospace;
+  --font-work: "Work Sans", sans-serif;
+
+  /* Paleta Principal de Lucy */
+  --color-lucy-primary: #92CCD3;
+  --color-lucy-secondary: #FFC84C;
+  --color-lucy-support: #FFDE8C;
+  --color-lucy-accent: #ED845C;
+
+  /* Neutros */
+  --color-lucy-dark: #1B181A;
+  --color-lucy-light: #E5E5E5;
+
+  /* Estados */
+  --color-lucy-error: #C71400;
+  --color-lucy-warning: #FFEEOO;
+  --color-lucy-success: #8ED038;
+  --color-lucy-disabled: #D1D1D1;
+}
+
+/* Aplicando el estilo base (Flat Design 2.0 / Bauhaus) */
+body {
+  font-family: var(--font-work);
+  background-color: var(--color-lucy-dark);
+  color: var(--color-lucy-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fira);
+  letter-spacing: -0.02em;
+}
