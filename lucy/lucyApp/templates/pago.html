@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container pago-container">
+        <!-- Resumen de pago -->
+        <div class="pago-resumen">
+            <h2 class="pago-titulo">Resumen de Pago</h2>
+            
+            <div class="resumen-item">
+                <span class="resumen-label">Concepto</span>
+                <span class="resumen-valor">$999.99 MXN</span>
+            </div>
+            
+            <div class="resumen-item">
+                <span class="resumen-label">Impuestos</span>
+                <span class="resumen-valor">$99.99 MXN</span>
+            </div>
+            
+            <div class="resumen-total">
+                <span class="total-label">Total</span>
+                <span class="total-valor">$1,099.98 MXN</span>
+            </div>
+        </div>
+
+        <!-- Formulario de pago -->
+        <div class="pago-formulario">
+            <h2 class="formulario-titulo">Información de Pago</h2>
+
+            <form class="form-pago">
+                <!-- Nombre del titular -->
+                <div class="form-group">
+                    <label class="form-label">Nombre del titular</label>
+                    <input type="text" placeholder="Juan Pérez" class="form-input" required>
+                </div>
+
+                <!-- Número de tarjeta -->
+                <div class="form-group">
+                    <label class="form-label">Número de tarjeta</label>
+                    <input type="text" placeholder="1234 5678 9012 3456" class="form-input card-number" maxlength="19" required>
+                </div>
+
+                <!-- Fecha y CVV -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Fecha de vencimiento</label>
+                        <input type="text" placeholder="MM/YY" class="form-input" maxlength="5" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">CVV</label>
+                        <div class="cvv-input-container">
+                            <input type="text" placeholder="123" class="form-input" maxlength="3" required>
+                            <button type="button" class="btn-help-cvv" title="¿Qué es CVV?" onclick="mostrarHelpCVV()">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" placeholder="correo@ejemplo.com" class="form-input" required>
+                </div>
+
+                <!-- Botón pagar -->
+                <button type="submit" class="btn-pagar">
+                    Pagar
+                    <i class="fas fa-lock"></i>
+                </button>
+            </form>
+
+            <!-- Aviso de seguridad -->
+            <p class="pago-seguridad">
+                <i class="fas fa-shield-alt"></i>
+                Tu información está segura y encriptada
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/pago.js' %}"></script>
+</body>
+</html>

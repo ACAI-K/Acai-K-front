@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Correo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="verify-container">
+        <div class="verify-form-container">
+            <h1 class="verify-form-title">Ingresa el código de verificación</h1>
+
+            <p class="verify-subtitle">Código de verificación enviado a<br><span class="verify-email">karl@gmail.com</span></p>
+
+            <form class="verify-form">
+                <div class="code-inputs">
+                    <input type="text" class="code-input" maxlength="1" data-index="0" inputmode="numeric" required>
+                    <input type="text" class="code-input" maxlength="1" data-index="1" inputmode="numeric" required>
+                    <input type="text" class="code-input" maxlength="1" data-index="2" inputmode="numeric" required>
+                    <input type="text" class="code-input" maxlength="1" data-index="3" inputmode="numeric" required>
+                    <input type="text" class="code-input" maxlength="1" data-index="4" inputmode="numeric" required>
+                    <input type="text" class="code-input" maxlength="1" data-index="5" inputmode="numeric" required>
+                </div>
+
+                <button type="submit" class="verify-button">
+                    Verificar
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="verify-footer">
+                ¿No has recibido el código? <a href="#">Reenviar</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

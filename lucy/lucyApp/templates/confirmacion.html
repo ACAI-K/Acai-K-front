@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación (vacía por ahora) -->
+    <nav class="navbar"></nav>
+
+    <div class="container confirmacion-container">
+        <!-- Icono de confirmación -->
+        <div class="confirmacion-icon">
+            <i class="fas fa-check"></i>
+        </div>
+
+        <!-- Título -->
+        <h1 class="confirmacion-titulo">¡Reserva confirmada!</h1>
+
+        <!-- Código de confirmación -->
+        <div class="confirmacion-code-section">
+            <p class="confirmacion-label">Código de confirmación</p>
+            <div class="confirmacion-code-box">
+                <span class="confirmacion-code">ABC1-DEF2-HIJ3</span>
+                <button type="button" class="btn-copiar" title="Copiar código">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Email confirmación -->
+        <div class="confirmacion-email-section">
+            <div class="email-icon-text">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <p class="confirmacion-email-label">Código de confirmación enviado a:</p>
+                    <p class="confirmacion-email">karlaqz@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón volver a inicio -->
+        <button type="button" class="btn-volver">
+            Volver a inicio
+        </button>
+
+        <!-- Ayuda -->
+        <div class="help-text">¿Necesitas ayuda?</div>
+    </div>
+
+    <!-- Footer (vacío por ahora) -->
+    <footer class="footer"></footer>
+
+    <script src="{% static 'js/confirmacion.js' %}"></script>
+</body>
+</html>

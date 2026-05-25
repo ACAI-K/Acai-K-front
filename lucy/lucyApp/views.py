@@ -1,6 +1,15 @@
 from django.shortcuts import render
 
 # Create your views here.
+def login(request):
+    return render(request, 'login.html')
+
+def verificar_correo(request):
+    return render(request, 'verificar_correo.html')
+
+def crear_cuenta(request):
+    return render(request, 'crear_cuenta.html')
+
 def menu_admin_ldd(request):
     return render(request, 'menu_admin_ldd.html')
 
@@ -33,3 +42,9 @@ def ticket(request):
 
 def busqueda(request):
     return render(request, 'busqueda.html')
+
+def confirmacion(request):
+    return render(request, 'confirmacion.html')
+
+def pago(request):
+    return render(request, 'pago.html')

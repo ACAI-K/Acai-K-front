@@ -5,6 +5,9 @@ from . import views
 app_name = 'lucyApp'
 
 urlpatterns = [
+    path('login/', views.login, name='login'),
+    path('verificar_correo/', views.verificar_correo, name='verificar_correo'),
+    path('crear_cuenta/', views.crear_cuenta, name='crear_cuenta'),
     path('menu_admin_ldd/', views.menu_admin_ldd, name='menu_admin_ldd'),
     path('crear_ldd/', views.crear_ldd, name='crear_ldd'),
     path('admin_ldd_habitaciones/', views.admin_ldd_habitaciones, name='admin_ldd_habitaciones'),
@@ -16,4 +19,6 @@ urlpatterns = [
     path('tickets/', views.tickets, name='tickets'),
     path('ticket/', views.ticket, name='ticket'),
     path('busqueda/', views.busqueda, name='busqueda'),
+    path('confirmacion/', views.confirmacion, name='confirmacion'),
+    path('pago/', views.pago, name='pago'),
 ]
