@@ -9,10 +9,6 @@ export function Logo(props: { class?: string }) {
             xmlns="http://www.w3.org/2000/svg"
             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"
         >
-            {/*
-        Eliminamos los rectángulos decorativos de fondo para hacerlo transparente,
-        manteniendo únicamente las trazas originales de AÇAI Koders.
-      */}
             <g id="ISOTIPO-LUCY">
                 {/* El caracter '>' */}
                 <path

@@ -64,7 +64,7 @@ export default function Account() {
 
                 {/* --- INICIAR SESIÓN --- */}
                 <Show when={currentView() === "login"}>
-                    {/* Usamos style para los fondos HEX para evitar fallos de caché de Tailwind */}
+
                     <div class="w-full max-w-4xl rounded-[40px] overflow-hidden shadow-2xl border border-gray-800/60 grid grid-cols-1 md:grid-cols-2 min-h-[420px]" style="background-color: #262325;">
                         <div class="relative rounded-tl-[40px] rounded-bl-[40px] hidden md:block" style="background-color: #7F6A2C;">
                             <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">

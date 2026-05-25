@@ -11,7 +11,7 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const MainLayout = (props: { children?: any }) => {
     return (
         <div class="min-h-screen flex flex-col bg-lucy-dark">
-            {/* Contenido dinámico (Las páginas) */}
+            {/* Contenido (Las páginas) */}
             <div class="flex-grow">
                 {props.children}
             </div>

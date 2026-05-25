@@ -2,11 +2,10 @@ import { For } from "solid-js";
 import { A } from "@solidjs/router";
 import { MOCK_PARKS } from "../data/mockData";
 
-// URL de una imagen por defecto (bosque/naturaleza) en caso de error
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80";
 
 export default function Home() {
-    // Manejador genérico para cuando una imagen no carga
+    // Manejador generico para cuando una imagen no carga
     const handleImageError = (e: Event) => {
         const target = e.currentTarget as HTMLImageElement;
         target.src = DEFAULT_IMAGE;
@@ -53,7 +52,7 @@ export default function Home() {
                 </div>
             </header>
 
-            {/* Sección "Explora" */}
+            {/* Seccion "Explora" */}
             <main class="max-w-6xl mx-auto p-8 pt-12">
                 <h2 class="text-white text-4xl mb-10">Explora</h2>
 
@@ -74,8 +73,6 @@ export default function Home() {
 
                                     {/* Caja de Imagen 2 (Secundaria con botón) */}
                                     <div class="bg-lucy-dark aspect-video w-full rounded-sm overflow-hidden relative shadow-md flex items-center justify-end pr-4">
-                                        {/* Al no tener una segunda imagen en el mockData, usamos una genérica distinta,
-                        o podrías mapear una propiedad 'mapImage' en el futuro */}
                                         <img
                                             src={`https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80&sig=${park.id}`}
                                             alt={`Mapa o galería de ${park.name}`}
@@ -88,7 +85,7 @@ export default function Home() {
                                     </div>
                                 </div>
 
-                                {/* Etiqueta y Botón inferior */}
+                                {/* Etiqueta y Boton inferior */}
                                 <div class="flex justify-between items-center mt-4">
                                     <h3 class="text-white text-3xl">{park.name}</h3>
                                     <A

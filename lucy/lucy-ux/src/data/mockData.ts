@@ -8,7 +8,7 @@ export const MOCK_PARKS: Park[] = [
         name: 'Parque Nacional El Tepozteco',
         location: 'Morelos, MX',
         description: 'Famoso por su zona arqueológica en la cima y vistas panorámicas. Ideal para senderismo de intensidad media.',
-        image: '/images/tepozteco.jpg', // Asegúrate de tener estas imágenes o usa una URL de Unsplash
+        image: '/images/tepozteco.jpg',
         pricePerDay: 250,
         features: ['Hiking', 'Guías certificados', 'Vistas escénicas'],
         coordinates: { lat: 18.98, lng: -99.10 }
@@ -35,7 +35,6 @@ export const MOCK_PARKS: Park[] = [
     }
 ];
 
-// Opcional: Para simular disponibilidad en tu prototipo de UX
 export const MOCK_AVAILABILITY = {
     '1': ['2026-06-01', '2026-06-02', '2026-06-05'],
     '2': ['2026-06-10', '2026-06-11'],

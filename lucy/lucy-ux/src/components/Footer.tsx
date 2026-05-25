@@ -10,7 +10,6 @@ export function Footer() {
                 {/* Columna 1: Imagotipo Real de Lucy */}
                 <div class="flex items-center">
                     <A href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
-                        {/* Cargamos tu SVG con un tamaño proporcional para el footer */}
                         <Logo class="w-24 h-24" />
                         <span class="font-fira text-4xl font-bold tracking-tight text-lucy-dark mt-2">Lucy</span>
                     </A>

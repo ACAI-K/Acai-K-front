@@ -9,13 +9,13 @@ export interface Park {
     image: string;      // URL de la imagen
     pricePerDay: number;
     features: string[]; // Ej: ['Wi-Fi', 'Camping', 'Baños']
-    coordinates: {      // Útil para el mapa interactivo que mencionaste
+    coordinates: {      // util para el mapa interactivo que mencionaste
         lat: number;
         lng: number;
     };
 }
 
-// --- Lógica de Reservaciones ---
+// --- Logica de Reservaciones ---
 
 export type ReservationStatus = 'pending' | 'confirmed' | 'cancelled';
 

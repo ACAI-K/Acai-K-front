@@ -13,7 +13,7 @@ const AMENITIES = [
     { id: "pets", label: "Pet-friendly", isTextIcon: true, textIcon: "🐾" }
 ];
 
-// Generamos posiciones aleatorias entre el 20% y el 80% de la pantalla para evitar que caigan en los bordes
+// Generamos posiciones random entre el 20% y el 80% de la pantalla para evitar que caigan en los bordes
 const PARKS_WITH_POSITIONS = MOCK_PARKS.map(park => ({
     ...park,
     top: Math.floor(Math.random() * 60) + 20,
@@ -80,7 +80,7 @@ export default function Map() {
                 </div>
             </div>
 
-            {/* Menú de Filtro */}
+            {/* Menu de Filtro */}
             <Show when={isFilterOpen()}>
                 <div class="absolute top-28 left-1/2 -translate-x-1/2 z-40 w-full max-w-3xl bg-lucy-dark text-white rounded-3xl p-8 shadow-2xl border border-gray-800 animate-fade-in">
                     {/* Contenido del filtro */}
