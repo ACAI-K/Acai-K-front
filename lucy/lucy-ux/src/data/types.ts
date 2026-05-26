@@ -1,26 +1,23 @@
 
-// --- Entidades Base ---
-
 export interface Park {
     id: string;
     name: string;
     location: string;
     description: string;
-    image: string;      // URL de la imagen
+    image: string;
     pricePerDay: number;
-    features: string[]; // Ej: ['Wi-Fi', 'Camping', 'Baños']
-    coordinates: {      // util para el mapa interactivo que mencionaste
+    features: string[];
+    coordinates: {
         lat: number;
         lng: number;
     };
 }
 
-// --- Logica de Reservaciones ---
 
 export type ReservationStatus = 'pending' | 'confirmed' | 'cancelled';
 
 export interface AvailabilitySlot {
-    date: string;       // Formato YYYY-MM-DD
+    date: string;
     isAvailable: boolean;
 }
 
@@ -35,7 +32,6 @@ export interface Reservation {
     status: ReservationStatus;
 }
 
-// --- Estado del Prototipo (UX) ---
 
 /**
  * Este tipo sirve para el "carrito" o estado actual

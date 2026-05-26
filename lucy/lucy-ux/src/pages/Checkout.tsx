@@ -4,7 +4,7 @@ export default function Checkout() {
             <h2 class="text-3xl font-bold mb-8">Finalizar Reserva</h2>
 
             <form class="space-y-6">
-                {/* Sección de datos de usuario */}
+                {/* Seccion de datos de usuario */}
                 <div class="bg-white p-6 rounded-xl shadow-sm border">
                     <h4 class="font-bold mb-4">Tus datos</h4>
                     <div class="grid grid-cols-1 gap-4">
@@ -13,7 +13,7 @@ export default function Checkout() {
                     </div>
                 </div>
 
-                {/* Sección de fechas */}
+                {/* Seccion de fechas */}
                 <div class="bg-white p-6 rounded-xl shadow-sm border">
                     <h4 class="font-bold mb-4">Fechas seleccionadas</h4>
                     <div class="flex gap-4">

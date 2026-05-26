@@ -5,7 +5,6 @@ import { For, Show } from "solid-js";
 export default function ParkDetail() {
     const params = useParams();
 
-    // Obtenemos el parque desde el mock usando el ID de la URL
     const park = () => MOCK_PARKS.find(p => p.id === params.id);
 
     return (
@@ -21,14 +20,14 @@ export default function ParkDetail() {
             {(p) => (
                 <div class="bg-lucy-dark text-white font-work pb-24">
 
-                    {/* 1. Sección Hero (Imagen principal y Título) */}
+                    {/* Imagen principal y Titulo */}
                     <div class="relative w-full h-[50vh] min-h-[400px]">
                         <img src={p().image} alt={p().name} class="w-full h-full object-cover" />
                         {/* Gradiente para asegurar que el texto sea legible sobre la imagen */}
                         <div class="absolute inset-0 bg-gradient-to-t from-lucy-dark via-lucy-dark/70 to-black/30"></div>
 
                         <div class="absolute inset-0 flex flex-col justify-between max-w-6xl mx-auto p-8">
-                            {/* Breadcrumb / Botón de retroceso */}
+                            {/* Boton de retroceso */}
                             <A href="/" class="inline-flex items-center gap-2 text-white hover:text-lucy-secondary transition-colors font-fira bg-black/40 w-fit px-5 py-2 rounded-full backdrop-blur-md border border-white/10">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                                 Volver
@@ -45,10 +44,10 @@ export default function ParkDetail() {
                         </div>
                     </div>
 
-                    {/* 2. Cuadrícula de Contenido */}
+                    {/* 2. Cuadricula de Contenido */}
                     <div class="max-w-6xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12 relative z-10">
 
-                        {/* Columna Izquierda: Descripción y Características */}
+                        {/* Columna Izquierda */}
                         <div class="lg:col-span-2 space-y-12">
 
                             <section>
@@ -73,7 +72,7 @@ export default function ParkDetail() {
                             </section>
                         </div>
 
-                        {/* Columna Derecha: Tarjeta de Reservación Fija (Sticky) */}
+                        {/* Columna Derecha */}
                         <div class="lg:col-span-1">
                             <div class="bg-lucy-primary rounded-3xl p-8 text-lucy-dark shadow-[0_20px_50px_rgba(146,204,211,0.15)] sticky top-8 border border-white/20">
                                 <div class="mb-8">

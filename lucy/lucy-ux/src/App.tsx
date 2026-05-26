@@ -30,6 +30,10 @@ function App() {
             <Route path="/checkout" component={Checkout} />
             <Route path="/mapa" component={lazy(() => import("./pages/Map"))} />
             <Route path="/cuenta" component={lazy(() => import("./pages/Account"))} />
+            <Route path="/resultados" component={lazy(() => import("./pages/SearchResults"))} />
+            <Route path="/perfil" component={lazy(() => import("./pages/Profile"))} />
+            <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />
+            <Route path="/explorar" component={lazy(() => import("./pages/Explorar"))} />
         </Router>
     );
 }

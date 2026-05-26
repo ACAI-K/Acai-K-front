@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 import { A } from "@solidjs/router";
 import { MOCK_PARKS } from "../data/mockData";
+import { Navigation } from "../components/Navigation";
 
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80";
 
@@ -13,7 +14,7 @@ export default function Home() {
 
     return (
         <div class="min-h-screen bg-lucy-dark">
-            {/* Cabecera asimétrica */}
+            {/* Cabecera */}
             <header class="bg-lucy-primary relative overflow-hidden">
                 <div class="absolute inset-0 opacity-20 pointer-events-none">
                     <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -33,22 +34,12 @@ export default function Home() {
                         </h1>
                     </div>
 
-                    <nav class="text-right flex flex-col items-end space-y-2">
-                        <button class="text-white mb-4 hover:text-lucy-dark transition-colors">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                        <A href="/" class="text-white font-work font-semibold text-lg hover:text-lucy-dark transition-colors">Inicio</A>
-                        <A href="/explorar" class="text-white font-work font-semibold text-lg hover:text-lucy-dark transition-colors">Explorar</A>
-                        <A href="/hospedaje" class="text-white font-work font-semibold text-lg hover:text-lucy-dark transition-colors">Hospedaje</A>
-                        <A href="/cuenta" class="text-white font-work font-semibold text-lg hover:text-lucy-dark transition-colors">Cuenta</A>
-
-                        <div class="pt-12">
-                            <A href="/mapa" class="inline-flex items-center gap-2 bg-lucy-dark text-white px-6 py-3 rounded-full font-fira text-sm hover:bg-black transition-colors shadow-lg shadow-black/20">
-                                Ver mapa
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </A>
-                        </div>
-                    </nav>
+                    <Navigation>
+                        <A href="/mapa" class="inline-flex items-center gap-2 bg-lucy-dark text-white px-6 py-3 rounded-full font-fira text-sm hover:bg-black transition-colors shadow-lg shadow-black/20">
+                            Ver mapa
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </A>
+                    </Navigation>
                 </div>
             </header>
 
@@ -61,7 +52,7 @@ export default function Home() {
                         {(park) => (
                             <div class="group">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {/* Caja de Imagen 1 (Principal) */}
+                                    {/* Caja de Imagen 1 */}
                                     <div class="bg-lucy-dark aspect-video w-full rounded-sm overflow-hidden relative shadow-md">
                                         <img
                                             src={park.image}
@@ -71,7 +62,7 @@ export default function Home() {
                                         />
                                     </div>
 
-                                    {/* Caja de Imagen 2 (Secundaria con botón) */}
+                                    {/* Caja de Imagen 2*/}
                                     <div class="bg-lucy-dark aspect-video w-full rounded-sm overflow-hidden relative shadow-md flex items-center justify-end pr-4">
                                         <img
                                             src={`https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80&sig=${park.id}`}

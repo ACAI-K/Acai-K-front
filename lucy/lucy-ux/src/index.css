@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* Tipografías del Manual */
+  /* Tipografias */
   --font-fira: "Fira Code", monospace;
   --font-work: "Work Sans", sans-serif;
 
-  /* Paleta Principal de Lucy */
+  /* Paleta Principal */
   --color-lucy-primary: #92CCD3;
   --color-lucy-secondary: #FFC84C;
   --color-lucy-support: #FFDE8C;
