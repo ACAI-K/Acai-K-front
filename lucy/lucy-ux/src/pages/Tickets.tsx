@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 
 type Ticket = {
     id: number;
@@ -43,6 +44,7 @@ const getEstadoColor = (estado: string) => {
 };
 
 export default function Tickets() {
+    const navigate = useNavigate();
     return (
         <div class="min-h-screen bg-lucy-dark">
             {/* Header */}
@@ -55,6 +57,21 @@ export default function Tickets() {
                 </div>
 
                 <div class="max-w-6xl mx-auto p-8 pt-12 pb-16 relative z-10">
+                    <div class="flex items-center justify-between mb-4">
+                        <button
+                            onClick={() => navigate(-1)}
+                            class="text-lucy-dark hover:opacity-70 transition-opacity"
+                        >
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="text-lucy-dark hover:opacity-70 transition-opacity">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                     <h1 class="text-lucy-dark text-4xl md:text-5xl font-bold font-fira">
                         Tickets
                     </h1>
@@ -66,7 +83,10 @@ export default function Tickets() {
                 <div class="space-y-4">
                     <For each={TICKETS_MOCK}>
                         {(ticket) => (
-                            <div class="bg-lucy-light/10 border border-lucy-light/20 rounded-lg p-6 hover:border-lucy-light/40 transition-colors cursor-pointer group">
+                            <div
+                                onClick={() => navigate(`/admin/ticket/${ticket.id}`)}
+                                class="bg-lucy-light/10 border border-lucy-light/20 rounded-lg p-6 hover:border-lucy-light/40 transition-colors cursor-pointer group"
+                            >
                                 <div class="flex items-start justify-between gap-4">
                                     {/* Contenido del ticket */}
                                     <div class="flex-1 space-y-2 group-hover:text-lucy-primary transition-colors">

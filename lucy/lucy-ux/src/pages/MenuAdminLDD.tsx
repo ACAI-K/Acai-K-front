@@ -1,6 +1,7 @@
-import { A } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 
 export default function MenuAdminLDD() {
+    const navigate = useNavigate();
     const nombreHotel = "Pambacito Delux"; // Este valor podría venir de parámetros o estado
 
     return (
@@ -15,6 +16,21 @@ export default function MenuAdminLDD() {
                 </div>
 
                 <div class="max-w-6xl mx-auto p-8 pt-12 pb-16 relative z-10">
+                    <div class="flex items-center justify-between mb-4">
+                        <button
+                            onClick={() => navigate(-1)}
+                            class="text-lucy-dark hover:opacity-70 transition-opacity"
+                        >
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="text-lucy-dark hover:opacity-70 transition-opacity">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                     <h1 class="text-lucy-dark text-2xl md:text-3xl font-work font-semibold">
                         Hola administrador de:
                     </h1>

@@ -1,5 +1,5 @@
 import { createSignal, For } from "solid-js";
-import { A } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 
 type Habitacion = {
     id: string;
@@ -30,6 +30,7 @@ const HABITACIONES_MOCK: Habitacion[] = [
 ];
 
 export default function AdminLDDHabitaciones() {
+    const navigate = useNavigate();
     const [habitaciones, setHabitaciones] = createSignal<Habitacion[]>(HABITACIONES_MOCK);
 
     return (
@@ -44,6 +45,21 @@ export default function AdminLDDHabitaciones() {
                 </div>
 
                 <div class="max-w-6xl mx-auto p-8 pt-12 pb-16 relative z-10">
+                    <div class="flex items-center justify-between mb-4">
+                        <button
+                            onClick={() => navigate(-1)}
+                            class="text-lucy-dark hover:opacity-70 transition-opacity"
+                        >
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="text-lucy-dark hover:opacity-70 transition-opacity">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                     <h1 class="text-lucy-dark text-4xl md:text-5xl font-bold font-fira">
                         Habitaciones
                     </h1>
@@ -111,7 +127,10 @@ export default function AdminLDDHabitaciones() {
 
                 {/* Botón para Agregar Habitación */}
                 <div class="flex justify-center mb-8">
-                    <button class="w-16 h-16 bg-lucy-secondary text-lucy-dark rounded-full flex items-center justify-center hover:bg-lucy-secondary/80 transition-colors shadow-lg hover:shadow-xl transform hover:scale-110">
+                    <button
+                        onClick={() => navigate("/admin-ldd/crear-habitacion")}
+                        class="w-16 h-16 bg-lucy-secondary text-lucy-dark rounded-full flex items-center justify-center hover:bg-lucy-secondary/80 transition-colors shadow-lg hover:shadow-xl transform hover:scale-110"
+                    >
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
@@ -120,7 +139,10 @@ export default function AdminLDDHabitaciones() {
 
                 {/* Botón Confirmar */}
                 <div class="flex justify-center">
-                    <button class="inline-flex items-center gap-2 bg-lucy-primary text-lucy-dark px-8 py-3 rounded-full font-fira font-bold hover:bg-lucy-secondary transition-colors shadow-lg">
+                    <button
+                        onClick={() => navigate("/admin-ldd")}
+                        class="inline-flex items-center gap-2 bg-lucy-primary text-lucy-dark px-8 py-3 rounded-full font-fira font-bold hover:bg-lucy-secondary transition-colors shadow-lg"
+                    >
                         Confirmar
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

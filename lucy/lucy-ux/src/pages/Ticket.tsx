@@ -1,7 +1,8 @@
 import { createSignal } from "solid-js";
-import { A } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 
 export default function Ticket() {
+    const navigate = useNavigate();
     const [respuesta, setRespuesta] = createSignal("");
 
     // Datos del ticket (podrían venir de parámetros)
@@ -23,11 +24,19 @@ export default function Ticket() {
 
                 <div class="max-w-6xl mx-auto p-8 pt-12 pb-16 relative z-10">
                     <div class="flex items-center gap-4">
-                        <A href="/admin/tickets" class="text-lucy-dark hover:opacity-70 transition-opacity">
+                        <button
+                            onClick={() => navigate(-1)}
+                            class="text-lucy-dark hover:opacity-70 transition-opacity"
+                        >
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                             </svg>
-                        </A>
+                        </button>
+                        <button class="text-lucy-dark hover:opacity-70 transition-opacity">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
                         <div>
                             <h1 class="text-lucy-dark text-3xl md:text-4xl font-bold font-fira">
                                 Ticket #{numeroTicket} - {estado}

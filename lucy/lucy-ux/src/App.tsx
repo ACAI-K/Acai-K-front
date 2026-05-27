@@ -41,7 +41,7 @@ function App() {
             <Route path="/checkout" component={Checkout} />
             <Route path="/mapa" component={lazy(() => import("./pages/Map"))} />
             <Route path="/cuenta" component={lazy(() => import("./pages/Account"))} />
-            <Route path="/crear-ldd" component={CrearLDD} />
+            <Route path="/admin/crear-ldd" component={CrearLDD} />
             <Route path="/admin-ldd" component={MenuAdminLDD} />
             <Route path="/admin-ldd/habitaciones" component={AdminLDDHabitaciones} />
             <Route path="/admin-ldd/crear-habitacion" component={CrearHabitacion} />

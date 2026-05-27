@@ -1,6 +1,8 @@
 import { createSignal } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 
 export default function RegistroLDD() {
+    const navigate = useNavigate();
     const [archivo, setArchivo] = createSignal<File | null>(null);
 
     const handleFileChange = (e: Event) => {
@@ -22,6 +24,21 @@ export default function RegistroLDD() {
                 </div>
 
                 <div class="max-w-6xl mx-auto p-8 pt-12 pb-16 relative z-10">
+                    <div class="flex items-center justify-between mb-4">
+                        <button
+                            onClick={() => navigate(-1)}
+                            class="text-lucy-dark hover:opacity-70 transition-opacity"
+                        >
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="text-lucy-dark hover:opacity-70 transition-opacity">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                     <h1 class="text-lucy-dark text-4xl md:text-5xl font-bold font-fira">
                         Registro de LDD's
                     </h1>
