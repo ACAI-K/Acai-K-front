@@ -5,7 +5,13 @@ import { Footer } from "./components/Footer";
 // Vistas
 const Home = lazy(() => import("./pages/Home"));
 const ParkDetail = lazy(() => import("./pages/ParkDetail"));
+const LugarHabitaciones = lazy(() => import("./pages/LugarHabitaciones"));
 const Checkout = lazy(() => import("./pages/Checkout"));
+const Pago = lazy(() => import("./pages/Pago"));
+const ConfirmacionReserva = lazy(() => import("./pages/ConfirmacionReserva"));
+const Soporte = lazy(() => import("./pages/Soporte"));
+const EditarCuenta = lazy(() => import("./pages/EditarCuenta"));
+const MisReservas = lazy(() => import("./pages/MisReservas"));
 const CrearLDD = lazy(() => import("./pages/CrearLDD"));
 const MenuAdminLDD = lazy(() => import("./pages/MenuAdminLDD"));
 const AdminLDDHabitaciones = lazy(() => import("./pages/AdminLDDHabitaciones"));
@@ -38,7 +44,13 @@ function App() {
         <Router root={MainLayout}>
             <Route path="/" component={Home} />
             <Route path="/park/:id" component={ParkDetail} />
+            <Route path="/lugar/:id/habitaciones" component={LugarHabitaciones} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/pago" component={Pago} />
+            <Route path="/confirmacion-reserva" component={ConfirmacionReserva} />
+            <Route path="/soporte" component={Soporte} />
+            <Route path="/editar-cuenta" component={EditarCuenta} />
+            <Route path="/mis-reservas" component={MisReservas} />
             <Route path="/mapa" component={lazy(() => import("./pages/Map"))} />
             <Route path="/cuenta" component={lazy(() => import("./pages/Account"))} />
             <Route path="/admin/crear-ldd" component={CrearLDD} />
