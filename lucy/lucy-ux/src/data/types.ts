@@ -1,4 +1,4 @@
-
+//@deprecated
 export interface Park {
     id: string;
     name: string;
@@ -13,6 +13,55 @@ export interface Park {
     };
 }
 
+export interface TypeDormitorio extends PDI {
+    categoria: "Hotel" | "Cabañas" | "Campamento" | "Habitaciones";
+    precio_noche: number;
+    features: string[];
+}
+
+export interface TypeParque extends PDI {
+    categoria: "Parque Ecológico" | "Reserva Natural";
+    precio_por_dia: number;
+    features: string[];
+}
+
+export interface TypeOtro extends PDI {
+    categoria: "Policía" | "Hospital" | "Gasolinería";
+    
+}
+
+export interface PDI {
+    id: string;
+    name: string;
+    
+    images: string[];
+    coordinates: {
+        lat: number;
+        lng: number;
+    };
+    link_google_maps: string;
+    telefono?: string;
+    website?: string;
+}
+
+export interface Locat {
+    id: string;
+    name: string;
+    edo: string;
+
+    map_data: {
+        coordinates: {
+            lat: number;
+            lng: number;
+        };
+        viewport: {
+            height: number;
+            weight: number;
+        }
+    }
+    puntos_interes: PDI[];
+
+}
 
 export type ReservationStatus = 'pending' | 'confirmed' | 'cancelled';
 

@@ -1,7 +1,8 @@
 // src/data/mockData.ts
 // src/data/mockData.ts
-import type {Park} from './types';
+import type {Park, Locat} from './types';
 
+// @deprecated
 export const MOCK_PARKS: Park[] = [
     {
         id: '1',
@@ -33,6 +34,11 @@ export const MOCK_PARKS: Park[] = [
         features: ['Ciclismo de montaña', 'Áreas de picnic', 'Wi-Fi en zona de visitantes'],
         coordinates: { lat: 25.59, lng: -100.37 }
     }
+];
+
+// TODO: Llenar con datos de ejemplo para las ubicaciones, siguiendo la estructura definida en el tipo Locat.
+export const MOCK_LOCATIONS: Locat[] = [
+    
 ];
 
 export const MOCK_AVAILABILITY = {

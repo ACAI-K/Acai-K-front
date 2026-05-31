@@ -1,42 +1,51 @@
-import { createSignal, Show } from "solid-js";
+import { createSignal, Show, onMount, onCleanup } from "solid-js";
 import type { JSX } from "solid-js";
+import { X, Menu } from 'lucide-solid';
 import { A } from "@solidjs/router";
 
 export function Navigation(props: { class?: string; children?: JSX.Element }) {
     const [isOpen, setIsOpen] = createSignal(true);
+    const handleScroll = () => {
+        if (isOpen()) {
+            setIsOpen(false);
+        }
+    };
+
+    onMount(() => {
+        window.addEventListener('scroll', handleScroll);
+    });
+
+    onCleanup(() => {
+        window.removeEventListener('scroll', handleScroll);
+    });
 
     return (
-        <div class={`z-50 ${props.class || ""}`}>
+        <div class={`fixed p-4 z-50 w-full flex flex-col items-end  ${props.class || ""}`}>
             <Show
                 when={isOpen()}
                 fallback={
                     <button
                         onClick={() => setIsOpen(true)}
-                        class="text-white hover:text-lucy-secondary transition-colors drop-shadow-lg p-2 bg-lucy-dark/50 rounded-md backdrop-blur-sm border border-white/10"
                     >
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                        <Menu class="text-lucy-light hover:text-lucy-secondary transition-colors drop-shadow-xl drop-shadow-lucy-dark/40" size={35} stroke-width={2} absoluteStrokeWidth={true} />
                     </button>
                 }
             >
-                <nav class="text-right flex flex-col items-end space-y-2 animate-fade-in">
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        class="text-white mb-4 hover:text-lucy-secondary transition-colors drop-shadow-lg"
-                    >
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <nav class="text-right flex flex-col items-end gap-4 animate-fade-in duration-10">
+                    <button onClick={() => setIsOpen(false)}>
+                        <X class="text-lucy-light hover:text-lucy-secondary transition-colors drop-shadow-xl drop-shadow-lucy-dark/40" size={35} stroke-width={2} absoluteStrokeWidth={true} />
                     </button>
-                    <A href="/" class="text-white font-work font-semibold text-lg drop-shadow-md hover:text-lucy-secondary transition-colors">Inicio</A>
-                    <A href="/explorar" class="text-white font-work font-semibold text-lg drop-shadow-md hover:text-lucy-secondary transition-colors">Explorar</A>
-                    <A href="/hospedaje" class="text-white font-work font-semibold text-lg drop-shadow-md hover:text-lucy-secondary transition-colors">Hospedaje</A>
-                    <A href="/cuenta" class="text-white font-work font-semibold text-lg drop-shadow-md hover:text-lucy-secondary transition-colors">Cuenta</A>
-
-                    <Show when={props.children}>
-                        <div class="pt-12">
-                            {props.children}
-                        </div>
-                    </Show>
+                    <div class="flex flex-col items-end space-y-1">
+                        <A href="/" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Inicio</A>
+                        <A href="/explorar" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Explorar</A>
+                        <A href="/hospedaje" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Hospedaje</A>
+                        <A href="/cuenta" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Cuenta</A>
+                        <Show when={props.children}>
+                            <div class="pt-12">
+                                {props.children}
+                            </div>
+                        </Show>
+                    </div>
                 </nav>
             </Show>
         </div>
