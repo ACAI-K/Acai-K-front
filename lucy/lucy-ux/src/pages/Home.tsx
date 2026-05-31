@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 import { A } from "@solidjs/router";
 import { MOCK_PARKS } from "../data/mockData";
-import { ArrowRight } from 'lucide-solid';
+import ArrowRight from 'lucide-solid/icons/arrow-right';
 import { Navigation } from "../components/Navigation";
 import { LucyButton } from "../components/LucyButton";
 

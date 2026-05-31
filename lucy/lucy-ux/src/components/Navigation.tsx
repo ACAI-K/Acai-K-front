@@ -1,6 +1,7 @@
 import { createSignal, Show, onMount, onCleanup } from "solid-js";
 import type { JSX } from "solid-js";
-import { X, Menu } from 'lucide-solid';
+import X from 'lucide-solid/icons/x';
+import Menu from 'lucide-solid/icons/menu';
 import { A } from "@solidjs/router";
 
 export function Navigation(props: { class?: string; children?: JSX.Element }) {
