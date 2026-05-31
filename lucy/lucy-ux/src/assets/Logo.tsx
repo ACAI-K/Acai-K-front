@@ -4,40 +4,38 @@ export function Logo(props: { class?: string }) {
     return (
         <svg
             class={props.class}
-            viewBox="0 0 1200 1200"
+            viewBox="0 0 3000 1200"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"
         >
-            <g id="ISOTIPO-LUCY">
-                {/* El caracter '>' */}
-                <path
-                    id="geq"
-                    d="M168.75,300l300,300l-300,300"
-                    style="fill:#93ccd3;fill-opacity:0;stroke:#ffc84c;stroke-width:104.17px;"
-                />
-
-                {/* La Luciérnaga */}
-                <g id="Luciernga">
-                    {/* Antenas */}
-                    <path d="M874.027,403.987c0,0 4.665,-52.157 -33.487,-53.185" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;" />
-                    <path d="M890.388,403.987c0,0 -4.665,-52.157 33.487,-53.185" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;" />
-
-                    {/* Cuerpo central */}
-                    <ellipse cx="881.547" cy="586.736" rx="72.403" ry="185.174" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;" />
-
-                    {/* Alita izquierda */}
-                    <path d="M865.093,405.126c34.622,19.953 15.833,117.529 -41.933,217.763c-57.766,100.233 -132.773,165.411 -167.395,145.458c-34.622,-19.953 -15.833,-117.529 41.933,-217.763c57.766,-100.233 132.773,-165.411 167.395,-145.458Z" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;" />
-
-                    {/* Alita derecha */}
-                    <path d="M899.812,405.126c-34.622,19.953 -15.833,117.529 41.933,217.763c57.766,100.233 132.773,165.411 167.395,145.458c34.622,-19.953 15.833,-117.529 -41.933,-217.763c-57.766,-100.233 -132.773,-165.411 -167.395,-145.458Z" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;" />
-
-                    {/* Destellos de Luz */}
-                    <g id="Luz">
-                        <path d="M882.1,793.522l0,61.677l0,-61.677Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;" />
-                        <path d="M839.988,776.795l-30.838,53.414l30.838,-53.414Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;" />
-                        <path d="M924.212,776.795l30.838,53.414l-30.838,-53.414Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;" />
+            <g id="IMAGOTIPO-LUCY">
+                <path id="geq" d="M561.707,298.435l300,300l-300,300" style="fill:#e7e8e9;fill-opacity:0;stroke:#ffc84c;stroke-width:104.17px;"/>
+                <g id="Luciernaga"></g>
+                <path d="M1272.027,399.422c0,0 4.665,-52.157 -33.487,-53.185" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;"/>
+                <path d="M1288.388,399.422c0,0 -4.665,-52.157 33.487,-53.185" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;"/>
+                <ellipse cx="1279.547" cy="582.171" rx="72.403" ry="185.174" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;"/>
+                <path d="M1263.093,400.561c34.622,19.953 15.833,117.529 -41.933,217.763c-57.766,100.233 -132.773,165.411 -167.395,145.458c-34.622,-19.953 -15.833,-117.529 41.933,-217.763c57.766,-100.233 132.773,-165.411 167.395,-145.458Z" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;"/>
+                <path d="M1297.812,400.561c-34.622,19.953 -15.833,117.529 41.933,217.763c57.766,100.233 132.773,165.411 167.395,145.458c34.622,-19.953 15.833,-117.529 -41.933,-217.763c-57.766,-100.233 -132.773,-165.411 -167.395,-145.458Z" style="fill:#ffc84c;stroke:#391c4d;stroke-opacity:0;stroke-width:10.42px;"/>
+                <g id="Luz">
+                    <path d="M1280.1,788.957l0,61.677l0,-61.677Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;"/>
+                    <path d="M1237.988,772.23l-30.838,53.414l30.838,-53.414Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;"/>
+                    <path d="M1322.212,772.23l30.838,53.414l-30.838,-53.414Z" style="fill:#ffc84c;fill-opacity:0;stroke:#ffc84c;stroke-width:8.33px;"/>
+                </g>
+                <g id="Texto" transform="matrix(1,0,0,1,-87.870931,-200.62736)">
+                    <g transform="matrix(400,0,0,400,1705,900)">
+                        <path d="M0.1,-0l0,-0.692l0.15,0l0,0.572l0.303,0l-0.016,0.12l-0.438,-0Z" style="fill:#ffc84c;fill-rule:nonzero;"/>
                     </g>
+                    <g transform="matrix(354.166667,0,0,354.166667,1929,900)">
+                        <path d="M0.22,-0.53l0,0.365c0,0.027 0.005,0.046 0.016,0.057c0.01,0.011 0.025,0.016 0.045,0.016c0.019,0 0.037,-0.006 0.055,-0.017c0.018,-0.011 0.033,-0.026 0.044,-0.045l0,-0.376l0.145,0l0,0.53l-0.126,-0l-0.007,-0.064c-0.018,0.026 -0.042,0.046 -0.072,0.059c-0.03,0.013 -0.06,0.02 -0.092,0.02c-0.051,0 -0.089,-0.015 -0.114,-0.044c-0.025,-0.029 -0.038,-0.069 -0.038,-0.119l0,-0.383l0.145,0Z" style="fill:#ffc84c;fill-rule:nonzero;"/>
+                    </g>
+                    <g transform="matrix(354.166667,0,0,354.166667,2127.333333,900)">
+                        <path d="M0.349,-0.099c0.023,0 0.044,-0.004 0.063,-0.013c0.02,-0.009 0.039,-0.019 0.058,-0.033l0.065,0.092c-0.023,0.02 -0.052,0.036 -0.085,0.049c-0.033,0.013 -0.07,0.019 -0.109,0.019c-0.056,0 -0.104,-0.012 -0.145,-0.035c-0.04,-0.023 -0.071,-0.056 -0.093,-0.097c-0.022,-0.042 -0.032,-0.09 -0.032,-0.145c0,-0.055 0.011,-0.104 0.033,-0.147c0.022,-0.043 0.053,-0.077 0.094,-0.101c0.041,-0.025 0.089,-0.037 0.145,-0.037c0.039,0 0.074,0.006 0.105,0.017c0.031,0.011 0.06,0.027 0.086,0.049l-0.064,0.088c-0.019,-0.013 -0.038,-0.023 -0.059,-0.03c-0.02,-0.007 -0.042,-0.011 -0.064,-0.011c-0.037,0 -0.068,0.013 -0.091,0.04c-0.023,0.027 -0.035,0.071 -0.035,0.132c0,0.04 0.005,0.072 0.016,0.096c0.011,0.024 0.026,0.041 0.045,0.051c0.019,0.01 0.04,0.015 0.064,0.015Z" style="fill:#ffc84c;fill-rule:nonzero;"/>
+                    </g>
+                    <g transform="matrix(354.166667,0,0,354.166667,2325.666667,900)">
+                        <path d="M0.566,-0.53l-0.178,0.531c-0.015,0.045 -0.035,0.083 -0.06,0.115c-0.025,0.031 -0.055,0.056 -0.092,0.074c-0.037,0.018 -0.082,0.028 -0.135,0.032l-0.017,-0.104c0.035,-0.005 0.064,-0.012 0.085,-0.021c0.021,-0.009 0.039,-0.022 0.052,-0.037c0.013,-0.016 0.024,-0.035 0.034,-0.059l-0.049,-0l-0.171,-0.53l0.153,0l0.111,0.436l0.119,-0.436l0.149,0Z" style="fill:#ffc84c;fill-rule:nonzero;"/>
+                    </g>
+                    <g transform="matrix(354.166667,0,0,354.166667,2538.166667,900)"></g>
                 </g>
             </g>
         </svg>
