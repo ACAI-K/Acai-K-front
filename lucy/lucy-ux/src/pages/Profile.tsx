@@ -2,12 +2,33 @@
 import { createSignal, Show } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
 import { Navigation } from "../components/Navigation";
+import ArrowLeft from "lucide-solid/icons/arrow-left";
+import ChevronRight from "lucide-solid/icons/chevron-right";
+import ChevronDown from "lucide-solid/icons/chevron-down";
+import Eye from "lucide-solid/icons/eye";
+import EyeClosed from "lucide-solid/icons/eye-closed";
+import { LucyIconButtonNoA, LucyButton, LucyButtonNoA } from "../components/LucyButton";
 
 type ProfileState = "menu" | "edit";
 
+interface Cats {
+    name: string;
+    option: string;
+    link?: string;
+    onClick?: () => void;
+}
+
 export default function Profile() {
     const [viewState, setViewState] = createSignal<ProfileState>("menu");
+    const [isShowPassword, setShowPassword] = createSignal(false);
     const navigate = useNavigate();
+
+    const categorias: Cats[] = [
+    {name: "Mis reservas", option: "A", link: "/reservas"},
+    {name: "Editar perfil", option: "B", onClick: () => {setViewState("edit")}},
+    {name: "Soporte", option: "A", link: "/soporte"},
+    {name: "Cerrar sesión", option: "A", link: "/cuenta/login"},
+];
 
     // Estados locales editables del perfil
     const [name, setName] = createSignal("Alejandro");
@@ -27,94 +48,73 @@ export default function Profile() {
     return (
         <div class="min-h-screen bg-lucy-dark text-white flex flex-col justify-between font-work w-full">
             {/* Barra superior de navegacion */}
-            <div class="w-full max-w-6xl mx-auto px-8 pt-16 flex justify-between items-start h-24 shrink-0 z-50">
-                <button
-                    onClick={() => {
-                        if (viewState() === "edit") setViewState("menu");
-                        else navigate("/");
-                    }}
-                    class="text-white hover:text-lucy-secondary transition-colors cursor-pointer mt-2"
-                >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                </button>
+            
+                <LucyIconButtonNoA onClick={() => {if (viewState() === "edit") setViewState("menu");else navigate("/");}}
+                    ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<ArrowLeft size={30}/>} class="z-60 max-w-fit" />
 
-                <Navigation class="relative mt-2" />
-            </div>
+                <Navigation />
 
             {/* area de visualizacion central */}
-            <div class="flex-grow w-full flex items-center justify-start max-w-6xl mx-auto p-8 min-h-[500px]">
+            <div class="grow w-full flex items-center justify-start mx-auto p-8 min-h-[500px]">
 
                 {/* Menu deAcciones */}
                 <Show when={viewState() === "menu"}>
-                    <div class="w-full max-w-xl flex flex-col space-y-8 animate-fade-in text-left items-start">
+                    <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-36 items-start p-16">
 
-                        <h2 class="text-4xl md:text-5xl font-fira font-bold text-white tracking-wide mb-6 pl-4">
-                            ¡Hola!
-                        </h2>
+                {/* COLUMNA IZQUIERDA */}
+                <div class="flex flex-col max-w-[85dvw]">
+                    <h2 class="text-3xl font-bold text-white mb-4 tracking-wide pl-6">
+                        ¡Hola!
+                    </h2>
 
-                        {/* Mis reservas */}
-                        <A
-                            href="/reservas"
-                            class="w-full bg-lucy-primary text-lucy-dark p-6 rounded-tl-[40px] rounded-br-[40px] flex justify-between items-center hover:bg-white transition-all shadow-xl group transform hover:-translate-y-0.5"
-                        >
-                            <span class="text-3xl md:text-4xl font-fira font-bold tracking-tight">Mis reservas</span>
-                            <span class="text-3xl font-fira font-bold group-hover:translate-x-2 transition-transform">➔</span>
-                        </A>
-
-                        {/* Editar perfil */}
-                        <button
-                            onClick={() => setViewState("edit")}
-                            class="w-full text-left bg-transparent p-6 flex justify-between items-center hover:text-lucy-secondary transition-colors group cursor-pointer"
-                        >
-                            <span class="text-3xl md:text-4xl font-fira font-bold tracking-tight">Editar perfil</span>
-                            <span class="text-3xl font-fira font-bold group-hover:translate-x-2 transition-transform">➔</span>
-                        </button>
-
-                        {/* Soporte */}
-                        <A
-                            href="/soporte"
-                            class="w-full text-left bg-transparent p-6 flex justify-between items-center hover:text-lucy-secondary transition-colors group"
-                        >
-                            <span class="text-3xl md:text-4xl font-fira font-bold tracking-tight">Soporte</span>
-                            <span class="text-3xl font-fira font-bold group-hover:translate-x-2 transition-transform">➔</span>
-                        </A>
-
-                        {/* Cerrar sesión */}
-                        <A
-                            href="/cuenta"
-                            class="w-full text-left bg-transparent p-6 flex justify-between items-center hover:text-red-400 transition-colors group"
-                        >
-                            <span class="text-3xl md:text-4xl font-fira font-bold tracking-tight">Cerrar sesión</span>
-                            <span class="text-3xl font-fira font-bold group-hover:translate-x-2 transition-transform">➔</span>
-                        </A>
-                    </div>
+                    {categorias.map((cat) => {
+                        if (cat.option === "A" && cat.link) {
+                            return <LucyButton ButtonLink={cat.link} ButtonText={cat.name} ButtonBackground="lucy-dark" ButtonForeground="lucy-primary" ButtonSize="full" ButtonIconSide="right" ButtonIcon={<ChevronRight height={50} width={50}/>} />
+                        } else if (cat.option === "B" && cat.onClick) {
+                            return <LucyButtonNoA onClick={cat.onClick} ButtonText={cat.name} ButtonBackground="lucy-dark" ButtonForeground="lucy-primary" ButtonSize="full" ButtonIconSide="right" ButtonIcon={<ChevronRight height={50} width={50}/>} />
+                        } else {
+                            return <></>
+                        }
+                    })}
+                </div>
+            </div>
                 </Show>
 
                 {/* EditarPerfil */}
                 <Show when={viewState() === "edit"}>
-                    <form onSubmit={handleUpdateProfile} class="w-full max-w-xl flex flex-col justify-center space-y-5 py-6 animate-fade-in pl-4">
-                        <h2 class="text-4xl font-fira font-bold text-left text-white mb-4">Editar</h2>
-                        <input type="text" value={name()} required class="w-full text-lucy-dark rounded-xl p-4 outline-none border-none text-base font-medium shadow-inner" style="background-color: #E5E5E5;" onInput={(e) => setName(e.currentTarget.value)}/>
-                        <input type="text" value={lastName()} required class="w-full text-lucy-dark rounded-xl p-4 outline-none border-none text-base font-medium shadow-inner" style="background-color: #E5E5E5;" onInput={(e) => setLastName(e.currentTarget.value)}/>
-                        <input type="email" value={email()} required class="w-full text-lucy-dark rounded-xl p-4 outline-none border-none text-base font-medium shadow-inner" style="background-color: #E5E5E5;" onInput={(e) => setEmail(e.currentTarget.value)}/>
-                        <div class="relative w-full">
-                            <input type="password" value={password()} required class="w-full text-lucy-dark rounded-xl p-4 pr-12 outline-none border-none text-base font-medium shadow-inner" style="background-color: #E5E5E5;" onInput={(e) => setPassword(e.currentTarget.value)}/>
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-lucy-dark opacity-60">👁</span>
-                        </div>
-                        <div class="grid grid-cols-4 gap-3 w-full">
-                            <div class="col-span-1 text-lucy-dark rounded-xl p-4 flex items-center justify-between text-base font-medium" style="background-color: #E5E5E5;">
-                                <span>+1</span><span>🇺🇸</span>
+                    <form onSubmit={handleUpdateProfile} class="flex flex-col justify-center items-center p-8 w-full gap-8 lg:max-w-[60dvw] mx-auto">
+                            <h2 class="text-3xl font-fira font-bold text-lucy-light">Editar perfil</h2>
+                            <input 
+                                type="text" placeholder="Nombre" required value={name()}
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setName(e.currentTarget.value)}/>
+                            <input 
+                                type="text" placeholder="Apellidos" required value={lastName()} 
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setLastName(e.currentTarget.value)}/>
+                            <input
+                                type="email" placeholder="Email" value={email()} required
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setEmail(e.currentTarget.value)}
+                            />
+                            <div class="relative w-full flex items-center gap-8">
+                                <input
+                                    type={isShowPassword() ? 'text' : 'password'} placeholder="Contraseña" value={password()} required minLength={6} maxLength={20}
+                                    class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                    onInput={(e) => setPassword(e.currentTarget.value)}
+                                />                                
+                                <LucyIconButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" class="px-8 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer" type="button" ButtonIconSide="right" ButtonIcon={isShowPassword() ? <Eye/> : <EyeClosed/>} onClick={() => {setShowPassword(!isShowPassword())}}/>
                             </div>
-                            <input type="tel" value={phone()} required class="col-span-3 text-lucy-dark rounded-xl p-4 outline-none border-none text-base font-medium shadow-inner" style="background-color: #E5E5E5;" onInput={(e) => setPhone(e.currentTarget.value)}/>
-                        </div>
-                        <div class="flex justify-start pt-4">
-                            <button type="submit" class="bg-lucy-primary text-lucy-dark font-fira font-bold px-12 py-4 rounded-full flex items-center gap-2 hover:bg-white transition-all transform hover:-translate-y-0.5 shadow-xl active:scale-95 cursor-pointer">
-                                Confirmar <span>➔</span>
-                            </button>
-                        </div>
-                    </form>
+                            <div class="flex gap-3 w-full">
+                                <div class="text-lucy-dark bg-lucy-light px-8 rounded-full flex items-center justify-between text-base font-medium gap-4 w-it">
+                                    <span>+1</span><span class="flex gap-2 justify-end w-fit">US<ChevronDown size={25}/></span>
+                                </div>
+                                <input type="tel" placeholder="Teléfono" required value={phone()} class="col-span-2 text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 form-input rounded-full outline-none border-none text-base font-medium w-full" onInput={(e) => setPhone(e.currentTarget.value)}/>
+                            </div>
+                            <div class="flex justify-center md:justify-end">
+                                <LucyButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" ButtonText="Confirmar" class="px-12 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer md:w-fit" type="submit" ButtonIconSide="right" ButtonIcon={<ChevronRight size={35}/>} />
+                            </div>
+                        </form>
                 </Show>
 
             </div>
