@@ -5,6 +5,13 @@ import type { Park } from "../data/types";
 import { Navigation } from "../components/Navigation";
 import { FilterMenu } from "../components/FilterMenu";
 import { WeatherMenu } from "../components/WeatherMenu";
+import { LucyIconButtonNoA, LucyButtonNoA } from "../components/LucyButton";
+import CloudSunRain from 'lucide-solid/icons/cloud-sun-rain';
+import LightBulb from 'lucide-solid/icons/lightbulb';
+import ChrevronRight from 'lucide-solid/icons/chevron-right';
+import Download from 'lucide-solid/icons/download';
+import SlidersHorizontal from 'lucide-solid/icons/sliders-horizontal';
+import Search from 'lucide-solid/icons/search';
 
 declare global {
     interface Window {
@@ -20,6 +27,7 @@ export default function Map() {
 
     const [isFilterOpen, setIsFilterOpen] = createSignal(false);
     const [isWeatherOpen, setIsWeatherOpen] = createSignal(false);
+    const [isDarkMode, setDarkMode] = createSignal(false);
     const [selectedPark, setSelectedPark] = createSignal<Park | null>(null);
     const [searchQuery, setSearchQuery] = createSignal("");
     const [activeFilters, setActiveFilters] = createSignal({ categories: ["Parques"], rating: 4, amenities: [] });
@@ -79,7 +87,7 @@ export default function Map() {
                     </svg>
                 </div>
                 <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-dark transition-colors duration-300"></div>
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-black/80 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-lucy-dark/80 text-lucy-light text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                     ${park.name}
                 </div>
             `;
@@ -111,7 +119,7 @@ export default function Map() {
         const currentPark = selectedPark();
         mapMarkers.forEach(marker => {
             if (currentPark && currentPark.id === marker.parkId) {
-                marker.iconDiv.className = "w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-secondary text-lucy-dark border-white scale-110 transition-colors duration-300";
+                marker.iconDiv.className = "w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-secondary text-lucy-dark border-lucy-light scale-110 transition-colors duration-300";
                 marker.arrowDiv.className = "w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-secondary transition-colors duration-300";
             } else {
                 marker.iconDiv.className = "w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-dark text-lucy-secondary border-lucy-secondary transition-colors duration-300";
@@ -126,35 +134,25 @@ export default function Map() {
     });
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-gray-900 font-work">
+        <div class={`${isDarkMode() ? 'dark' : ''}`}>
+        <div class="relative w-full h-screen overflow-hidden bg-gray-900 font-work">
+
+            <Navigation/>
 
             <div ref={mapRef} class="absolute inset-0 w-full h-full z-0"></div>
-            <div class="absolute inset-0 bg-black/10 pointer-events-none z-10"></div>
-            <Navigation class="absolute top-8 right-8 z-40"/>
 
-            <div className="absolute top-6 left-0 right-0 z-40 flex justify-center pointer-events-none">
-                <div className="flex flex-col items-end gap-4 pointer-events-auto w-full max-w-3xl px-4">
-                    <div className="w-full flex items-center bg-lucy-dark text-white rounded-full px-6 py-4 shadow-xl border border-lucy-dark/50">
+            <div class="absolute top-3.75 left-10 right-10 z-60 flex justify-center pointer-events-none">
+                <div class="flex flex-col items-end gap-4 pointer-events-auto w-full max-w-3xl px-4">
+                    <div class="w-full flex items-center bg-lucy-dark text-lucy-light rounded-full px-6 py-4 shadow-xl transition-colors">
                         <input
                             type="text" placeholder="Busca en el mapa"
-                            className="bg-transparent border-none outline-none w-full text-lg placeholder-gray-400"
+                            class="w-full text-xl placeholder-lucy-light/50 transition-colors focus:outline-none"
                             onInput={(e) => setSearchQuery(e.currentTarget.value)}
                         />
-                        <button className="ml-4 hover:text-lucy-secondary transition-colors cursor-pointer">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
+                        <Search class="text-lucy-light hover:text-lucy-secondary transition-colors cursor-pointer" size={25} stroke-width={2} absoluteStrokeWidth={true} onClick={() => console.log("Buscar en el mapa:", searchQuery())} />
                     </div>
 
-                    <button
-                        onClick={() => { setIsFilterOpen(!isFilterOpen()); setIsWeatherOpen(false); }}
-                        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-colors border border-gray-700/50 cursor-pointer active:scale-95 ${isFilterOpen() ? 'bg-lucy-secondary text-lucy-dark' : 'bg-lucy-dark text-white hover:text-lucy-secondary'}`}
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
-                        </svg>
-                    </button>
+                    <LucyIconButtonNoA ButtonBackground={isFilterOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIcon={<SlidersHorizontal size={30}/>} onClick={() => {setIsFilterOpen(!isFilterOpen()); setIsWeatherOpen(false);}} />
                 </div>
             </div>
 
@@ -166,67 +164,59 @@ export default function Map() {
                 <WeatherMenu/>
             </Show>
 
-            <div className={`absolute top-0 right-0 h-full w-full max-w-md bg-lucy-dark text-white z-50 shadow-2xl transform transition-transform duration-300 overflow-y-auto ${selectedPark() ? 'translate-x-0' : 'translate-x-full'}`}>
-                <button onClick={() => setSelectedPark(null)} className="absolute top-4 right-4 p-2 bg-gray-800 rounded-md hover:bg-gray-700 z-10">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <div class={`absolute top-0 right-0 h-full w-full max-w-md bg-lucy-dark text-lucy-light z-50 shadow-2xl transform transition-transform duration-300 overflow-y-auto ${selectedPark() ? 'translate-x-0' : 'translate-x-full'}`}>
+                <button onClick={() => setSelectedPark(null)} class="absolute top-4 right-4 p-2 bg-gray-800 rounded-md hover:bg-gray-700 z-10">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <Show when={selectedPark()}>
                     {(park) => (
-                        <div className="p-8 pt-16">
+                        <div class="p-8 pt-16">
                             <h2 class="text-3xl font-fira mb-1 text-lucy-primary">{park().name}</h2>
                             <p class="text-gray-400 mb-2">Parque Protegido</p>
-                            <div className="flex items-center gap-2 mb-6 text-sm">
+                            <div class="flex items-center gap-2 mb-6 text-sm">
                                 <span class="text-lucy-primary">📍</span>
                                 <span class="text-gray-300">{park().location}</span>
                             </div>
-                            <div className="mb-8">
-                                <div className="w-full aspect-video rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                            <div class="mb-8">
+                                <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg border border-gray-700">
                                     <img src={park().image} alt={park().name} class="w-full h-full object-cover"/>
                                 </div>
                             </div>
-                            <div className="mb-8 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
+                            <div class="mb-8 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
                                 <p class="text-gray-300 mb-4 text-sm leading-relaxed">{park().description}</p>
-                                <div className="flex flex-wrap gap-2">
+                                <div class="flex flex-wrap gap-2">
                                     <For each={park().features}>
                                         {(feature) => <span class="bg-gray-800 text-lucy-secondary px-3 py-1 rounded-full text-xs font-semibold border border-gray-700">{feature}</span>}
                                     </For>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-between mb-8">
+                            <div class="flex items-center justify-between mb-8">
                                 <div>
                                     <p class="text-xs text-gray-400 uppercase tracking-wider">Precio desde</p>
-                                    <p class="text-2xl font-bold text-white">${park().pricePerDay} MXN</p>
+                                    <p class="text-2xl font-bold text-lucy-light">${park().pricePerDay} MXN</p>
                                 </div>
-                                <A href={`/park/${park().id}`} class="inline-flex items-center gap-2 bg-lucy-primary text-lucy-dark px-6 py-3 rounded-full font-fira font-bold hover:bg-white transition-colors shadow-[0_0_15px_rgba(146,204,211,0.3)]">
+                                <A href={`/park/${park().id}`} class="inline-flex items-center gap-2 bg-lucy-primary text-lucy-dark px-6 py-3 rounded-full font-fira font-bold hover:bg-lucy-light transition-colors shadow-[0_0_15px_rgba(146,204,211,0.3)]">
                                     Ver detalle
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </A>
                             </div>
                         </div>
                     )}
                 </Show>
             </div>
-
-            <div className="absolute bottom-8 left-8 z-30">
-                <button
-                    onClick={() => { setIsWeatherOpen(!isWeatherOpen()); setIsFilterOpen(false); }}
-                    className={`px-6 py-2 rounded-full font-fira font-bold flex items-center gap-2 shadow-lg transition-colors cursor-pointer ${isWeatherOpen() ? 'bg-lucy-secondary text-lucy-dark' : 'bg-lucy-primary text-lucy-dark hover:bg-white'}`}
-                >
-                    Clima
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-                    </svg>
-                </button>
+            <div class="hidden md:flex relative text-lucy-dark md:bottom-8 md:absolute md:left-8 z-30">
+                <LucyButtonNoA onClick={() => {setIsWeatherOpen(!isWeatherOpen())}} ButtonText="Clima" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<CloudSunRain size={30}/>} />
             </div>
-
-            <div className="absolute bottom-8 right-8 z-30 flex gap-4">
-                <button className="bg-lucy-dark text-white px-6 py-2 rounded-full font-fira text-sm flex items-center gap-2 shadow-lg border border-gray-700 hover:text-lucy-secondary transition-colors">
-                    Modo Obscuro <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
-                <button className="bg-lucy-primary text-lucy-dark px-6 py-2 rounded-full font-fira font-bold flex items-center gap-2 shadow-lg hover:bg-white transition-colors">
-                    Descarga Mapa <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                </button>
+            <div class="hidden md:absolute md:bottom-8 md:right-8 z-30 md:flex gap-4">
+                <LucyButtonNoA onClick={() => {setDarkMode(!isDarkMode())}} ButtonText="Modo obscuro" ButtonBackground={!isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonForeground={isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonSize="md" ButtonIconSide="right" ButtonIcon={<LightBulb size={30}/>} />
+                <LucyButtonNoA onClick={() => {window.location.href = "https://maps.app.goo.gl/A1fJASPq6cFSJw9s9"}} ButtonText="Mapa sin Conexión" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ChrevronRight size={30}/>} />
             </div>
+        </div>
+        <section class="md:hidden w-full absolute flex justify-center pointer-events-none gap-4 z-40 bottom-4">
+            <LucyIconButtonNoA onClick={() => {setIsWeatherOpen(!isWeatherOpen())}} ButtonText="Clima" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<CloudSunRain size={30}/>} />
+            <LucyIconButtonNoA onClick={() => {setDarkMode(!isDarkMode())}} ButtonText="Modo obscuro" ButtonBackground={!isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonForeground={isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonSize="md" ButtonIconSide="right" ButtonIcon={<LightBulb size={30}/>} />
+            <LucyIconButtonNoA onClick={() => {window.location.href = "https://maps.app.goo.gl/A1fJASPq6cFSJw9s9"}} ButtonText="Mapa sin Conexión" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<Download size={30}/>} />
+        </section>
         </div>
     );
 }

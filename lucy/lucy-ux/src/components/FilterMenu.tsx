@@ -1,4 +1,5 @@
 import { createSignal, For, createEffect } from "solid-js";
+import Star from 'lucide-solid/icons/star';
 
 interface FilterMenuProps {
     onFilterChange: (filters: {
@@ -44,7 +45,7 @@ export function FilterMenu(props: FilterMenuProps) {
 
     return (
         <div
-            class="absolute top-28 left-1/2 -translate-x-1/2 z-40 w-full max-w-3xl text-white rounded-3xl p-8 shadow-2xl border border-gray-800/60 animate-fade-in"
+            class="absolute top-48 left-1/2 -translate-x-1/2 z-40 w-full max-w-3xl text-lucy-light rounded-3xl p-8 shadow-2xl border border-gray-800/60 animate-fade-in"
             style="background-color: #1B181A;"
         >
             <div class="grid grid-cols-2 gap-8 font-work">
@@ -56,13 +57,13 @@ export function FilterMenu(props: FilterMenuProps) {
                             <label class="flex items-center gap-4 cursor-pointer select-none group">
                                 <input
                                     type="checkbox"
-                                    class="w-5 h-5 cursor-pointer accent-lucy-secondary rounded-md"
+                                    class="w-5 h-5 cursor-pointer appearance-none rounded-full bg-lucy-disabled hover:bg-lucy-support border border-lucy-light checked:bg-lucy-secondary transition-colors"
                                     checked={selectedCategories().includes(cat)}
                                     onChange={() => toggleCategory(cat)}
                                 />
-                                <span class={`text-base transition-colors ${selectedCategories().includes(cat) ? "text-white font-semibold" : "text-gray-400 group-hover:text-gray-200"}`}>
-                  {cat}
-                </span>
+                                <span class={`text-base transition-colors ${selectedCategories().includes(cat) ? "text-lucy-light font-semibold" : "text-lucy-light/70 group-hover:text-lucy-light"}`}>
+                                    {cat}
+                                </span>
                             </label>
                         )}
                     </For>
@@ -81,19 +82,7 @@ export function FilterMenu(props: FilterMenuProps) {
                                         onClick={() => setRating(starIndex)}
                                         class="transform active:scale-95 transition-transform cursor-pointer"
                                     >
-                                        <svg
-                                            class="w-7 h-7 transition-colors duration-200"
-                                            fill={starIndex <= rating() ? "currentColor" : "none"}
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                                            />
-                                        </svg>
+                                        <Star size={30} fill={starIndex <= rating() ? "currentColor" : "none"} stroke="currentColor" stroke-width={2} class="hover:text-lucy-accent"/>
                                     </button>
                                 )}
                             </For>
@@ -109,7 +98,7 @@ export function FilterMenu(props: FilterMenuProps) {
                                     const isSelected = () => selectedAmenities().includes(amenity.id);
                                     return (
                                         <div
-                                            class={`flex flex-col items-center gap-1 cursor-pointer transition-all ${isSelected() ? 'text-lucy-secondary' : 'text-gray-400 hover:text-white'}`}
+                                            class={`flex flex-col items-center gap-1 cursor-pointer transition-all ${isSelected() ? 'text-lucy-secondary' : 'text-gray-400 hover:text-lucy-light'}`}
                                             onClick={() => toggleAmenity(amenity.id)}
                                         >
                                             <div class={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${isSelected() ? 'border-lucy-secondary bg-lucy-secondary/10 shadow-[0_0_12px_rgba(255,200,76,0.2)]' : 'border-gray-700 bg-gray-800/40'}`}>
@@ -121,7 +110,7 @@ export function FilterMenu(props: FilterMenuProps) {
                                                     </svg>
                                                 )}
                                             </div>
-                                            <span class="scale-90 font-medium tracking-tight whitespace-nowrap">{amenity.label}</span>
+                                            <span class="scale-90 font-medium tracking-tight lucy-lightspace-nowrap">{amenity.label}</span>
                                         </div>
                                     );
                                 }}

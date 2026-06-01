@@ -23,7 +23,7 @@ export function SearchBar(props: SearchBarProps) {
 
     return (
         <form onSubmit={handleSubmit} class={`w-full ${props.class || ""}`}>
-            <div class="w-full flex items-center bg-[#E5E5E5] text-lucy-dark rounded-full px-6 py-3.5 shadow-xl border border-transparent focus-within:border-lucy-primary transition-colors">
+            <div class="w-full flex items-center bg-lucy-light text-lucy-dark rounded-full px-6 py-3 shadow-xl border border-transparent transition-colors">
                 <input
                     type="text"
                     placeholder="Busca refugios, clínicas o parques..."

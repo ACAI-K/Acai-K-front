@@ -115,15 +115,7 @@ export default function Hospedaje() {
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work flex flex-col justify-between relative pb-16">
 
-            {/* Cabecera superior */}
-            <div class="w-full max-w-6xl mx-auto px-8 pt-12 flex justify-between items-start h-20 shrink-0 z-50">
-                <A href="/" class="text-white hover:text-lucy-secondary transition-colors mt-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                </A>
-                <Navigation class="relative mt-2" />
-            </div>
+            <Navigation />
 
             {/* Cuerpo del Formulario Asimetrico */}
             <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4 flex-grow items-center">

@@ -15,9 +15,9 @@ export default function Home() {
     };
 
     return (
-        <div class="bg-lucy-dark">
+        <div class="relative bg-lucy-dark w-full h-full min-h-screen flex flex-col items-center font-fira text-lucy-light">
             <Navigation/>
-            <header class="bg-lucy-primary relative overflow-hidden h-dvh w-full m-0 flex items-start justify-end sm:items-end flex-col gap-8 sm:flex-row sm:justify-between mx-auto p-16">
+            <header class="bg-lucy-primary relative overflow-hidden h-dvh w-full max-w-480 max-h-270 m-0 flex justify-items-center-safe justify-end sm:items-end flex-col gap-8 sm:flex-row sm:justify-between p-16">
                 <h1 class="text-lucy-light text-4xl md:text-5xl font-bold leading-tight relative inline-block">
                     Festival<br/>
                     Internacional<br/>
@@ -28,8 +28,10 @@ export default function Home() {
                 <LucyButton ButtonLink="/mapa" ButtonText="Ver el mapa" ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ArrowRight />} />
             </header>
 
-            <main class="max-w-6xl mx-auto p-8 pt-12">
-                <h2 class="text-lucy-light text-4xl font-medium text mb-10">Explora</h2>
+            <main class="max-w-6xl mx-auto p-8 pt-12 flex flex-col gap-4">
+                <A href="/explorar" class="text-lucy-light text-4xl font-medium text hover:text-lucy-secondary transition-colors ">
+                Explora
+                </A>
 
                 <div class="space-y-12">
                     {/* TODO: Convertir a MOCK_LOCATIONS  */}

@@ -12,9 +12,10 @@ interface ButtonProps {
   ButtonSize: ButtonSizes;
   ButtonIcon?: JSX.Element;
   ButtonIconSide?: ButtonIconSide;
-  ButtonText: string;
-  ButtonLink: string;
+  ButtonText?: string;
+  ButtonLink?: string;
   class?: string;
+  onClick?: () => void;
 }
 
 function getBackgroundColor(color: ButtonColors): string {
@@ -54,7 +55,7 @@ function getSizeClass(size: ButtonSizes): string {
     "sm": "px-6 py-2 gap-1 text-sm rounded-br-2xl rounded-tl-2xl",
     "md": "px-8 py-3 gap-2 text-base rounded-br-4xl rounded-tl-4xl",
     "lg": "px-10 py-4 gap-4 text-lg rounded-br-full rounded-tl-full",
-    "full": "w-full px-16 py-8 flex justify-center text-4xl rounded-br-full rounded-tl-full",
+    "full": "w-full px-16 py-8 flex sm:justify-between text-4xl rounded-br-[75px] rounded-tl-[75px]",
   };
   return sizeMap[size];
 }
@@ -62,11 +63,44 @@ function getSizeClass(size: ButtonSizes): string {
 
 
 export function LucyButton (props: ButtonProps) {
+  if (props.ButtonLink) {
   return (
-    <A href={props.ButtonLink} class={`flex justify-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 ${props.class}`}>
-      {props.ButtonIcon && props.ButtonIconSide === "left" && <span class="w-4 h-full">{props.ButtonIcon}</span>}
+    <A href={props.ButtonLink} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 group gap-8 ${props.class}`}>
+      {props.ButtonIcon && props.ButtonIconSide === "left" && <span class="w-4 h-full group-hover:-translate-x-2 transition-transform">{props.ButtonIcon}</span>}
       {props.ButtonText}
-      {props.ButtonIcon && props.ButtonIconSide === "right" && <span class="w-4 h-full">{props.ButtonIcon}</span>}
+      {props.ButtonIcon && props.ButtonIconSide === "right" && <span class="w-4 h-full group-hover:translate-x-2 transition-transform">{props.ButtonIcon}</span>}
     </A>
+  );
+  } else {
+    LucyButtonNoA(props);
+  }
+}
+
+export function LucyButtonNoA (props: ButtonProps) {
+  return (
+    <button onClick={props.onClick} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 group gap-8 ${props.class}`}>
+      {props.ButtonIcon && props.ButtonIconSide === "left" && <span class="w-4 h-full group-hover:-translate-x-2 transition-transform">{props.ButtonIcon}</span>}
+      {props.ButtonText}
+      {props.ButtonIcon && props.ButtonIconSide === "right" && <span class="w-4 h-full group-hover:translate-x-2 transition-transform">{props.ButtonIcon}</span>}
+    </button>
+  );
+}
+export function LucyIconButton (props: ButtonProps) {
+  if (props.ButtonLink) {
+  return (
+    <A href={props.ButtonLink} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 group gap-8 ${props.class}`}>
+      {props.ButtonIcon && <span class="w-full h-full">{props.ButtonIcon}</span>}
+    </A>
+  );
+  } else {
+    LucyIconButtonNoA(props);
+  }
+}
+
+export function LucyIconButtonNoA (props: ButtonProps) {
+  return (
+    <button onClick={props.onClick} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 ${props.class}`}>
+      {props.ButtonIcon && <span class="w-full h-full">{props.ButtonIcon}</span>}
+    </button>
   );
 }

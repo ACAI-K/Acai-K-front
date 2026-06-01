@@ -5,7 +5,7 @@ import Menu from 'lucide-solid/icons/menu';
 import { A } from "@solidjs/router";
 
 export function Navigation(props: { class?: string; children?: JSX.Element }) {
-    const [isOpen, setIsOpen] = createSignal(true);
+    const [isOpen, setIsOpen] = createSignal(false);
     const handleScroll = () => {
         if (isOpen()) {
             setIsOpen(false);
