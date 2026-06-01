@@ -27,12 +27,12 @@ export function Footer() {
 
                 {/* Cuenta */}
                 <div>
-                    <A href="/explorar">
+                    <A href="/cuenta?login">
                         <h4 class="font-work text-3xl md:text-xl mb-4 font-semibold hover:text-lucy-light transition-colors">Cuenta</h4>
                     </A>
                     <ul class="space-y-2 font-work">
-                        <li><A href="/cuenta" class="hover:text-lucy-light transition-colors">Registro</A></li>
-                        <li><A href="/cuenta" class="hover:text-lucy-light transition-colors">Inicio de sesión</A></li>
+                        <li><A href="/cuenta/register" class="hover:text-lucy-light transition-colors">Registro</A></li>
+                        <li><A href="/cuenta/login" class="hover:text-lucy-light transition-colors">Inicio de sesión</A></li>
                         <li><A href="/perfil" class="hover:text-lucy-light transition-colors">Mis reservaciones</A></li>
                         <li><A href="/soporte" class="hover:text-lucy-light transition-colors">Soporte</A></li>
                     </ul>

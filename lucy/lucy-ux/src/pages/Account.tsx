@@ -1,10 +1,22 @@
 import { createSignal, Show } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
+import { Navigation } from "../components/Navigation";
+import ArrowLeft from "lucide-solid/icons/arrow-left";
+import ChevronRight from "lucide-solid/icons/chevron-right";
+import ChevronDown from "lucide-solid/icons/chevron-down";
+import Eye from "lucide-solid/icons/eye";
+import EyeClosed from "lucide-solid/icons/eye-closed";
+import { LucyIconButton, LucyIconButtonNoA, LucyButtonNoA } from "../components/LucyButton";
 
-export default function Account() {
-    const [isLogin, setIsLogin] = createSignal(true);
+type AccountProps = {
+    loginOrRegister?: 'login' | 'register';
+};
+
+export default function Account(props: AccountProps) {
+    const [isLogin, setIsLogin] = createSignal(props.loginOrRegister !== undefined && props.loginOrRegister === 'login');
     const navigate = useNavigate();
 
+    const [isShowPassword, setShowPassword] = createSignal(false);
     const [email, setEmail] = createSignal("");
     const [password, setPassword] = createSignal("");
     const [name, setName] = createSignal("Alejandro");
@@ -30,83 +42,77 @@ export default function Account() {
     };
 
     return (
-        <div class="fixed inset-0 z-50 bg-lucy-dark text-white flex flex-col justify-between font-work h-screen w-screen overflow-y-auto">
-
+        <div class="bg-lucy-dark text-lucy-light flex flex-col justify-between font-work h-dvh w-dvw overflow-hidden mx-auto">
+            <Navigation/>
             {/* Boton superior izquierdo para regresar al Home */}
-            <div class="w-full max-w-6xl mx-auto px-8 pt-8 flex justify-start items-center h-16 shrink-0">
-                <A href="/" class="text-white hover:text-lucy-secondary transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                </A>
-            </div>
+            <LucyIconButton ButtonLink='/' ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<ArrowLeft size={30}/>} class="z-50 max-w-fit" />
 
             {/* Area central del formulario */}
-            <div class="flex-grow w-full flex items-center justify-center p-6 min-h-[500px]">
+            <div class="grow w-full flex items-center justify-center p-6 h-auto">
 
-                {/* --- INICIAR SESION --- */}
+                {/* INICIAR SESION */}
                 <Show when={isLogin()}>
-                    <div class="w-full max-w-4xl rounded-[40px] overflow-hidden shadow-2xl border border-gray-800/60 grid grid-cols-1 md:grid-cols-2 min-h-[420px]" style="background-color: #262325;">
-                        <div class="relative rounded-tl-[40px] rounded-bl-[40px] hidden md:block" style="background-color: #7F6A2C;">
-                            <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="0" y1="0" x2="100%" y2="100%" stroke="black" stroke-width="2" />
-                                <line x1="100%" y1="0" x2="0" y2="100%" stroke="black" stroke-width="2" />
-                            </svg>
-                        </div>
-                        <form onSubmit={handleLogin} class="p-12 flex flex-col justify-center space-y-6 w-full">
-                            <h2 class="text-3xl font-fira font-bold text-white mb-2">Iniciar Sesion</h2>
+                    <div class="w-full max-w-4xl rounded-4xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 min-h-[420px]">
+                        {/* placeholder */}
+                        <div class="relative rounded-tl-[40px] rounded-bl-[40px] hidden md:block bg-gradient-to-br from-lucy-secondary to-lucy-primary"></div>
+                        <form onSubmit={handleLogin} class="flex flex-col justify-center p-8 w-full gap-8">
+                            <h2 class="text-3xl font-fira font-bold text-lucy-light">Iniciar Sesion</h2>
                             <input
                                 type="email" placeholder="Email" required
-                                class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-4 outline-none border-none text-base font-medium"
-                                style="background-color: #E5E5E5;"
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
                                 onInput={(e) => setEmail(e.currentTarget.value)}
                             />
-                            <div class="relative w-full">
+                            <div class="relative w-full flex items-center gap-8">
                                 <input
-                                    type="password" placeholder="Contraseña" required
-                                    class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-4 pr-12 outline-none border-none text-base font-medium"
-                                    style="background-color: #E5E5E5;"
+                                    type={isShowPassword() ? 'text' : 'password'} placeholder="Contraseña" required minLength={6} maxLength={20}
+                                    class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
                                     onInput={(e) => setPassword(e.currentTarget.value)}
-                                />
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-lucy-dark opacity-60 cursor-pointer">👁</span>
+                                />                                
+                                <LucyIconButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" class="px-8 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer" type="button" ButtonIconSide="right" ButtonIcon={isShowPassword() ? <Eye/> : <EyeClosed/>} onClick={() => {setShowPassword(!isShowPassword())}}/>
                             </div>
-                            <div class="flex justify-end pt-2">
-                                <button type="submit" class="bg-lucy-primary text-lucy-dark font-fira font-bold px-8 py-3.5 rounded-full flex items-center gap-2 hover:bg-white transition-all shadow-md active:scale-95 cursor-pointer">
-                                    Iniciar sesión <span>➔</span>
-                                </button>
+                            <div class="flex justify-center md:justify-end">
+                                <LucyButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" ButtonText="Acceder" class="px-12 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer md:w-fit" type="submit" ButtonIconSide="right" ButtonIcon={<ChevronRight size={35}/>} />
                             </div>
                         </form>
                     </div>
                 </Show>
 
-                {/* --- CREA UNA CUENTA --- */}
+                {/* CREA UNA CUENTA */}
                 <Show when={!isLogin()}>
-                    <div class="w-full max-w-4xl rounded-[40px] overflow-hidden shadow-2xl border border-gray-800/60 grid grid-cols-1 md:grid-cols-2 min-h-[500px]" style="background-color: #262325;">
-                        <div class="relative rounded-tl-[40px] rounded-bl-[40px] hidden md:block" style="background-color: #3B5461;">
-                            <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="0" y1="0" x2="100%" y2="100%" stroke="black" stroke-width="2" />
-                                <line x1="100%" y1="0" x2="0" y2="100%" stroke="black" stroke-width="2" />
-                            </svg>
-                        </div>
-                        <form onSubmit={handleRegister} class="p-12 flex flex-col justify-center space-y-4 w-full">
-                            <h2 class="text-3xl font-fira font-bold text-white mb-2">Crea una cuenta</h2>
-                            <input type="text" placeholder="Nombre" required value={name()} class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-3.5 outline-none border-none text-base font-medium" style="background-color: #E5E5E5;" onInput={(e) => setName(e.currentTarget.value)}/>
-                            <input type="text" placeholder="Apellidos" required value={lastName()} class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-3.5 outline-none border-none text-base font-medium" style="background-color: #E5E5E5;" onInput={(e) => setLastName(e.currentTarget.value)}/>
-                            <input type="email" placeholder="Email" required class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-3.5 outline-none border-none text-base font-medium" style="background-color: #E5E5E5;" onInput={(e) => setEmail(e.currentTarget.value)}/>
-                            <div class="relative w-full">
-                                <input type="password" placeholder="Contraseña" required class="w-full text-lucy-dark placeholder-gray-500 rounded-xl p-3.5 pr-12 outline-none border-none text-base font-medium" style="background-color: #E5E5E5;" onInput={(e) => setPassword(e.currentTarget.value)}/>
-                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-lucy-dark opacity-60">👁</span>
+                    <div class="w-full max-w-4xl rounded-4xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-2 min-h-[420px]">
+                        {/* placeholder */}
+                        <div class="relative rounded-tl-[40px] rounded-bl-[40px] hidden md:block bg-gradient-to-br from-lucy-primary to-lucy-secondary"></div>
+                        <form onSubmit={handleRegister} class="flex flex-col justify-center p-8 w-full gap-8">
+                            <h2 class="text-3xl font-fira font-bold text-lucy-light">Crear cuenta</h2>
+                            <input 
+                                type="text" placeholder="Nombre" required value={name()}
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setName(e.currentTarget.value)}/>
+                            <input 
+                                type="text" placeholder="Apellidos" required value={lastName()} 
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setLastName(e.currentTarget.value)}/>
+                            <input
+                                type="email" placeholder="Email" required
+                                class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                onInput={(e) => setEmail(e.currentTarget.value)}
+                            />
+                            <div class="relative w-full flex items-center gap-8">
+                                <input
+                                    type={isShowPassword() ? 'text' : 'password'} placeholder="Contraseña" required minLength={6} maxLength={20}
+                                    class="form-input rounded-full w-full text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 outline-none border-none text-base font-medium"
+                                    onInput={(e) => setPassword(e.currentTarget.value)}
+                                />                                
+                                <LucyIconButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" class="px-8 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer" type="button" ButtonIconSide="right" ButtonIcon={isShowPassword() ? <Eye/> : <EyeClosed/>} onClick={() => {setShowPassword(!isShowPassword())}}/>
                             </div>
-                            <div class="grid grid-cols-3 gap-3 w-full">
-                                <div class="col-span-1 text-lucy-dark rounded-xl p-3.5 flex items-center justify-between text-base font-medium select-none" style="background-color: #E5E5E5;">
-                                    <span>+1</span><span>🇺🇸</span>
+                            <div class="flex gap-3 w-fit">
+                                <div class="text-lucy-dark bg-lucy-light px-8 rounded-full flex items-center justify-between text-base font-medium gap-4 w-it">
+                                    <span>+1</span><span class="flex gap-2 justify-end w-fit">US<ChevronDown size={25}/></span>
                                 </div>
-                                <input type="tel" placeholder="Teléfono" required value={phone()} class="col-span-2 text-lucy-dark placeholder-gray-500 rounded-xl p-3.5 outline-none border-none text-base font-medium" style="background-color: #E5E5E5;" onInput={(e) => setPhone(e.currentTarget.value)}/>
+                                <input type="tel" placeholder="Teléfono" required value={phone()} class="col-span-2 text-lucy-dark bg-lucy-light placeholder-lucy-dark/40 form-input rounded-full outline-none border-none text-base font-medium w-full" onInput={(e) => setPhone(e.currentTarget.value)}/>
                             </div>
-                            <div class="flex justify-end pt-2">
-                                <button type="submit" class="bg-lucy-primary text-lucy-dark font-fira font-bold px-8 py-3.5 rounded-full flex items-center gap-2 hover:bg-white transition-all shadow-md active:scale-95 cursor-pointer">
-                                    Crear <span>➔</span>
-                                </button>
+                            <div class="flex justify-center md:justify-end">
+                                <LucyButtonNoA ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" ButtonText="Crear" class="px-12 rounded-full flex items-center gap-2 hover:bg-lucy-light transition-all shadow-md active:scale-95 cursor-pointer md:w-fit" type="submit" ButtonIconSide="right" ButtonIcon={<ChevronRight size={35}/>} />
                             </div>
                         </form>
                     </div>
@@ -114,15 +120,14 @@ export default function Account() {
 
             </div>
 
-            {/* Barra inferior de alternancia */}
+            {/* Barra inferior cambio */}
             <div class="w-full text-center pb-8 h-16 shrink-0">
-                <p class="text-gray-400 text-lg">
+                <p class="text-lucy-light/40 text-lg">
                     <Show when={isLogin()} fallback={<>¿Ya tienes cuenta? <button type="button" onClick={() => setIsLogin(true)} class="text-lucy-secondary font-semibold hover:underline cursor-pointer bg-transparent border-none p-0">Iniciar sesión</button></>}>
                         ¿No tienes cuenta? <button type="button" onClick={() => setIsLogin(false)} class="text-lucy-secondary font-semibold hover:underline cursor-pointer bg-transparent border-none p-0">Crear cuenta</button>
                     </Show>
                 </p>
             </div>
-
         </div>
     );
 }

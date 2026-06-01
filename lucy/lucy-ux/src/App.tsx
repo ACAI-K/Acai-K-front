@@ -23,13 +23,16 @@ const MainLayout = (props: { children?: any }) => {
 };
 
 function App() {
+    const Account = lazy(() => import("./pages/Account"));
     return (
         <Router root={MainLayout}>
             <Route path="/" component={Home} />
             <Route path="/park/:id" component={ParkDetail} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/mapa" component={lazy(() => import("./pages/Map"))} />
-            <Route path="/cuenta" component={lazy(() => import("./pages/Account"))} />
+            <Route path="/cuenta" component={(props) => <Account {...props} loginOrRegister="login"/>} />
+            <Route path="/cuenta/login" component={(props) => <Account {...props} loginOrRegister="login"/>} />
+            <Route path="/cuenta/register" component={(props) => <Account {...props} loginOrRegister="register"/>} />
             <Route path="/resultados" component={lazy(() => import("./pages/SearchResults"))} />
             <Route path="/perfil" component={lazy(() => import("./pages/Profile"))} />
             <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />

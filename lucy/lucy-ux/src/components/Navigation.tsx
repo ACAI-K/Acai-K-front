@@ -40,7 +40,7 @@ export function Navigation(props: { class?: string; children?: JSX.Element }) {
                         <A href="/" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Inicio</A>
                         <A href="/explorar" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Explorar</A>
                         <A href="/hospedaje" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Hospedaje</A>
-                        <A href="/cuenta" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Cuenta</A>
+                        <A href="/cuenta/register" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Cuenta</A>
                         <Show when={props.children}>
                             <div class="pt-12">
                                 {props.children}
