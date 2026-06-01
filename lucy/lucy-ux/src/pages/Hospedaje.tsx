@@ -1,6 +1,13 @@
 import { createSignal, createMemo, For } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
 import { Navigation } from "../components/Navigation";
+import { LucyButtonNoAEvent, LucyIconButtonNoA } from "../components/LucyButton";
+import ChevronsUpDown from 'lucide-solid/icons/chevrons-up-down';
+import ChevronRight from 'lucide-solid/icons/chevron-right';
+import Plus from 'lucide-solid/icons/plus';
+import Minus from 'lucide-solid/icons/minus';
+
+const mockLocations = ["Amecameca", "Tlamanalco", "Texcoco", "Chalco", "Ayapango", "Tepetlaoxtoc", "Ozumba"];
 
 export default function Hospedaje() {
     const navigate = useNavigate();
@@ -74,27 +81,27 @@ export default function Hospedaje() {
 
         // Solo un día seleccionado
         if (inTime === time && !outTime) {
-            return baseClass + "bg-[#FA7B55] text-lucy-dark font-bold rounded-md";
+            return baseClass + "bg-lucy-accent text-lucy-dark font-bold hover:rounded-br-4xl rounded-tl-4xl";
         }
         // Día de Check-in (con rango activo)
         if (inTime === time) {
-            return baseClass + "bg-[#FA7B55] text-lucy-dark font-bold rounded-l-md";
+            return baseClass + "bg-lucy-accent text-lucy-dark font-bold rounded-tl-4xl";
         }
         // Día de Check-out
         if (outTime === time) {
-            return baseClass + "bg-[#FA7B55] text-lucy-dark font-bold rounded-r-md";
+            return baseClass + "bg-lucy-accent text-lucy-dark font-bold rounded-br-4xl";
         }
         // Días intermedios confirmados
         if (inTime && outTime && time > inTime && time < outTime) {
-            return baseClass + "bg-[#9CD9E2]/80 text-lucy-dark font-semibold";
+            return baseClass + "bg-lucy-primary text-lucy-dark font-semibold";
         }
         // Días intermedios virtuales (Hover estela azul)
         if (inTime && !outTime && hTime && time > inTime && time <= hTime) {
-            return baseClass + "bg-[#9CD9E2]/40 text-white";
+            return baseClass + "bg-lucy-primary/40 text-white hover:text-lucy-accent";
         }
 
         // Día normal
-        return baseClass + "text-gray-300 hover:text-lucy-secondary hover:font-bold";
+        return baseClass + "text-gray-300 hover:text-lucy-accent hover:font-bold";
     };
 
     // Envío de formulario
@@ -118,7 +125,7 @@ export default function Hospedaje() {
             <Navigation />
 
             {/* Cuerpo del Formulario Asimetrico */}
-            <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4 flex-grow items-center">
+            <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4 grow items-center">
 
                 {/* COLUMNA IZQUIERDA */}
                 <div class="lg:col-span-6 space-y-12">
@@ -129,14 +136,14 @@ export default function Hospedaje() {
                             <select
                                 value={localidad()}
                                 onChange={(e) => setLocalidad(e.currentTarget.value)}
-                                class="w-full bg-[#E5E5E5] text-lucy-dark font-medium rounded-xl p-4 pr-12 appearance-none outline-none border-none text-base cursor-pointer shadow-lg"
+                                class="w-full bg-lucy-light/40 text-lucy-light font-medium p-4 pr-12 appearance-none form-select rounded-full outline-none border-none text-base cursor-pointer shadow-lg focus:ring-2 focus:ring-lucy-primary transition-all"
                             >
-                                <option value="" disabled selected>Selecciona una localidad</option>
-                                <option value="Amecameca">Amecameca</option>
-                                <option value="Texcoco">Texcoco</option>
-                                <option value="Tepetlixpa">Tepetlixpa</option>
+                                <option value="" disabled selected class="bg-lucy-dark text-lucy-light font-base">Selecciona una localidad</option>
+                                {mockLocations.map((loc) => (
+                                    <option class="bg-lucy-dark text-lucy-primary font-base checked:bg-lucy-secondary checked:text-lucy-dark checked:font-bold" value={loc}>{loc}</option>
+                                ))}
                             </select>
-                            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-lucy-dark pointer-events-none text-xl">▼</div>
+                            <LucyIconButtonNoA ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ChevronsUpDown size={20}/>} class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                         </div>
                         <p class="text-sm text-gray-400 pl-1">
                             ¿No sabes qué visitar? <A href="/explorar" class="text-lucy-secondary font-semibold hover:underline">Explora</A>
@@ -158,9 +165,13 @@ export default function Hospedaje() {
                                     <p class="text-xs text-gray-400">{counter.sub}</p>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <button type="button" onClick={() => counter.setter(prev => prev + 1)} class="w-8 h-8 rounded-full bg-[#E5E5E5] text-lucy-dark font-bold text-xl flex items-center justify-center hover:bg-white active:scale-95 cursor-pointer">+</button>
-                                    <div class="bg-[#E5E5E5] text-lucy-dark font-fira font-bold w-16 text-center py-1.5 rounded-xl text-base">{counter.value()}</div>
-                                    <button type="button" onClick={() => counter.setter(prev => Math.max(0, prev - 1))} class="w-8 h-8 rounded-full bg-[#E5E5E5] text-lucy-dark font-bold text-xl flex items-center justify-center hover:bg-white active:scale-95 cursor-pointer">-</button>
+                                    <LucyIconButtonNoA ButtonBackground="lucy-light" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIcon={<Minus size={16}/>} onClick={() => counter.setter(prev => Math.max(0, prev - 1))} />
+                                    <input type="number" min="0" max="99" minLength={1} maxLength={3} 
+                                        value={counter.value()} onInput={(e) => counter.setter(e.currentTarget.valueAsNumber)} 
+                                        class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-16 text-center bg-lucy-light text-lucy-dark font-fira font-bold py-1.5 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-lucy-primary transition-all" onChange={(e) => counter.setter(Math.max(0, e.currentTarget.valueAsNumber || 0))} 
+                                        
+                                    />
+                                    <LucyIconButtonNoA ButtonBackground="lucy-light" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIcon={<Plus size={16}/>} onClick={() => counter.setter(prev => prev + 1)} />
                                 </div>
                             </div>
                         ))}
@@ -207,13 +218,7 @@ export default function Hospedaje() {
             </form>
 
             <div class="w-full max-w-6xl mx-auto px-8 flex justify-end mt-8">
-                <button
-                    type="submit"
-                    onClick={handleSearch}
-                    class="bg-lucy-primary text-lucy-dark font-fira font-bold px-10 py-4 rounded-full flex items-center gap-2 hover:bg-white transition-all shadow-2xl transform hover:-translate-y-0.5 active:scale-95 cursor-pointer"
-                >
-                    Buscar habitación <span>➔</span>
-                </button>
+                <LucyButtonNoAEvent type="submit" ButtonText="Buscar habitación" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="lg" ButtonIconSide="right" ButtonIcon={<ChevronRight size={24}/>} onClickEvent={handleSearch} />
             </div>
 
         </div>

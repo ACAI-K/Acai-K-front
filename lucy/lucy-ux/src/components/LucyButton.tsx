@@ -16,6 +16,7 @@ interface ButtonProps {
   ButtonLink?: string;
   class?: string;
   onClick?: () => void;
+  onClickEvent?: (e: Event) => void;
   type?: "button" | "submit" | "reset";
 }
 
@@ -80,6 +81,16 @@ export function LucyButton (props: ButtonProps) {
 export function LucyButtonNoA (props: ButtonProps) {
   return (
     <button type={props.type ? props.type : "button"} onClick={props.onClick} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 group gap-8 ${props.class}`}>
+      {props.ButtonIcon && props.ButtonIconSide === "left" && <span class="w-4 h-full group-hover:-translate-x-2 transition-transform">{props.ButtonIcon}</span>}
+      {props.ButtonText}
+      {props.ButtonIcon && props.ButtonIconSide === "right" && <span class="w-4 h-full group-hover:translate-x-2 transition-transform">{props.ButtonIcon}</span>}
+    </button>
+  );
+}
+
+export function LucyButtonNoAEvent (props: ButtonProps) {
+  return (
+    <button type={props.type ? props.type : "button"} onClick={props.onClickEvent} class={`cursor-pointer flex justify-center items-center ${getBackgroundColor(props.ButtonBackground)} ${getForegroundColor(props.ButtonForeground)} ${getSizeClass(props.ButtonSize)} font-fira font-bold transition-colors shadow-xl shadow-lucy-dark/40 group gap-8 ${props.class}`}>
       {props.ButtonIcon && props.ButtonIconSide === "left" && <span class="w-4 h-full group-hover:-translate-x-2 transition-transform">{props.ButtonIcon}</span>}
       {props.ButtonText}
       {props.ButtonIcon && props.ButtonIconSide === "right" && <span class="w-4 h-full group-hover:translate-x-2 transition-transform">{props.ButtonIcon}</span>}

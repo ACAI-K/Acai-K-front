@@ -25,7 +25,7 @@ export default function Explorar() {
 
                     {/* Resto de locaciones izquierdas */}
                     {leftLocations.map((loc) => (
-                        <LucyButton ButtonLink={`/resultados?q=${loc}`} ButtonText={loc} ButtonBackground="lucy-dark" ButtonForeground="lucy-primary" ButtonSize="full" ButtonIconSide="right" ButtonIcon={<ChevronRight height={50} width={50}/>} />
+                        <LucyButton ButtonLink={"/mapa"} ButtonText={loc} ButtonBackground="lucy-dark" ButtonForeground="lucy-primary" ButtonSize="full" ButtonIconSide="right" ButtonIcon={<ChevronRight height={50} width={50}/>} />
                     ))}
                     {rightLocations.map((loc) => (
                         <div class="block lg:hidden">
