@@ -89,9 +89,37 @@ export const MOCK_LOCATIONS: Locat[] = [
             location: "Amecamenca, Estado de México",
             description: "El Hotel Boutique Hacienda Panoaya es un encantador alojamiento ubicado dentro de la Hacienda Panoaya en Amecameca, Estado de México. Este hotel boutique ofrece a los huéspedes una experiencia única al combinar la elegancia de una hacienda colonial con las comodidades modernas. Con habitaciones decoradas con estilo, jardines exuberantes y vistas impresionantes del paisaje circundante, el Hotel Boutique Hacienda Panoaya es el lugar perfecto para aquellos que buscan una escapada romántica o una estancia tranquila en un entorno natural y culturalmente rico.",
             categoria: "Hotel",
-            precio_noche: 1500,
+            precio_noche: 799.99,
             features: [AMENIDADES_DISPONIBLES.find(a => a.id === "alberca")!, AMENIDADES_DISPONIBLES.find(a => a.id === "restaurante")!],
-            reviews: 4
+            reviews: 4,
+            habitaciones: [
+                {
+                    id: 'ame-d-1-h-1',
+                    nombre: "Habitación Deluxe",
+                    descripcion: "Habitación espaciosa con cama king size, vista al jardín y baño privado.",
+                    camasIndividuales: 0,
+                    camasDobles: 0,
+                    camasQueenSize: 0,
+                    camasKingSize: 1,
+                    precioNoche: 1999.99,
+                    maxOcupantes: 2,
+                    disponibles: 3,
+                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                },
+                {
+                    id: 'ame-d-1-h-2',
+                    nombre: "Habitación Estándar",
+                    descripcion: "Habitación acogedora con cama matrimonial y baño compartido.",
+                    camasIndividuales: 0,
+                    camasDobles: 1,
+                    camasQueenSize: 0,
+                    camasKingSize: 0,
+                    precioNoche: 799.99,
+                    maxOcupantes: 2,
+                    disponibles: 5,
+                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                }
+            ]
         }
     ]
 },
@@ -141,9 +169,24 @@ export const MOCK_LOCATIONS: Locat[] = [
             location: "Tlalmanalco, Estado de México",
             description: "El Rancho La Mesa es un encantador hospedaje ubicado en Tlalmanalco, Estado de México. Este rancho ofrece a los huéspedes una experiencia auténtica al combinar la belleza natural del campo con la comodidad de un alojamiento rústico. Con habitaciones acogedoras, áreas verdes para relajarse y actividades al aire libre como paseos a caballo y senderismo, el Rancho La Mesa es el lugar perfecto para aquellos que buscan una escapada tranquila en un entorno natural y pintoresco.",
             categoria: "Cabañas",
-            precio_noche: 1200,
+            precio_noche: 1199.99,
             features: [AMENIDADES_DISPONIBLES.find(a => a.id === "estacionamiento")!, AMENIDADES_DISPONIBLES.find(a => a.id === "petfriendly")!, AMENIDADES_DISPONIBLES.find(a => a.id === "aire")!, AMENIDADES_DISPONIBLES.find(a => a.id === "wifi")!],
-            reviews: 4
+            reviews: 4,
+            habitaciones: [
+                {
+                    id: 'tla-d-1-h-1',
+                    nombre: "Cabaña",
+                    descripcion: "Cabaña acogedora con cama matrimonial, baño privado y vista al campo.",
+                    camasIndividuales: 0,
+                    camasDobles: 1,
+                    camasQueenSize: 0,
+                    camasKingSize: 0,
+                    precioNoche: 1199.99,
+                    maxOcupantes: 2,
+                    disponibles: 3,
+                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                }
+            ]
         }
     ]
 },
@@ -193,9 +236,37 @@ export const MOCK_LOCATIONS: Locat[] = [
             location: "Texcoco, Estado de México",
             description: "El Hotel La Mansión es un encantador alojamiento ubicado en Texcoco, Estado de México. Este hotel ofrece a los huéspedes una experiencia única al combinar la elegancia de una mansión colonial con las comodidades modernas. Con habitaciones decoradas con estilo, jardines exuberantes y vistas impresionantes del paisaje circundante, el Hotel La Mansión es el lugar perfecto para aquellos que buscan una escapada romántica o una estancia tranquila en un entorno natural y culturalmente rico.",
             categoria: "Hotel",
-            precio_noche: 900,
+            precio_noche: 1899.99,
             features: [AMENIDADES_DISPONIBLES.find(a => a.id === "wifi")!, AMENIDADES_DISPONIBLES.find(a => a.id === "desayuno")!, AMENIDADES_DISPONIBLES.find(a => a.id === "accesibilidad")!, AMENIDADES_DISPONIBLES.find(a => a.id === "alberca")!, AMENIDADES_DISPONIBLES.find(a => a.id === "restaurante")!, AMENIDADES_DISPONIBLES.find(a => a.id === "gym")!, AMENIDADES_DISPONIBLES.find(a => a.id === "aire")!],
-            reviews: 4
+            reviews: 4,
+            habitaciones: [
+                {
+                    id: 'tex-d-1-h-1',
+                    nombre: "Suite Del Patrón",
+                    descripcion: "Habitación lujosa con cama king size, sala de estar, cocineta y todas las comodidades para una estancia inolvidable.",
+                    camasIndividuales: 0,
+                    camasDobles: 0,
+                    camasQueenSize: 0,
+                    camasKingSize: 1,
+                    precioNoche: 2599.99,
+                    maxOcupantes: 2,
+                    disponibles: 3,
+                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                },
+                {
+                    id: 'tex-d-1-h-2',
+                    nombre: "Suite Estándar",
+                    descripcion: "Habitación confortable para dos personas, con salida a la alberca y baño privado.",
+                    camasIndividuales: 0,
+                    camasDobles: 1,
+                    camasQueenSize: 0,
+                    camasKingSize: 0,
+                    precioNoche: 1899.99,
+                    maxOcupantes: 2,
+                    disponibles: 3,
+                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                }
+            ]
         }
     ]
 }

@@ -219,8 +219,6 @@ export default function Map() {
         <div class={`${isDarkMode() ? 'dark' : ''}`}>
             <div class="relative w-full h-screen overflow-hidden bg-gray-900 font-work">
 
-                <Navigation/>
-
                 <div ref={mapRef} class="absolute inset-0 w-full h-full z-0"></div>
 
                 <div class="absolute top-3.75 left-10 right-10 z-60 flex justify-center pointer-events-none">

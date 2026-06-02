@@ -19,9 +19,24 @@ export type Amenidad = {
     icono: (props: any) => any;
 };
 
+export interface Habitaciones {
+    id: string;
+    nombre: string;
+    descripcion: string;
+    camasIndividuales: number;
+    camasDobles: number;
+    camasQueenSize: number;
+    camasKingSize: number;
+    precioNoche: number;
+    maxOcupantes: number;
+    disponibles: number;
+    imagenes: string[];
+}
+
 export interface TypeDormitorio extends PDI {
     categoria: "Hotel" | "Cabañas" | "Campamento" | "Habitaciones";
     precio_noche: number;
+    habitaciones: Habitaciones[];
 }
 
 export interface TypeParque extends PDI {

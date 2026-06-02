@@ -28,7 +28,6 @@ export default function ParkDetail() {
         >
             {(p) => (
                 <div class="bg-lucy-dark text-white font-work pb-24">
-                    <Navigation />
 
                     {/* Imagen principal y Titulo */}
                     <div class="relative w-full h-[50vh] min-h-[400px]">
