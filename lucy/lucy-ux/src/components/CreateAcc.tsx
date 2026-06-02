@@ -15,7 +15,7 @@ export default function CreateAcc() {
         const [lastName, setLastName] = createSignal("Jacome Delgado");
         const [phone, setPhone] = createSignal("605 243 1230");
     return (
-        <div class="bg-lucy-dark text-lucy-light flex flex-col justify-between font-work h-dvh w-dvw overflow-hidden mx-auto">
+        <div class="bg-lucy-dark text-lucy-light flex flex-col justify-between font-work h-fit w-fit overflow-hidden mx-auto">
             <form onSubmit={() => {}} class="flex flex-col justify-center p-8 w-full gap-8">
                 <h2 class="text-3xl font-fira font-bold text-lucy-light">Crear cuenta</h2>
                 <input 

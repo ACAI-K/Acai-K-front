@@ -21,14 +21,14 @@ export default function SearchResults() {
                                         .map(p => p as TypeDormitorio)
                                         .flatMap(dorm => dorm.habitaciones) as Habitaciones[];
     setResults(habitaciones);
-
+    const idLDD = params.idLDD ? params.idLDD : "404";
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work pb-24 relative overflow-hidden">
             {/* Lista de Resultados */}
-            <div class="flex flex-col gap-12">
+            <div class="grid grid-cold-1 lg:grid-cols-2 gap-12 px-8">
                 <For each={results()}>
                     {(result, index) => (
-                        <CardHab hab={result} />
+                        <CardHab hab={result} idLDD={idLDD} />
                     )}
                 </For>
                 {/* Mensaje de 0 Resultados */}
@@ -47,7 +47,7 @@ export default function SearchResults() {
                     <p>¿No es lo que buscabas?</p>
                 </div>
                 {/* Botón Secundario */}
-                <LucyButton ref={"/mapa"} ButtonBackground="lucy-dark" ButtonText="Hacer Otra Busqueda" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<Map size={30}/>} class="cursor-pointer" /> 
+                <LucyButton ButtonLink={"/mapa"} ButtonBackground="lucy-dark" ButtonText="Ir al Mapa" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<Map size={30}/>} class="cursor-pointer" /> 
             </div>
         </div>
     );

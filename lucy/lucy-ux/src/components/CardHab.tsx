@@ -3,7 +3,7 @@ import { A } from "@solidjs/router";
 import type { Habitaciones, PDI } from "../data/types";
 import ArrowRight from 'lucide-solid/icons/arrow-right';
 import { LucyButton, LucyButtonNoA } from "../components/LucyButton";
-import BedDouble from "lucide-solid/icons/bed-double";
+import Bed from "lucide-solid/icons/bed";
 import Users from "lucide-solid/icons/users";
 import { useNavigate } from "@solidjs/router";
 
@@ -30,7 +30,7 @@ function generateImages(imageUrls: string[]) {
 
 function generateSingleImage(imageUrl: string) {
     return (
-        <div class="relative w-fit h-85 flex justify-center aspect-video rounded-sm overflow-hidden shadow-md">
+        <div class="relative h-85 flex justify-center aspect-video rounded-sm overflow-hidden shadow-md w-full">
             <img src={imageUrl} loading="lazy" alt="Imagen del alojamiento" class="h-full w-full object-cover" onError={handleImageError} />
         </div>
     );
@@ -45,7 +45,7 @@ function generateBeds(single: number, double: number, queen: number, king: numbe
     return cadenaCompleta;
 }
 
-export default function CardHab(props: {hab: Habitaciones}) {
+export default function CardHab(props: {hab: Habitaciones, idLDD: string}) {
     const navigate = useNavigate();
     return (
         <div class="flex flex-col gap-4 mt-10 overflow-hidden bg-lucy-disabled p-6 rounded-3xl shadow-lg">
@@ -59,16 +59,17 @@ export default function CardHab(props: {hab: Habitaciones}) {
                     <div class="flex items-end gap-2">
                         <div class="flex flex-between items-end gap-2">
                             <div class="flex gap-2 text-xl items-end text-lucy-light">
-                                <BedDouble size={30} fill="currentColor" stroke="currentColor" stroke-width={2}/>
+                                <Bed size={30} fill="currentColor" stroke="currentColor" stroke-width={2}/>
                                 <span>{ generateBeds(props.hab.camasIndividuales, props.hab.camasDobles, props.hab.camasQueenSize, props.hab.camasKingSize)}</span>
                                 <Users size={30} fill="currentColor" stroke="currentColor" stroke-width={2}/>
                                 <span>{props.hab.maxOcupantes} personas</span>
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col w-full justify-end items-end gap-4">
-                        <span class="text-xl mt-2"><span class="text-2xl text-lucy-accent">${props.hab.precioNoche}</span> p/noche</span>
-                        <LucyButtonNoA onClick={() => {navigate("/pago/" + props.hab.id)}} ButtonText={"Reservar"} ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />}/>
+                    <div class="flex flex-col w-full justify-end items-end">
+                        <span class="text-2xl text-lucy-accent">${props.hab.precioNoche}</span>
+                        <p class="text-sm">p/noche</p>
+                        <LucyButtonNoA onClick={() => {navigate("/reservas/" + props.idLDD + "/" + props.hab.id)}} ButtonText={"Reservar"} ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />} class="mt-4"/>
                     </div>
                 </div>
             </div>

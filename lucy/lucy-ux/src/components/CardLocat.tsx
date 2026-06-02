@@ -36,7 +36,7 @@ function generatePDISectionPerCat(pdi: PDI) {
                 <div class={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 flex flex-col justify-center items-center aspect-video rounded-sm overflow-hidden shadow-md w-full h-full text-transparent hover:text-lucy-light`}>
                     {dorm.name && <h4 class="text-lg font-bold">{dorm.name}</h4>}
                     {dorm.precio_noche && <span class="text-sm text-lucy-secondary mt-2">Desde ${dorm.precio_noche} p/noche</span>}
-                    <LucyButton ButtonLink={`/reservas/${dorm.id}}`} ButtonText="Reserva ahora" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />} class="mt-8"/>
+                    <LucyButton ButtonLink={`/reservas/${dorm.id}`} ButtonText="Reserva ahora" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />} class="mt-8"/>
                 </div>
             </>
         );
@@ -50,7 +50,7 @@ function generatePDISectionPerCat(pdi: PDI) {
                 <div class={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 flex flex-col justify-center items-center aspect-video rounded-sm overflow-hidden shadow-md w-full h-full text-transparent hover:text-lucy-light`}>
                     {park.name && <h4 class="text-lg font-bold">{park.name}</h4>}
                     {park.precio_por_dia && <span class="text-sm text-lucy-secondary mt-2">Desde ${park.precio_por_dia} p/día</span>}
-                    <LucyButton ButtonLink={`/park/${park.id}}`} ButtonText="Consulta ahora" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />} class="mt-8"/>
+                    <LucyButton ButtonLink={`/park/${park.id}`} ButtonText="Consulta ahora" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="sm" ButtonIconSide="right" ButtonIcon={<ArrowRight />} class="mt-8"/>
                 </div>
             </>
         );

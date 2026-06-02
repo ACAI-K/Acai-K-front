@@ -116,19 +116,19 @@ export default function Hospedaje() {
             checkOut: checkOut()?.toISOString().split('T')[0] || "No definido",
         };
         console.log("🌐 [API MOCK] Payload de reserva procesado:", payload);
-        navigate(`/resultados?q=${encodeURIComponent(localidad() || "Alojamiento")}`);
+        navigate(`/reservas`);
     };
 
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work flex flex-col justify-between relative pb-16">
 
             {/* Cuerpo del Formulario Asimetrico */}
-            <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4 grow items-center">
+            <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 flex flex-col lg:grid lg:grid-cols-12 gap-12 mt-4 grow items-center">
 
                 {/* COLUMNA IZQUIERDA */}
                 <div class="lg:col-span-6 space-y-12">
 
-                    <div class="space-y-4">
+                    <div class="space-y-4 ">
                         <h2 class="text-3xl font-fira font-bold tracking-wide">¿A dónde vas?</h2>
                         <div class="relative max-w-md">
                             <select

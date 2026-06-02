@@ -36,8 +36,6 @@ export default function ParkDetail() {
                         <div class="absolute inset-0 bg-gradient-to-t from-lucy-dark via-lucy-dark/70 to-black/30"></div>
 
                         <div class="absolute inset-0 flex flex-col justify-between max-w-6xl mx-auto p-8">
-                            {/* Boton de retroceso */}
-                            <LucyButton ButtonLink='/' ButtonText="Volver a inicio" ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" ButtonIcon={<ArrowLeft size={30}/>} class="z-50 max-w-fit" />
                             <div>
                                 <span class="text-lucy-secondary font-bold tracking-widest uppercase text-sm mb-2 block">
                                     {p().location}

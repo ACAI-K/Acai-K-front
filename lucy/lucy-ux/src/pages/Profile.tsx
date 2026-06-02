@@ -57,10 +57,10 @@ export default function Profile() {
 
                 {/* Menu deAcciones */}
                 <Show when={viewState() === "menu"}>
-                    <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-36 items-start p-16">
+                    <div class="w-full mx-auto grid grid-cols-1 gap-12 xl:gap-36 items-start p-16">
 
                 {/* COLUMNA IZQUIERDA */}
-                <div class="flex flex-col max-w-[85dvw]">
+                <div class="flex flex-col w-full">
                     <h2 class="text-3xl font-bold text-white mb-4 tracking-wide pl-6">
                         ¡Hola!
                     </h2>

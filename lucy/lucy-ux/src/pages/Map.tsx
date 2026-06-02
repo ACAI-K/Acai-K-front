@@ -216,12 +216,12 @@ export default function Map() {
     });
 
     return (
-        <div class={`${isDarkMode() ? 'dark' : ''}`}>
+        <div class={`${isDarkMode() ? 'dark mt-[-50px]' : 'mt-[-50px]'}`}>
             <div class="relative w-full h-screen overflow-hidden bg-gray-900 font-work">
 
                 <div ref={mapRef} class="absolute inset-0 w-full h-full z-0"></div>
 
-                <div class="absolute top-3.75 left-10 right-10 z-60 flex justify-center pointer-events-none">
+                <div class="absolute top-20 lg:top-3.75 left-10 right-10 z-60 flex justify-center pointer-events-none">
                     <div class="flex flex-col items-end gap-4 pointer-events-auto w-full max-w-3xl px-4">
                         <div class="w-full flex items-center bg-lucy-dark text-lucy-light rounded-full px-6 py-4 shadow-xl transition-colors">
                             <input
@@ -308,7 +308,7 @@ export default function Map() {
                 </div>
             </div>
             {/* Botones de clima, modo obscuro y mapa sin conexión pantalla pequeña */}
-            <section class="md:hidden w-full absolute flex justify-center pointer-events-none gap-4 z-40 bottom-4">
+            <section class="md:hidden w-full absolute flex justify-center gap-4 z-40 bottom-4">
                 <LucyIconButtonNoA onClick={() => {setIsWeatherOpen(!isWeatherOpen())}} ButtonText="Clima" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<CloudSunRain size={30}/>} />
                 <LucyIconButtonNoA onClick={() => {setDarkMode(!isDarkMode())}} ButtonText="Modo obscuro" ButtonBackground={!isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonForeground={isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonSize="md" ButtonIconSide="right" ButtonIcon={<LightBulb size={30}/>} />
                 <LucyIconButtonNoA onClick={() => {window.location.href = "https://maps.app.goo.gl/A1fJASPq6cFSJw9s9"}} ButtonText="Mapa sin Conexión" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<Download size={30}/>} />

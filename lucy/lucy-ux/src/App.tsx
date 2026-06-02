@@ -41,8 +41,8 @@ function App() {
             <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />
             <Route path="/explorar" component={lazy(() => import("./pages/Explorar"))} />
             <Route path="/reservas"  component={lazy(() => import("./pages/LDDs"))} />
-            <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/Habitaciones"))} />
             <Route path="/reservas/:idLDD/:idHab" component={lazy(() => import("./pages/Recibo"))} />
+            <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/Habitaciones"))} />
             <Route path="/pago" component={lazy(() => import("./pages/Pago"))} />
             <Route path="/confirmacion" component={lazy(() => import("./pages/Confirmacion"))} />
         </Router>
