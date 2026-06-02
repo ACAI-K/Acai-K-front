@@ -1,19 +1,17 @@
 import { createSignal } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import { 
-    Wifi, 
-    CircleParking, 
-    Dumbbell, 
-    Coffee, 
-    Accessibility, 
-    WashingMachine, 
-    Baby, 
-    Waves, 
-    UtensilsCrossed, 
-    PawPrint, 
-    Flower2, 
-    Fan 
-} from "lucide-solid";
+import Wifi from "lucide-solid/icons/wifi";
+import CircleParking from "lucide-solid/icons/circle-parking";
+import Dumbbell from "lucide-solid/icons/dumbbell";
+import Coffee from "lucide-solid/icons/coffee";
+import Accessibility from "lucide-solid/icons/accessibility";
+import WashingMachine from "lucide-solid/icons/washing-machine";
+import Baby from "lucide-solid/icons/baby";
+import Waves from "lucide-solid/icons/waves";
+import UtensilsCrossed from "lucide-solid/icons/utensils-crossed";
+import PawPrint from "lucide-solid/icons/paw-print";
+import Flower2 from "lucide-solid/icons/flower-2";
+import Fan from "lucide-solid/icons/fan";
 
 type LugarType = "hotel" | "cabana" | "campamento" | "casa";
 
