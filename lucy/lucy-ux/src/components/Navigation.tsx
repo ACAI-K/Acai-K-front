@@ -3,7 +3,7 @@ import X from 'lucide-solid/icons/x';
 import Menu from 'lucide-solid/icons/menu';
 import { LucyButton, LucyIconButtonNoA } from "./LucyButton";
 import { useNavigate } from "@solidjs/router";
-import { ArrowLeft } from "lucide-solid";
+import ArrowLeft from "lucide-solid/icons/arrow-left";
 
 export function Navigation(props: { class?: string }) {
     const navigate = useNavigate();
