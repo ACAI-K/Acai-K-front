@@ -38,7 +38,9 @@ function App() {
             <Route path="/perfil" component={lazy(() => import("./pages/Profile"))} />
             <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />
             <Route path="/explorar" component={lazy(() => import("./pages/Explorar"))} />
-            {/* <Route path="/reservas/:id"  component={lazy(() => import("./pages/Habitaciones"))} /> */}
+            <Route path="/reservas"  component={lazy(() => import("./pages/LDDs"))} />
+            <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/LDD"))} />
+            <Route path="/reservas/:idLDD/:idHab"  component={lazy(() => import("./pages/Hab"))} />
         </Router>
     );
 }

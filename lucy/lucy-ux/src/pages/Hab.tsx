@@ -1,9 +1,10 @@
+// /reservas/${props.dorm.id}?id=${props.hab.id}
 import { For, Show } from "solid-js";
 import { useSearchParams, A } from "@solidjs/router";
 import { Navigation } from "../components/Navigation.tsx";
-import { SearchBar } from "../components/SearchBar";
+import { SearchBar } from "../components/SearchBar.tsx";
 import { MOCK_LOCATIONS, typeOfPDI } from "../data/mockData.ts";
-import { FilterMenu } from "../components/FilterMenu";
+import { FilterMenu } from "../components/FilterMenu.tsx";
 import { createSignal} from "solid-js";
 import { LucyButtonNoA, LucyIconButtonNoA } from "../components/LucyButton.tsx";
 import SlidersHorizontal from "lucide-solid/icons/sliders-horizontal";
@@ -23,25 +24,16 @@ function concatenatedQuery (s: string | string[], separator: string = "") {
 
 export default function SearchResults() {
     const [searchParams] = useSearchParams();
-    const query = () => searchParams.query || "";
+    const id = () => searchParams.id || "";
     const [isFilterOpen, setIsFilterOpen] = createSignal(false);
-    const [concatenatedQueryValue, setConcatenatedQueryValue] = createSignal(concatenatedQuery(query()));
-    const [results, setResults] = createSignal<(Locat | PDI )[]>([]);
+    const [results, setResults] = createSignal<TypeDormitorio []>([]);
 
-    setConcatenatedQueryValue(concatenatedQuery(query()).toLowerCase());
     
-    const resultsLocat = MOCK_LOCATIONS.filter(location =>
-        location.name.toLowerCase().includes(concatenatedQueryValue())
-    );
 
-    const resultsPDI : (TypeDormitorio | TypeParque | TypeOtro)[] = [];
+    const resultsPDI : (TypeDormitorio)[] = [];
 
-    for (const loc of MOCK_LOCATIONS) {
-        const resultPDI = loc.puntos_interes.filter(p => p.name.toLowerCase().includes(concatenatedQueryValue()));
-        resultsPDI.push(...resultPDI);
-    }
 
-    setResults([...resultsLocat, ...resultsPDI,]);
+    setResults([...resultsPDI]);
 
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work pb-24 relative overflow-hidden">
