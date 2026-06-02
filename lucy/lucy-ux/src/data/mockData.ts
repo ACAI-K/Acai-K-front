@@ -55,7 +55,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'ame-p-1',
             name: 'Hacienda Panoaya (Parque)',
-            images: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v'],
+            images: ['https://cdn.espirituaventurero.com.mx/images/de9ebebaec14f270eb1da9b67ba42dca.jpg',`https://cdn.espirituaventurero.com.mx/images/slider/HaciendaPanoayaAmecameca0.jpg`],
             coordinates: { lat: 19.128072, lng: -98.774712 },
             link_google_maps: 'https://maps.app.goo.gl/haafpUrX5LXfNnwS7',
             // @ts-ignore
@@ -70,7 +70,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'ame-h-1',
             name: 'Hospital General Amecameca',
-            images: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v'],
+            images: ['https://structecnia.com.mx/wp-content/uploads/2015/03/IMG_1726.jpg'],
             coordinates: { lat: 19.12853187919965, lng: -98.76652797193354 },
             link_google_maps: 'https://maps.app.goo.gl/xTt7ASFqCniS757o7',
             // @ts-ignore
@@ -82,7 +82,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'ame-d-1',
             name: 'Hotel Boutique Hacienda Panoaya',
-            images: [],
+            images: [`https://www.kayak.com.mx/rimg/himg/d9/17/86/expedia_group-2976106-4c61a5-977354.jpg?width=836&height=607&crop=true`],
             coordinates: { lat: 19.12731383110683, lng: -98.78015368305705 },
             link_google_maps: 'https://maps.app.goo.gl/3yB1AavyP9qez6536',
             // @ts-ignore
@@ -104,7 +104,7 @@ export const MOCK_LOCATIONS: Locat[] = [
                     precioNoche: 1999.99,
                     maxOcupantes: 2,
                     disponibles: 3,
-                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                    imagenes: ['https://image-tc.galaxy.tf/wijpeg-3m28bp7iv80r6sj6sthfkud0h/mexicali-ejecutiva3_wide.jpg?crop=0%2C99%2C1900%2C1069&width=1140']
                 },
                 {
                     id: 'ame-d-1-h-2',
@@ -117,7 +117,7 @@ export const MOCK_LOCATIONS: Locat[] = [
                     precioNoche: 799.99,
                     maxOcupantes: 2,
                     disponibles: 5,
-                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                    imagenes: ['https://cdn.easy-rez.com/production/hotels/f604ba8b0f1cab10dd80683978c4db01/uploads/.rooms/th_20160713_070517.jpg_0.80838600-1479485899.jpg']
                 }
             ]
         }
@@ -135,7 +135,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tla-p-1',
             name: 'Bosque Esmeralda (Parque)',
-            images: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v', 'https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v'],
+            images: ['https://www.eluniversal.com.mx/resizer/v2/N6G65DBWMBA75K2YZRPAFNBG2M.jpg?auth=422b69e23bfc6549d21d92cb8e44d55da4eca5ed44ab19bc8fe6cb901f706755&smart=true&height=666', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/0e/b2/8e/photo4jpg.jpg?w=700&h=400&s=1'],
             coordinates: { lat: 19.210570875758137, lng: -98.77495814129117 },
             link_google_maps: 'https://maps.app.goo.gl/3qZVfb9npovwCoRq5',
             // @ts-ignore
@@ -150,7 +150,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tla-h-1',
             name: 'Centro de Salud Tlalmanalco',
-            images: [],
+            images: [`https://imsama.edomex.gob.mx/sites/imsama.edomex.gob.mx/files/inline-images/capas/capa/CAPA%20Volcanes.jpg`],
             coordinates: { lat: 19.206599315896586, lng: -98.76907873921712 },
             link_google_maps: 'https://maps.app.goo.gl/y14y8MsgB9WgUq4H8',
             // @ts-ignore
@@ -162,7 +162,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tla-d-1',
             name: 'Rancho La Mesa (Hospedaje)',
-            images: [],
+            images: [`https://www.zonaturistica.com/hotel_files/24131/F1_24131.jpg`],
             coordinates: { lat: 19.19575351471647, lng: -98.76997301116631 },
             link_google_maps: 'https://maps.app.goo.gl/zdmMTB2mG8N15SgE6',
             // @ts-ignore
@@ -184,7 +184,7 @@ export const MOCK_LOCATIONS: Locat[] = [
                     precioNoche: 1199.99,
                     maxOcupantes: 2,
                     disponibles: 3,
-                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                    imagenes: ['https://a0.muscache.com/im/pictures/hosting/Hosting-43405649/original/f048c58c-aa16-470e-ab6a-475c9258ccce.jpeg?im_w=1200']
                 }
             ]
         }
@@ -202,7 +202,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tex-p-1',
             name: 'Parque Molino de Flores',
-            images: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v', 'https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v', 'https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v'],
+            images: ['https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/0e/fa/79/any-western-to-be-filmed.jpg?w=700&h=-1&s=1', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/3a/30/f0/mexican-hacienda.jpg?w=700&h=-1&s=1', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/3a/29/1c/20190707-142457-largejpg.jpg?w=700&h=-1&s=1'],
             coordinates: { lat: 19.519052478932238, lng: -98.87484181747607 },
             link_google_maps: 'https://maps.app.goo.gl/kWTWgtoQdzTq8XTG8',
             // @ts-ignore
@@ -217,7 +217,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tex-h-1',
             name: 'Hospital General de Texcoco',
-            images: [],
+            images: [`https://www.adequimed.com.mx/wp-content/uploads/bb-plugin/cache/IMG_3101-landscape-6475f885ae8b3dd686fc07d75d18565b-3pk8z06ol5xs.jpg`],
             coordinates: { lat: 19.516481756227368, lng: -98.87928817511866 },
             link_google_maps: 'https://maps.app.goo.gl/wii7wjsvyB3xEzpZA',
             // @ts-ignore
@@ -229,7 +229,7 @@ export const MOCK_LOCATIONS: Locat[] = [
         {
             id: 'tex-d-1',
             name: 'Hotel La Mansión (Hospedaje)',
-            images: [],
+            images: [`https://boutique-la-mansion.hoteles-enguadalajara.com/data/Images/1920x1080w/12263/1226320/1226320133/image-guadalajara-hotel-boutique-la-mansion-guadalajara-1.JPEG`],
             coordinates: { lat: 19.514057949056074, lng: -98.88009956137442 },
             link_google_maps: 'https://maps.app.goo.gl/T42zd1gRkbTg8KmGA',
             // @ts-ignore
@@ -251,7 +251,7 @@ export const MOCK_LOCATIONS: Locat[] = [
                     precioNoche: 2599.99,
                     maxOcupantes: 2,
                     disponibles: 3,
-                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                    imagenes: ['https://image-tc.galaxy.tf/wijpeg-3m28bp7iv80r6sj6sthfkud0h/mexicali-ejecutiva3_wide.jpg?crop=0%2C99%2C1900%2C1069&width=1140']
                 },
                 {
                     id: 'tex-d-1-h-2',
@@ -264,7 +264,7 @@ export const MOCK_LOCATIONS: Locat[] = [
                     precioNoche: 1899.99,
                     maxOcupantes: 2,
                     disponibles: 3,
-                    imagenes: ['https://lh5.googleusercontent.com/p/AF1QipNqY-D_L4x_zJ0-O6o8_mZ_X_v-m_X_v-m_X_v']
+                    imagenes: ['https://cdn.easy-rez.com/production/hotels/f604ba8b0f1cab10dd80683978c4db01/uploads/.rooms/th_20160713_070517.jpg_0.80838600-1479485899.jpg']
                 }
             ]
         }
