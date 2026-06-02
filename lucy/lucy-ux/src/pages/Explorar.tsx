@@ -12,7 +12,6 @@ export default function Explorar() {
     // Cambiar a uso con los datos de muckup
     return (
         <div class="min-h-full bg-lucy-dark text-white flex flex-col font-fira w-full overflow-x-hidden">
-                <Navigation />
 
             {/* Area central de locaciones */}
             <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-36 items-start p-16">

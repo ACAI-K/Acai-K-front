@@ -18,7 +18,6 @@ const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1448375240586-882707db8
 export default function Home() {
     return (
         <div class="relative bg-lucy-dark w-full h-full min-h-screen flex flex-col items-center font-fira text-lucy-light">
-            <Navigation/>
             <header class="bg-lucy-primary relative overflow-hidden h-dvh w-full max-w-480 max-h-270 m-0 flex justify-items-center-safe justify-end sm:items-end flex-col gap-8 sm:flex-row sm:justify-between p-16">
                 <h1 class="text-lucy-light text-4xl md:text-5xl font-bold leading-tight relative inline-block">
                     Festival<br/>

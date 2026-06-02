@@ -122,8 +122,6 @@ export default function Hospedaje() {
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work flex flex-col justify-between relative pb-16">
 
-            <Navigation />
-
             {/* Cuerpo del Formulario Asimetrico */}
             <form onSubmit={handleSearch} class="max-w-6xl w-full mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4 grow items-center">
 

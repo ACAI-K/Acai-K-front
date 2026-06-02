@@ -4,41 +4,38 @@ import { useSearchParams, A, useParams, useNavigate } from "@solidjs/router";
 import { Navigation } from "../components/Navigation.tsx";
 import { MOCK_LOCATIONS, typeOfPDI } from "../data/mockData.ts";
 import { createSignal} from "solid-js";
-import { LucyButton } from "../components/LucyButton.tsx";
+import { LucyButton, LucyIconButtonNoA } from "../components/LucyButton.tsx";
 import type { Habitaciones, TypeDormitorio } from "../data/types.ts";
-import CardDorm from "../components/CardDorm.tsx";
+import CardHab from "../components/CardHab.tsx";
 import Map from "lucide-solid/icons/map";
+import ArrowLeft from "lucide-solid/icons/arrow-left";
 
 
 export default function SearchResults() {
     const navigate = useNavigate();
     const params = useParams();
     const [results, setResults] = createSignal<Habitaciones[]>([]);
-    
-    const hoteles = []
-    for (const loc of MOCK_LOCATIONS) {
-        hoteles.push(...loc.puntos_interes.filter(p => typeOfPDI(p) === 0).map(p => p as TypeDormitorio));
-    }
-    setResults(hoteles);
+    // Obtiene las habitaciones del typedormitorio con id params.idLDD
+    const habitaciones = MOCK_LOCATIONS.flatMap(loc => loc.puntos_interes)
+                                        .filter(p => typeOfPDI(p) === 0 && p.id === params.idLDD)
+                                        .map(p => p as TypeDormitorio)
+                                        .flatMap(dorm => dorm.habitaciones) as Habitaciones[];
+    setResults(habitaciones);
 
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work pb-24 relative overflow-hidden">
-
-            {/* Navegacion Flotante */}
-            <Navigation class="absolute top-8 right-8"/>
-
             {/* Lista de Resultados */}
             <div class="flex flex-col gap-12">
                 <For each={results()}>
                     {(result, index) => (
-                        <CardDorm dorm={result as TypeDormitorio} />
+                        <CardHab hab={result} />
                     )}
                 </For>
                 {/* Mensaje de 0 Resultados */}
                 <Show when={results().length === 0}>
                     <div class="text-center py-16">
                         <p class="text-2xl text-gray-400 font-fira">No se encontraron resultados para
-                            Lugares de descanso</p>
+                            habitaciones de este Lugar de Descanso</p>
                     </div>
                 </Show>
             </div>

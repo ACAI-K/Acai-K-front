@@ -43,10 +43,6 @@ export default function Account(props: AccountProps) {
 
     return (
         <div class="bg-lucy-dark text-lucy-light flex flex-col justify-between font-work h-dvh w-dvw overflow-hidden mx-auto">
-            <Navigation/>
-            {/* Boton superior izquierdo para regresar al Home */}
-            <LucyIconButton ButtonLink='/' ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<ArrowLeft size={30}/>} class="z-50 max-w-fit" />
-
             {/* Area central del formulario */}
             <div class="grow w-full flex items-center justify-center p-6 h-auto">
 

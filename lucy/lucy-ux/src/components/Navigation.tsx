@@ -1,10 +1,12 @@
 import { createSignal, Show, onMount, onCleanup } from "solid-js";
-import type { JSX } from "solid-js";
 import X from 'lucide-solid/icons/x';
 import Menu from 'lucide-solid/icons/menu';
-import { A } from "@solidjs/router";
+import { LucyButton, LucyIconButtonNoA } from "./LucyButton";
+import { useNavigate } from "@solidjs/router";
+import { ArrowLeft } from "lucide-solid";
 
-export function Navigation(props: { class?: string; children?: JSX.Element }) {
+export function Navigation(props: { class?: string }) {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = createSignal(false);
     const handleScroll = () => {
         if (isOpen()) {
@@ -21,34 +23,27 @@ export function Navigation(props: { class?: string; children?: JSX.Element }) {
     });
 
     return (
-        <div class={`fixed p-4 z-50 w-full flex flex-col items-end  ${props.class || ""}`}>
-            <Show
-                when={isOpen()}
-                fallback={
-                    <button
-                        onClick={() => setIsOpen(true)}
-                    >
-                        <Menu class="text-lucy-light hover:text-lucy-secondary transition-colors drop-shadow-xl drop-shadow-lucy-dark/40" size={35} stroke-width={2} absoluteStrokeWidth={true} />
-                    </button>
-                }
-            >
-                <nav class="text-right flex flex-col items-end gap-4 animate-fade-in duration-10">
-                    <button onClick={() => setIsOpen(false)}>
-                        <X class="text-lucy-light hover:text-lucy-secondary transition-colors drop-shadow-xl drop-shadow-lucy-dark/40" size={35} stroke-width={2} absoluteStrokeWidth={true} />
-                    </button>
-                    <div class="flex flex-col items-end space-y-1">
-                        <A href="/" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Inicio</A>
-                        <A href="/explorar" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Explorar</A>
-                        <A href="/hospedaje" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Hospedaje</A>
-                        <A href="/cuenta/login" class="text-lucy-light font-work font-semibold text-lg hover:text-lucy-secondary transition-colors hover:underline hover:decoration-lucy-secondary drop-shadow-md drop-shadow-lucy-dark/30">Cuenta</A>
-                        <Show when={props.children}>
-                            <div class="pt-12">
-                                {props.children}
-                            </div>
-                        </Show>
-                    </div>
-                </nav>
-            </Show>
+        <div class={`${props.class || ""}`}>
+            <div class="fixed top-4 left-4 z-100">
+            <LucyIconButtonNoA onClick={() => {navigate(-1)}} ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<ArrowLeft size={30}/>} class="w-25 drop-shadow-xl drop-shadow-lucy-dark/40"/>
+            </div>
+            <div class="fixed top-4 right-4 z-100">
+                <Show when={isOpen()}>
+                    <nav class="text-right flex flex-col items-end gap-4 animate-fade-in duration-10">
+                        <LucyIconButtonNoA onClick={() => setIsOpen(false)} ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<X size={30}/>} class="w-25 drop-shadow-xl drop-shadow-lucy-dark/40"/>
+                        <div class="flex flex-col items-end space-y-1">
+                            <LucyButton ButtonLink={"/"} ButtonBackground="lucy-dark" ButtonText="Inicio" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" />
+                            <LucyButton ButtonLink={"/explorar"} ButtonBackground="lucy-dark" ButtonText="Explorar" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" />
+                            <LucyButton ButtonLink={"/hospedaje"} ButtonBackground="lucy-dark" ButtonText="Hospedaje" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" />
+                            <LucyButton ButtonLink={"/cuenta/login"} ButtonBackground="lucy-dark" ButtonText="Cuenta" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" />
+                        </div>
+                    </nav>
+                </Show>
+                <Show when={!isOpen()}>
+                    <LucyIconButtonNoA onClick={() => setIsOpen(true)} ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<Menu size={30}/>} class="w-25 drop-shadow-xl drop-shadow-lucy-dark/40"/>
+                </Show>
+            </div>
+                        
         </div>
     );
 }

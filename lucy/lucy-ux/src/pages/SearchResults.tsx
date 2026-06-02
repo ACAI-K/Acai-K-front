@@ -45,10 +45,6 @@ export default function SearchResults() {
 
     return (
         <div class="min-h-screen bg-lucy-dark text-white font-work pb-24 relative overflow-hidden">
-
-            {/* Navegacion Flotante */}
-            <Navigation class="absolute top-8 right-8"/>
-
             {/* Render del filtro */}
             <Show when={isFilterOpen()}>
                 <FilterMenu onFilterChange={(f) => console.log("Mock de filtros a aplicar:", f)}/>

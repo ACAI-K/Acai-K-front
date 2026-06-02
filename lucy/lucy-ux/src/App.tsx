@@ -1,6 +1,7 @@
 import { Router, Route } from "@solidjs/router";
 import { lazy } from "solid-js";
 import { Footer } from "./components/Footer";
+import { Navigation } from "./components/Navigation";
 
 // Vistas
 const Home = lazy(() => import("./pages/Home"));
@@ -10,9 +11,10 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 // Componente Layout Global
 const MainLayout = (props: { children?: any }) => {
     return (
-        <div class="min-h-screen flex flex-col bg-lucy-dark">
+        <div class="min-h-screen flex flex-col w-full bg-lucy-dark">
+            <Navigation />
             {/* Contenido (Las páginas) */}
-            <div class="flex-grow">
+            <div class="grow mt-12">
                 {props.children}
             </div>
 
@@ -39,8 +41,10 @@ function App() {
             <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />
             <Route path="/explorar" component={lazy(() => import("./pages/Explorar"))} />
             <Route path="/reservas"  component={lazy(() => import("./pages/LDDs"))} />
-            <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/LDD"))} />
-            <Route path="/reservas/:idLDD/:idHab"  component={lazy(() => import("./pages/Hab"))} />
+            <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/Habitaciones"))} />
+            <Route path="/reservas/:idLDD/:idHab" component={lazy(() => import("./pages/Recibo"))} />
+            <Route path="/pago" component={lazy(() => import("./pages/Pago"))} />
+            <Route path="/confirmacion" component={lazy(() => import("./pages/Confirmacion"))} />
         </Router>
     );
 }

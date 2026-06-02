@@ -52,8 +52,6 @@ export default function Profile() {
                 <LucyIconButtonNoA onClick={() => {if (viewState() === "edit") setViewState("menu");else navigate("/");}}
                     ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIcon={<ArrowLeft size={30}/>} class="z-60 max-w-fit" />
 
-                <Navigation />
-
             {/* area de visualizacion central */}
             <div class="grow w-full flex items-center justify-start mx-auto p-8 min-h-[500px]">
 
