@@ -1,11 +1,20 @@
 import { useParams, A } from "@solidjs/router";
-import { MOCK_PARKS } from "../data/mockData";
+import { MOCK_LOCATIONS } from "../data/mockData";
 import { For, Show } from "solid-js";
+import { LucyButton, LucyButtonNoA } from "../components/LucyButton";
+import ArrowLeft from "lucide-solid/icons/arrow-left";
+import type { PDI, TypeParque } from "../data/types";
+import { Navigation } from "../components/Navigation";
+import { useNavigate } from "@solidjs/router";
 
 export default function ParkDetail() {
     const params = useParams();
+    const navigate = useNavigate();
 
-    const park = () => MOCK_PARKS.find(p => p.id === params.id);
+    const park = () => MOCK_LOCATIONS.find(location => 
+                            location.puntos_interes.some(p => 
+                                p.id === params.id))?.puntos_interes.find(p =>
+                                    p.id === params.id) as TypeParque | undefined;
 
     return (
         <Show
@@ -13,30 +22,27 @@ export default function ParkDetail() {
             fallback={
                 <div class="min-h-screen bg-lucy-dark text-white p-8 flex flex-col items-center justify-center font-fira text-2xl">
                     <p>Parque no encontrado.</p>
-                    <A href="/explorar" class="text-lucy-secondary mt-4 text-lg underline">Volver a explorar</A>
+                    <LucyButtonNoA onClick={() => {navigate(-1)}} ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" ButtonIcon={<ArrowLeft size={30}/>} class="z-50 max-w-fit" />
                 </div>
             }
         >
             {(p) => (
                 <div class="bg-lucy-dark text-white font-work pb-24">
+                    <Navigation />
 
                     {/* Imagen principal y Titulo */}
                     <div class="relative w-full h-[50vh] min-h-[400px]">
-                        <img src={p().image} alt={p().name} class="w-full h-full object-cover" />
+                        <img src={p().images[0]} alt={p().name} class="w-full h-full object-cover" />
                         {/* Gradiente para asegurar que el texto sea legible sobre la imagen */}
                         <div class="absolute inset-0 bg-gradient-to-t from-lucy-dark via-lucy-dark/70 to-black/30"></div>
 
                         <div class="absolute inset-0 flex flex-col justify-between max-w-6xl mx-auto p-8">
                             {/* Boton de retroceso */}
-                            <A href="/" class="inline-flex items-center gap-2 text-white hover:text-lucy-secondary transition-colors font-fira bg-black/40 w-fit px-5 py-2 rounded-full backdrop-blur-md border border-white/10">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                                Volver
-                            </A>
-
+                            <LucyButton ButtonLink='/' ButtonText="Volver a inicio" ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="left" ButtonIcon={<ArrowLeft size={30}/>} class="z-50 max-w-fit" />
                             <div>
-                <span class="text-lucy-secondary font-bold tracking-widest uppercase text-sm mb-2 block">
-                  📍 {p().location}
-                </span>
+                                <span class="text-lucy-secondary font-bold tracking-widest uppercase text-sm mb-2 block">
+                                    {p().location}
+                                </span>
                                 <h1 class="text-5xl md:text-7xl font-bold font-fira text-white leading-tight drop-shadow-2xl">
                                     {p().name}
                                 </h1>
@@ -59,12 +65,12 @@ export default function ParkDetail() {
 
                             <section>
                                 <h3 class="text-3xl font-fira text-lucy-primary mb-6">Amenidades</h3>
-                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div class="flex flex-wrap md:grid-cols-3 gap-4">
                                     <For each={p().features}>
-                                        {(feature) => (
-                                            <div class="flex items-center gap-3 bg-gray-800/80 border border-gray-700 px-5 py-4 rounded-2xl hover:border-lucy-secondary transition-colors cursor-default">
-                                                <div class="w-2.5 h-2.5 rounded-full bg-lucy-secondary shadow-[0_0_8px_rgba(255,200,76,0.8)]"></div>
-                                                <span class="text-gray-200 font-medium text-sm">{feature}</span>
+                                        {(amenidad) => (
+                                            <div class="flex flex-col items-center gap-1 px-3 py-1 rounded-full text-xs text-lucy-light">
+                                                {<amenidad.icono size={50} />}
+                                                <span>{amenidad.nombre}</span>
                                             </div>
                                         )}
                                     </For>
@@ -78,7 +84,7 @@ export default function ParkDetail() {
                                 <div class="mb-8">
                                     <p class="text-lucy-dark/70 font-semibold uppercase tracking-wider text-sm mb-1">Tarifa por día</p>
                                     <div class="flex items-end gap-1">
-                                        <span class="text-5xl font-fira font-bold tracking-tighter">${p().pricePerDay}</span>
+                                        <span class="text-5xl font-fira font-bold tracking-tighter">${p().precio_por_dia}</span>
                                         <span class="text-lg font-bold mb-1">MXN</span>
                                     </div>
                                 </div>

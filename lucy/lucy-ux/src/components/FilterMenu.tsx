@@ -1,5 +1,6 @@
 import { createSignal, For, createEffect } from "solid-js";
 import Star from 'lucide-solid/icons/star';
+import { CATEGORIAS_DISPONIBLES, AMENIDADES_DISPONIBLES } from "../data/mockData";
 
 interface FilterMenuProps {
     onFilterChange: (filters: {
@@ -8,15 +9,6 @@ interface FilterMenuProps {
         amenities: string[];
     }) => void;
 }
-
-const CATEGORIES = ["Parques", "Hoteles", "Cabañas", "Campamentos", "Hospitales", "Policía", "Gasolinería"];
-const AMENITIES = [
-    { id: "wifi", label: "Wi-Fi", icon: "M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" },
-    { id: "parking", label: "Estacionamiento", isTextIcon: true, textIcon: "P" },
-    { id: "gym", label: "GYM", icon: "M18 3h-2v4h-8v-4h-2v4h-2v3h14v-3h-2v-4zM2 11h20v2h-20vz" }, // Icono dummy para GYM
-    { id: "breakfast", label: "Desayuno", icon: "M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z" },
-    { id: "pets", label: "Pet-friendly", isTextIcon: true, textIcon: "🐾" }
-];
 
 export function FilterMenu(props: FilterMenuProps) {
     const [selectedCategories, setSelectedCategories] = createSignal<string[]>(["Parques"]);
@@ -48,11 +40,11 @@ export function FilterMenu(props: FilterMenuProps) {
             class="absolute top-48 left-1/2 -translate-x-1/2 z-40 w-full max-w-3xl text-lucy-light rounded-3xl p-8 shadow-2xl border border-gray-800/60 animate-fade-in"
             style="background-color: #1B181A;"
         >
-            <div class="grid grid-cols-2 gap-8 font-work">
+            <div class="flex gap-16 font-work">
 
                 {/* Columna Izquierda: Seleccion Multiple de Categorias */}
                 <div class="space-y-4 flex flex-col justify-center">
-                    <For each={CATEGORIES}>
+                    <For each={CATEGORIAS_DISPONIBLES}>
                         {(cat) => (
                             <label class="flex items-center gap-4 cursor-pointer select-none group">
                                 <input
@@ -92,27 +84,16 @@ export function FilterMenu(props: FilterMenuProps) {
                     {/* Bloque de Amenidades */}
                     <div class="mt-6">
                         <p class="text-sm font-fira tracking-wide uppercase text-gray-400 mb-4">Amenidades</p>
-                        <div class="grid grid-cols-4 gap-4 text-center text-xs">
-                            <For each={AMENITIES}>
-                                {(amenity) => {
-                                    const isSelected = () => selectedAmenities().includes(amenity.id);
+                        <div class="flex flex-wrap justify-between items-center gap-4 text-center text-xs">
+                            <For each={AMENIDADES_DISPONIBLES}>
+                                {(amenidad) => {
+                                    const isSelected = () => selectedAmenities().includes(amenidad.id);
                                     return (
-                                        <div
-                                            class={`flex flex-col items-center gap-1 cursor-pointer transition-all ${isSelected() ? 'text-lucy-secondary' : 'text-gray-400 hover:text-lucy-light'}`}
-                                            onClick={() => toggleAmenity(amenity.id)}
-                                        >
-                                            <div class={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${isSelected() ? 'border-lucy-secondary bg-lucy-secondary/10 shadow-[0_0_12px_rgba(255,200,76,0.2)]' : 'border-gray-700 bg-gray-800/40'}`}>
-                                                {amenity.isTextIcon ? (
-                                                    <span class="text-xl font-bold select-none">{amenity.textIcon}</span>
-                                                ) : (
-                                                    <svg class="w-5 h-5" fill={isSelected() ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={amenity.icon}></path>
-                                                    </svg>
-                                                )}
-                                            </div>
-                                            <span class="scale-90 font-medium tracking-tight lucy-lightspace-nowrap">{amenity.label}</span>
+                                        <div class={`flex flex-col w-fit items-center gap-1 px-3 py-1 rounded-full text-sm text-lucy-light cursor-pointer transition-all ${isSelected() ? 'text-lucy-secondary' : 'text-lucy-light hover:text-lucy-accent'} `} onClick={() => toggleAmenity(amenidad.id)}>
+                                            {<amenidad.icono size={25} fill={`${isSelected() ? 'text-lucy-secondary' : 'text-lucy-light hover:text-lucy-accent'}`} />}
+                                            <span class="max-w-25 text-center">{amenidad.nombre}</span>
                                         </div>
-                                    );
+                                    )
                                 }}
                             </For>
                         </div>

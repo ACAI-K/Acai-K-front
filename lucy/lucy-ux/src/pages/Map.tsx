@@ -1,17 +1,25 @@
 import { createSignal, createEffect, onMount, onCleanup, For, Show } from "solid-js";
-import { A } from "@solidjs/router";
-import { MOCK_PARKS } from "../data/mockData";
-import type { Park } from "../data/types";
+import { A, useNavigate } from "@solidjs/router";
+import type { PDI, TypeDormitorio, TypeParque, TypeOtro } from "../data/types";
+import { MOCK_LOCATIONS, typeOfPDI } from "../data/mockData";
 import { Navigation } from "../components/Navigation";
 import { FilterMenu } from "../components/FilterMenu";
 import { WeatherMenu } from "../components/WeatherMenu";
-import { LucyIconButtonNoA, LucyButtonNoA } from "../components/LucyButton";
+import { LucyIconButtonNoA, LucyButtonNoA, LucyButton } from "../components/LucyButton";
 import CloudSunRain from 'lucide-solid/icons/cloud-sun-rain';
 import LightBulb from 'lucide-solid/icons/lightbulb';
 import ChrevronRight from 'lucide-solid/icons/chevron-right';
 import Download from 'lucide-solid/icons/download';
 import SlidersHorizontal from 'lucide-solid/icons/sliders-horizontal';
 import Search from 'lucide-solid/icons/search';
+import Home from 'lucide-solid/icons/home';
+import Bed from 'lucide-solid/icons/bed';
+import Warehouse from 'lucide-solid/icons/warehouse';
+import TentTree from 'lucide-solid/icons/tent-tree'
+import Shield from 'lucide-solid/icons/shield';
+import Fuel from 'lucide-solid/icons/fuel';
+import Ambulance from 'lucide-solid/icons/ambulance';
+import { Logo } from '../assets/LogoIso';
 
 declare global {
     interface Window {
@@ -20,17 +28,64 @@ declare global {
     }
 }
 
+const svgSize = 20;
+
+function setIconForPDI(pdi: PDI) {
+    const type = typeOfPDI(pdi);
+    if (type === 0) {
+        const dorm = pdi as TypeDormitorio;
+        switch (dorm.categoria) {
+            case "Hotel":
+                return <Bed size={svgSize} />;
+            case "Cabañas":
+                return <Warehouse size={svgSize} />;
+            case "Campamento":
+                return <TentTree size={svgSize} />;
+            case "Habitaciones":
+                return <Home size={svgSize} />;
+            default:
+                return <Bed size={svgSize} />;
+        }
+    } else if (type === 1) {
+        const park = pdi as TypeParque;
+        switch (park.capacidad_actual) {
+            case 0:
+                return <Logo color="#8ed038" class="w-full" />;
+            case 1:
+                return <Logo color="#ffee00" class="w-full" />;
+            case 2:
+                return <Logo color="#c71400" class="w-full" />;
+            default:
+                return <Logo color="#e5e5e5" class="w-full" />;
+        }
+    } else {
+        const otro = pdi as TypeOtro;
+        switch (otro.categoria) {
+            case "Policía":
+                return <Shield size={svgSize} />;
+            case "Hospital":
+                return <Ambulance size={svgSize} />;
+            case "Gasolinería":
+                return <Fuel size={svgSize} />;
+            default:
+                return <Shield size={svgSize} />;
+        }
+    }
+}
+
+
 export default function Map() {
     let mapRef: HTMLDivElement | undefined;
 
-    let mapMarkers: { parkId: string; iconDiv: HTMLElement; arrowDiv: HTMLElement }[] = [];
+    let mapMarkers: { pdiId: string; iconDiv: HTMLElement; arrowDiv: HTMLElement }[] = [];
 
+    const navigate = useNavigate();
     const [isFilterOpen, setIsFilterOpen] = createSignal(false);
     const [isWeatherOpen, setIsWeatherOpen] = createSignal(false);
     const [isDarkMode, setDarkMode] = createSignal(false);
-    const [selectedPark, setSelectedPark] = createSignal<Park | null>(null);
+    const [selectedPDI, setSelectedPDI] = createSignal<PDI | null>(null);
     const [searchQuery, setSearchQuery] = createSignal("");
-    const [activeFilters, setActiveFilters] = createSignal({ categories: ["Parques"], rating: 4, amenities: [] });
+    const [activeFilters, setActiveFilters] = createSignal({ categories: ["Parques"], rating: 4, amenities: [] as string[] });
 
     onMount(() => {
         window.initLucyMap = initMap;
@@ -73,52 +128,78 @@ export default function Map() {
             styles: darkTheme
         });
 
-        MOCK_PARKS.forEach(park => {
-            // Verificamos que el parque tenga coordenadas antes de intentar pintarlo
-            if (!park.coordinates) return;
+        MOCK_LOCATIONS.forEach(loc => {
+            loc.puntos_interes.forEach(pdi => {
+                if (!pdi.coordinates) return; // Verificamos que existan coordenadas antes de intentar pintar el marcador
+                const markerContainer = document.createElement("div");
+                markerContainer.className = "cursor-pointer transform hover:scale-110 transition-transform group relative";
+                markerContainer.innerHTML = ""; // Limpiamos el contenido para evitar duplicados en caso de re-renderizados
+                const type = typeOfPDI(pdi);
+                if (type === 0) {
+                    const dorm = pdi as TypeDormitorio;
+                    
+                    markerContainer.innerHTML = `
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-dark text-lucy-accent border-lucy-accent transition-colors duration-300">
+                            ${setIconForPDI(dorm)}
+                        </div>
+                        <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-dark transition-colors duration-300"></div>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-lucy-dark/80 text-lucy-light text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                            ${dorm.name}
+                        </div>
+                    `;
 
-            const markerContainer = document.createElement("div");
-            markerContainer.className = "cursor-pointer transform hover:scale-110 transition-transform group relative";
+                } else if (type === 1) {
+                    const park = pdi as TypeParque;
 
-            markerContainer.innerHTML = `
-                <div class="w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-dark text-lucy-secondary border-lucy-secondary transition-colors duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
-                    </svg>
-                </div>
-                <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-dark transition-colors duration-300"></div>
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-lucy-dark/80 text-lucy-light text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                    ${park.name}
-                </div>
-            `;
+                    markerContainer.innerHTML = `
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-dark text-lucy-light border-lucy-light transition-colors duration-300">
+                            ${setIconForPDI(park)}
+                        </div>
+                        <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-dark transition-colors duration-300"></div>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-lucy-dark/80 text-lucy-light text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                            ${park.name}
+                        </div>
+                    `;
+                } else {
+                    const otro = pdi as TypeOtro;
 
-            markerContainer.onclick = () => {
-                setSelectedPark(park);
-                // Leemos desde park.coordinates
-                map.panTo({ lat: park.coordinates.lat, lng: park.coordinates.lng });
-                map.setZoom(14);
-            };
-
-            mapMarkers.push({
-                parkId: park.id,
-                iconDiv: markerContainer.children[0] as HTMLElement,
-                arrowDiv: markerContainer.children[1] as HTMLElement
-            });
-
-            new window.google.maps.marker.AdvancedMarkerElement({
-                map,
-                // Leemos desde park.coordinates
-                position: { lat: park.coordinates.lat, lng: park.coordinates.lng },
-                content: markerContainer,
-                title: park.name
+                    markerContainer.innerHTML = `
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-dark text-lucy-accent border-lucy-accent transition-colors duration-300">
+                            ${setIconForPDI(otro)}
+                        </div>
+                        <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-dark transition-colors duration-300"></div>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-lucy-dark/80 text-lucy-light text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                            ${otro.name}
+                        </div>
+                    `;
+                }
+                    markerContainer.onclick = () => {
+                        setSelectedPDI(pdi);
+                        // Leemos desde otro.coordinates
+                        map.panTo({ lat: pdi.coordinates.lat, lng: pdi.coordinates.lng });
+                        map.setZoom(14);
+                    }
+                    mapMarkers.push({
+                        pdiId: pdi.id,
+                        iconDiv: markerContainer.children[0] as HTMLElement,
+                        arrowDiv: markerContainer.children[1] as HTMLElement
+                    });
+                    
+                    new window.google.maps.marker.AdvancedMarkerElement({
+                        map,
+                        // Leemos desde otro.coordinates
+                        position: { lat: pdi.coordinates.lat, lng: pdi.coordinates.lng },
+                        content: markerContainer,
+                        title: pdi.name
+                    });
             });
         });
     };
 
     createEffect(() => {
-        const currentPark = selectedPark();
+        const currentPDI = selectedPDI();
         mapMarkers.forEach(marker => {
-            if (currentPark && currentPark.id === marker.parkId) {
+            if (currentPDI && currentPDI.id === marker.pdiId) {
                 marker.iconDiv.className = "w-12 h-12 rounded-full flex items-center justify-center border-2 shadow-lg bg-lucy-secondary text-lucy-dark border-lucy-light scale-110 transition-colors duration-300";
                 marker.arrowDiv.className = "w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] mx-auto -mt-1 drop-shadow-md border-t-lucy-secondary transition-colors duration-300";
             } else {
@@ -149,7 +230,9 @@ export default function Map() {
                             class="w-full text-xl placeholder-lucy-light/50 transition-colors focus:outline-none"
                             onInput={(e) => setSearchQuery(e.currentTarget.value)}
                         />
-                        <Search class="text-lucy-light hover:text-lucy-secondary transition-colors cursor-pointer" size={25} stroke-width={2} absoluteStrokeWidth={true} onClick={() => console.log("Buscar en el mapa:", searchQuery())} />
+                        <button type="submit" class="w-fit h-fit" onClick={() => {navigate("/search?query=" + encodeURIComponent(searchQuery()));}}>
+                            <Search class="text-lucy-light hover:text-lucy-secondary transition-colors cursor-pointer" size={25} stroke-width={2} absoluteStrokeWidth={true} onClick={() => console.log("Buscar en el mapa:", searchQuery())} />
+                        </button>
                     </div>
 
                     <LucyIconButtonNoA ButtonBackground={isFilterOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIcon={<SlidersHorizontal size={30}/>} onClick={() => {setIsFilterOpen(!isFilterOpen()); setIsWeatherOpen(false);}} />
@@ -164,46 +247,59 @@ export default function Map() {
                 <WeatherMenu/>
             </Show>
 
-            <div class={`absolute top-0 right-0 h-full w-full max-w-md bg-lucy-dark text-lucy-light z-50 shadow-2xl transform transition-transform duration-300 overflow-y-auto ${selectedPark() ? 'translate-x-0' : 'translate-x-full'}`}>
-                <button onClick={() => setSelectedPark(null)} class="absolute top-4 right-4 p-2 bg-gray-800 rounded-md hover:bg-gray-700 z-10">
+            <div class={`absolute top-0 right-0 h-full w-full max-w-md bg-lucy-dark text-lucy-light z-50 shadow-2xl transform transition-transform duration-300 overflow-y-auto ${selectedPDI() ? 'translate-x-0' : 'translate-x-full'}`}>
+                <button onClick={() => setSelectedPDI(null)} class="absolute top-4 right-4 p-2 bg-gray-800 rounded-md hover:bg-gray-700 z-10">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                <Show when={selectedPark()}>
-                    {(park) => (
+                <Show when={selectedPDI()}>
+                    {(pdi) => (
                         <div class="p-8 pt-16">
-                            <h2 class="text-3xl font-fira mb-1 text-lucy-primary">{park().name}</h2>
-                            <p class="text-gray-400 mb-2">Parque Protegido</p>
-                            <div class="flex items-center gap-2 mb-6 text-sm">
-                                <span class="text-lucy-primary">📍</span>
-                                <span class="text-gray-300">{park().location}</span>
+                            <h2 class="text-3xl font-fira mb-1 text-lucy-primary">{pdi().name}</h2>
+                            <p class="text-sm text-lucy-light mb-4">{pdi().categoria}</p>
+                            <span class="text-lucy-light">{pdi().location}</span>
+                            <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg border border-lucy-disabled mb-8">
+                                <img src={pdi().images[0]} alt={pdi().name} class="w-full h-full object-cover"/>
                             </div>
-                            <div class="mb-8">
-                                <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg border border-gray-700">
-                                    <img src={park().image} alt={park().name} class="w-full h-full object-cover"/>
-                                </div>
-                            </div>
-                            <div class="mb-8 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
-                                <p class="text-gray-300 mb-4 text-sm leading-relaxed">{park().description}</p>
+                            <div class="mb-8 bg-light-dark/50 p-4 rounded-xl">
+                                <p class="text-gray-300 mb-4 text-sm leading-relaxed">{pdi().description}</p>
                                 <div class="flex flex-wrap gap-2">
-                                    <For each={park().features}>
-                                        {(feature) => <span class="bg-gray-800 text-lucy-secondary px-3 py-1 rounded-full text-xs font-semibold border border-gray-700">{feature}</span>}
-                                    </For>
+                                    <Show when={typeOfPDI(pdi()) === 0 || typeOfPDI(pdi()) === 1}>
+                                        <For each={pdi().features}>
+                                            {(amenidad) => (
+                                                <div class="flex flex-col w-fit items-center gap-1 px-3 py-1 rounded-full text-xs text-lucy-light">
+                                                    {<amenidad.icono size={15} />}
+                                                    <span>{amenidad.nombre}</span>
+                                                </div>
+                                                )}
+                                        </For>
+                                    </Show>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-between mb-8">
-                                <div>
-                                    <p class="text-xs text-gray-400 uppercase tracking-wider">Precio desde</p>
-                                    <p class="text-2xl font-bold text-lucy-light">${park().pricePerDay} MXN</p>
+                            <Show when={typeOfPDI(pdi()) === 0}>
+                                <div class="flex items-center justify-between mb-8">
+                                    <div>
+                                        <p class="text-xs text-gray-400 uppercase tracking-wider">Precio desde</p>
+                                        <p class="text-2xl font-bold text-lucy-light">${(pdi() as TypeDormitorio).precio_noche} MXN</p>
+                                    </div>
+
+                                    <LucyButton ref={`/habitaciones/${pdi().id}`} ButtonText="Ver habitaciones" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ChrevronRight size={30}/>} />
                                 </div>
-                                <A href={`/park/${park().id}`} class="inline-flex items-center gap-2 bg-lucy-primary text-lucy-dark px-6 py-3 rounded-full font-fira font-bold hover:bg-lucy-light transition-colors shadow-[0_0_15px_rgba(146,204,211,0.3)]">
-                                    Ver detalle
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                </A>
-                            </div>
+                            </Show>
+                            <Show when={typeOfPDI(pdi()) === 1}>
+                                <div class="flex items-center justify-between mb-8">
+                                    <div>
+                                        <p class="text-xs text-gray-400 uppercase tracking-wider">Precio desde</p>
+                                        <p class="text-2xl font-bold text-lucy-light">${(pdi() as TypeParque).precio_por_dia} MXN</p>
+                                    </div>
+
+                                    <LucyButton ref={`/park/${pdi().name.toLowerCase}/${pdi().id}`} ButtonText="Ver detalle" ButtonBackground="lucy-primary" ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ChrevronRight size={30}/>} />
+                                </div>
+                            </Show>
                         </div>
                     )}
                 </Show>
             </div>
+            {/* Botones de clima, modo obscuro y mapa sin conexión pantalla grande */}
             <div class="hidden md:flex relative text-lucy-dark md:bottom-8 md:absolute md:left-8 z-30">
                 <LucyButtonNoA onClick={() => {setIsWeatherOpen(!isWeatherOpen())}} ButtonText="Clima" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<CloudSunRain size={30}/>} />
             </div>
@@ -212,6 +308,7 @@ export default function Map() {
                 <LucyButtonNoA onClick={() => {window.location.href = "https://maps.app.goo.gl/A1fJASPq6cFSJw9s9"}} ButtonText="Mapa sin Conexión" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ChrevronRight size={30}/>} />
             </div>
         </div>
+        {/* Botones de clima, modo obscuro y mapa sin conexión pantalla pequeña */}
         <section class="md:hidden w-full absolute flex justify-center pointer-events-none gap-4 z-40 bottom-4">
             <LucyIconButtonNoA onClick={() => {setIsWeatherOpen(!isWeatherOpen())}} ButtonText="Clima" ButtonBackground={isWeatherOpen() ? "lucy-secondary" : "lucy-primary"} ButtonForeground="lucy-dark" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<CloudSunRain size={30}/>} />
             <LucyIconButtonNoA onClick={() => {setDarkMode(!isDarkMode())}} ButtonText="Modo obscuro" ButtonBackground={!isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonForeground={isDarkMode() ? "lucy-secondary" : "lucy-dark"} ButtonSize="md" ButtonIconSide="right" ButtonIcon={<LightBulb size={30}/>} />

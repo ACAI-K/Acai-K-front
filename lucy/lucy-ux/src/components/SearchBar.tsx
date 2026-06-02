@@ -17,7 +17,7 @@ export function SearchBar(props: SearchBarProps) {
         if (props.onSearch) {
             props.onSearch(query());
         } else if (query().trim()) {
-            navigate(`/resultados?q=${encodeURIComponent(query())}`);
+            navigate(`/search?query=${encodeURIComponent(query())}`);
         }
     };
 

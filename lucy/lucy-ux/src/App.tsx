@@ -29,6 +29,7 @@ function App() {
             <Route path="/" component={Home} />
             <Route path="/park/:id" component={ParkDetail} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/search" component={lazy(() => import("./pages/SearchResults"))} />
             <Route path="/mapa" component={lazy(() => import("./pages/Map"))} />
             <Route path="/cuenta" component={(props) => <Account {...props} loginOrRegister="login"/>} />
             <Route path="/cuenta/login" component={(props) => <Account {...props} loginOrRegister="login"/>} />
@@ -37,6 +38,7 @@ function App() {
             <Route path="/perfil" component={lazy(() => import("./pages/Profile"))} />
             <Route path="/hospedaje" component={lazy(() => import("./pages/Hospedaje"))} />
             <Route path="/explorar" component={lazy(() => import("./pages/Explorar"))} />
+            {/* <Route path="/reservas/:id"  component={lazy(() => import("./pages/Habitaciones"))} /> */}
         </Router>
     );
 }

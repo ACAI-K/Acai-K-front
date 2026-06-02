@@ -13,35 +13,43 @@ export interface Park {
     };
 }
 
+export type Amenidad = {
+    id: string;
+    nombre: string;
+    icono: (props: any) => any;
+};
+
 export interface TypeDormitorio extends PDI {
     categoria: "Hotel" | "Cabañas" | "Campamento" | "Habitaciones";
     precio_noche: number;
-    features: string[];
 }
 
 export interface TypeParque extends PDI {
     categoria: "Parque Ecológico" | "Reserva Natural";
     precio_por_dia: number;
-    features: string[];
+    capacidad_actual: 0 | 1 | 2; // 0 = Vacío o casi vacío, 1 = Capacidad media, 2 = Lleno o casi lleno
 }
 
 export interface TypeOtro extends PDI {
     categoria: "Policía" | "Hospital" | "Gasolinería";
-    
 }
 
 export interface PDI {
     id: string;
     name: string;
-    
+    categoria: string;
     images: string[];
     coordinates: {
         lat: number;
         lng: number;
     };
+    location: string;
+    description: string;
     link_google_maps: string;
+    features?: Amenidad[];
     telefono?: string;
     website?: string;
+    reviews?: number;
 }
 
 export interface Locat {
@@ -59,7 +67,7 @@ export interface Locat {
             weight: number;
         }
     }
-    puntos_interes: PDI[];
+    puntos_interes: (TypeDormitorio | TypeParque | TypeOtro)[];
 
 }
 
