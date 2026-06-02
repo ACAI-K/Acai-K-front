@@ -43,8 +43,19 @@ function App() {
             <Route path="/reservas"  component={lazy(() => import("./pages/LDDs"))} />
             <Route path="/reservas/:idLDD/:idHab" component={lazy(() => import("./pages/Recibo"))} />
             <Route path="/reservas/:idLDD"  component={lazy(() => import("./pages/Habitaciones"))} />
+            <Route path="/mis-reservas" component={lazy(() => import("./pages/MisReservas"))} />
             <Route path="/pago" component={lazy(() => import("./pages/Pago"))} />
             <Route path="/confirmacion" component={lazy(() => import("./pages/Confirmacion"))} />
+            <Route path="/admin-ldd/habitaciones" component={lazy(() => import("./pages/AdminLDDHabitaciones"))} />
+            <Route path="/admin-ldd/crear-habitacion" component={lazy(() => import("./pages/CrearHabitacion"))} />
+            <Route path="/admin-ldd/editar-ldd" component={lazy(() => import("./pages/EditarLDD"))} />
+            {/* <Route path="/admin-ldd/editar-habitacion" component={lazy(() => import("./pages/EditarHabitacion"))} /> */}
+            <Route path="/admin-ldd" component={lazy(() => import("./pages/MenuAdminLDD"))} />
+            <Route path="/admin/registro-ldd" component={lazy(() => import("./pages/RegistroLDD"))} />
+            <Route path="/admin/ticket/:id" component={lazy(() => import("./pages/Ticket"))} />
+            <Route path="/admin/tickets" component={lazy(() => import("./pages/Tickets"))} />
+            <Route path="/admin" component={lazy(() => import("./pages/MenuAdmin"))} />
+
         </Router>
     );
 }

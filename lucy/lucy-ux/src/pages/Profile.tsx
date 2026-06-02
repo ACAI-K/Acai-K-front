@@ -24,7 +24,7 @@ export default function Profile() {
     const navigate = useNavigate();
 
     const categorias: Cats[] = [
-    {name: "Mis reservas", option: "A", link: "/reservas"},
+    {name: "Mis reservas", option: "A", link: "/mis-reservas"},
     {name: "Editar perfil", option: "B", onClick: () => {setViewState("edit")}},
     {name: "Soporte", option: "A", link: "/soporte"},
     {name: "Cerrar sesión", option: "A", link: "/cuenta/login"},
