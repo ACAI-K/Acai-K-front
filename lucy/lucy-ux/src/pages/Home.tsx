@@ -18,7 +18,7 @@ const handleImageError = (e: Event) => {
 export default function Home() {
     return (
         <div class="relative bg-lucy-dark w-full min-h-screen flex flex-col items-center font-fira text-lucy-light">
-            {/* HEADER */}
+            {/* HEADER RESPONSIVO */}
             <header class="bg-lucy-primary relative overflow-hidden min-h-[60dvh] md:h-dvh w-full m-0 flex flex-col justify-end sm:flex-row sm:justify-between sm:items-end gap-6 sm:gap-8 p-6 sm:p-10 md:p-16">
                 <h1 class="text-lucy-light text-3xl sm:text-4xl md:text-5xl font-bold leading-tight relative inline-block">
                     Festival<br/>
@@ -27,6 +27,8 @@ export default function Home() {
                     Luciérnagas
                     <div class="absolute left-0 w-full h-1 sm:h-2 bg-lucy-light mt-1"></div>
                 </h1>
+
+                {/* Contenedor del botón para asegurar que no se desborde en móvil */}
                 <div class="w-full sm:w-auto flex justify-start sm:justify-end">
                     <LucyButton
                         ButtonLink="/mapa"
@@ -40,14 +42,14 @@ export default function Home() {
                 </div>
             </header>
 
-            {/* MAIN */}
+            {/* MAIN RESPONSIVO */}
             <main class="w-full max-w-6xl mx-auto p-4 sm:p-8 pt-8 sm:pt-12 flex flex-col gap-4">
                 <A href="/explorar" class="text-lucy-light text-3xl sm:text-4xl font-medium hover:text-lucy-secondary transition-colors">
                     Explora
                 </A>
 
-                {/* GRID PARA LAS TARJETAS */}
-                <div class="w-full mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {/* LISTA VERTICAL PARA LAS TARJETAS */}
+                <div class="w-full mt-6 flex flex-col gap-4 sm:gap-6">
                     <For each={MOCK_LOCATIONS}>
                         {(locat) => (
                             <CardLocat locat={locat} />
