@@ -7,11 +7,11 @@ import CardLocat from "../components/CardLocat";
 
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80";
 
-// Manejador generico para cuando una imagen no carga
-    const handleImageError = (e: Event) => {
-        const target = e.currentTarget as HTMLImageElement;
-        target.src = DEFAULT_IMAGE;
-    };
+// Manejador genérico para cuando una imagen no carga
+const handleImageError = (e: Event) => {
+    const target = e.currentTarget as HTMLImageElement;
+    target.src = DEFAULT_IMAGE;
+};
 
 export default function Home() {
     return (
@@ -21,10 +21,22 @@ export default function Home() {
                     Festival<br/>
                     Internacional<br/>
                     de las<br/>
-                    Luciernagas
-                    <div class="absolute left-0 w-full h-2 bg-lucy-light mt-1"></div>
+                    Luciérnagas
+                    <div class="absolute left-0 w-full h-1 sm:h-2 bg-lucy-light mt-1"></div>
                 </h1>
-                <LucyButton ButtonLink="/mapa" ButtonText="Ver el mapa" ButtonBackground="lucy-dark" ButtonForeground="lucy-light" ButtonSize="md" ButtonIconSide="right" ButtonIcon={<ArrowRight />} />
+
+                {/* Contenedor del botón para asegurar que no se desborde en móvil */}
+                <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+                    <LucyButton
+                        ButtonLink="/mapa"
+                        ButtonText="Ver el mapa"
+                        ButtonBackground="lucy-dark"
+                        ButtonForeground="lucy-light"
+                        ButtonSize="md"
+                        ButtonIconSide="right"
+                        ButtonIcon={<ArrowRight />}
+                    />
+                </div>
             </header>
 
             <main class="max-w-screen mx-auto p-8 pt-12 flex flex-col gap-4">
@@ -32,8 +44,9 @@ export default function Home() {
                 Explora
                 </A>
 
-                <div class="w-full mt-8 ">
-                    <For each={MOCK_LOCATIONS}> 
+                {/* LISTA VERTICAL PARA LAS TARJETAS */}
+                <div class="w-full mt-6 flex flex-col gap-4 sm:gap-6">
+                    <For each={MOCK_LOCATIONS}>
                         {(locat) => (
                             <CardLocat locat={locat} />
                         )}
